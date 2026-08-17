@@ -1,45 +1,46 @@
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime, timezone
 import json
 import re
-import os
+from datetime import datetime, timezone
+from pathlib import Path
 
-BASE_URL = "https://nbt.tj/ru/kurs/kurs_kommer_bank.php"
+import requests
+from bs4 import BeautifulSoup
+
+
+NBT_URL = "https://www.nbt.tj/ru/"
+OUTPUT = Path("api/rates.json")
 
 CURRENCIES = {
-    "USD": "Доллар США",
+    "USD": "Доллар",
     "EUR": "Евро",
-    "RUB": "Российский рубль",
-    "CNY": "Китайский юань"
+    "RUB": "Рубль",
+    "CNY": "Юань",
 }
-
-OUTPUT_FILE = "api/rates.json"
 
 
 def clean_text(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def number(value):
-    if value is None:
+def number(text):
+    if text is None:
         return None
 
-    value = value.replace(",", ".").strip()
+    text = clean_text(str(text))
+    text = text.replace(",", ".")
+
+    match = re.search(r"-?\d+(?:\.\d+)?", text)
+
+    if not match:
+        return None
 
     try:
-        return float(value)
-    except:
+        return float(match.group())
+    except Exception:
         return None
 
 
-def get_nbt_page(currency):
-    print(f"Получаем {currency}...")
-
-    params = {
-        "valuta": currency
-    }
-
+def get_page():
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -48,8 +49,7 @@ def get_nbt_page(currency):
     }
 
     response = requests.get(
-        BASE_URL,
-        params=params,
+        NBT_URL,
         headers=headers,
         timeout=30
     )
@@ -61,17 +61,34 @@ def get_nbt_page(currency):
     return response.text
 
 
-def parse_currency(html, currency):
-    soup = BeautifulSoup(html, "html.parser")
+def find_official_rates(soup):
+    rates = {}
+
+    text = soup.get_text(" ", strip=True)
+
+    patterns = {
+        "USD": r"USD\s*([0-9]+[.,][0-9]+)",
+        "EUR": r"EUR\s*([0-9]+[.,][0-9]+)",
+        "RUB": r"RUB\s*([0-9]+[.,][0-9]+)",
+        "CNY": r"CNY\s*([0-9]+[.,][0-9]+)",
+    }
+
+    for code, pattern in patterns.items():
+        match = re.search(pattern, text, re.I)
+
+        if match:
+            rates[code] = number(match.group(1))
+
+    return rates
+
+
+def find_bank_table(soup):
+    """
+    Ищем таблицу НБТ, содержащую курсы
+    покупки/продажи финансовых организаций.
+    """
 
     tables = soup.find_all("table")
-
-    if not tables:
-        raise RuntimeError(
-            f"НБТ не вернул таблицу для {currency}"
-        )
-
-    result = {}
 
     for table in tables:
 
@@ -80,165 +97,213 @@ def parse_currency(html, currency):
         if len(rows) < 2:
             continue
 
-        for row in rows[1:]:
+        table_text = clean_text(table.get_text(" ")).lower()
 
-            cells = row.find_all(["td", "th"])
+        keywords = [
+            "покуп",
+            "прод",
+            "usd",
+            "eur",
+            "rub",
+            "cny"
+        ]
 
-            if len(cells) < 4:
-                continue
+        score = sum(1 for word in keywords if word in table_text)
 
-            values = [
-                clean_text(cell.get_text(" ", strip=True))
-                for cell in cells
+        if score >= 3:
+            return table
+
+    return None
+
+
+def parse_bank_table(table):
+    banks = []
+
+    if table is None:
+        return banks
+
+    rows = table.find_all("tr")
+
+    for row in rows[1:]:
+
+        cells = row.find_all(["td", "th"])
+
+        values = [
+            clean_text(cell.get_text(" "))
+            for cell in cells
+        ]
+
+        values = [v for v in values if v]
+
+        if not values:
+            continue
+
+        bank_name = values[0]
+
+        if len(bank_name) < 2:
+            continue
+
+        lower_name = bank_name.lower()
+
+        if any(
+            x in lower_name
+            for x in [
+                "валют",
+                "курс",
+                "покуп",
+                "продаж",
+                "организац"
             ]
+        ):
+            continue
 
-            bank_name = values[0]
-
-            if not bank_name:
-                continue
-
-            # НБТ:
-            # 0 = организация
-            # 1 = межбанк покупка
-            # 2 = межбанк продажа
-            # 3 = наличные покупка
-            # 4 = наличные продажа
-            # 5 = безналичные покупка
-            # 6 = безналичные продажа
-
-            buy = None
-            sell = None
-
-            if len(values) >= 5:
-                buy = number(values[3])
-                sell = number(values[4])
-
-            if buy is None or sell is None:
-                continue
-
-            # Не принимаем нулевые значения
-            if buy == 0 and sell == 0:
-                continue
-
-            result[bank_name] = {
-                "buy": buy,
-                "sell": sell
+        bank = {
+            "bank": bank_name,
+            "USD": {
+                "buy": None,
+                "sell": None
+            },
+            "EUR": {
+                "buy": None,
+                "sell": None
+            },
+            "RUB": {
+                "buy": None,
+                "sell": None
+            },
+            "CNY": {
+                "buy": None,
+                "sell": None
             }
+        }
 
-    return result
+        numbers = []
+
+        for value in values[1:]:
+            n = number(value)
+
+            if n is not None:
+                numbers.append(n)
+
+        # НБТ может менять порядок колонок.
+        # Сохраняем найденные значения, если структура
+        # соответствует обычной схеме:
+        #
+        # USD buy/sell
+        # EUR buy/sell
+        # RUB buy/sell
+        # CNY buy/sell
+
+        if len(numbers) >= 8:
+
+            bank["USD"]["buy"] = numbers[0]
+            bank["USD"]["sell"] = numbers[1]
+
+            bank["EUR"]["buy"] = numbers[2]
+            bank["EUR"]["sell"] = numbers[3]
+
+            bank["RUB"]["buy"] = numbers[4]
+            bank["RUB"]["sell"] = numbers[5]
+
+            bank["CNY"]["buy"] = numbers[6]
+            bank["CNY"]["sell"] = numbers[7]
+
+            banks.append(bank)
+
+    return banks
 
 
 def main():
 
-    print("====================================")
-    print(" SHTJK - НБТ CURRENCY UPDATER")
-    print("====================================")
+    print("======================================")
+    print(" SHTJK CURRENCY API")
+    print(" Source: National Bank of Tajikistan")
+    print("======================================")
 
-    all_data = {}
+    print("Downloading NBT...")
 
-    for currency in CURRENCIES:
+    html = get_page()
 
-        try:
-            html = get_nbt_page(currency)
+    soup = BeautifulSoup(html, "html.parser")
 
-            parsed = parse_currency(
-                html,
-                currency
-            )
+    print("NBT page loaded.")
 
-            all_data[currency] = parsed
+    official = find_official_rates(soup)
 
-            print(
-                f"{currency}: найдено "
-                f"{len(parsed)} организаций"
-            )
+    print("Official rates:")
 
-        except Exception as e:
+    for code in CURRENCIES:
 
-            print(
-                f"ОШИБКА {currency}: {e}"
-            )
+        value = official.get(code)
 
-            all_data[currency] = {}
+        print(
+            f"  {code}: "
+            f"{value if value is not None else 'NOT FOUND'}"
+        )
 
-    banks = {}
+    table = find_bank_table(soup)
 
-    # Собираем все организации
-    for currency in all_data:
+    if table:
+        print("Bank exchange-rate table found.")
+        banks = parse_bank_table(table)
+    else:
+        print("WARNING: Bank table was not found.")
+        banks = []
 
-        for bank_name in all_data[currency]:
+    print(f"Banks parsed: {len(banks)}")
 
-            if bank_name not in banks:
-                banks[bank_name] = {
-                    "bank": bank_name
-                }
+    now = datetime.now(timezone.utc).isoformat()
 
-            banks[bank_name][currency] = \
-                all_data[currency][bank_name]
+    data = {
+        "source": "НБТ",
+        "source_url": NBT_URL,
+        "updated": now,
 
-    final_banks = []
+        "official": {
+            "USD": official.get("USD"),
+            "EUR": official.get("EUR"),
+            "RUB": official.get("RUB"),
+            "CNY": official.get("CNY")
+        },
 
-    for bank_name, data in banks.items():
-
-        # Добавляем только организации,
-        # где есть хотя бы одна валюта
-        currencies_count = 0
-
-        for currency in CURRENCIES:
-            if currency in data:
-                currencies_count += 1
-
-        if currencies_count > 0:
-            final_banks.append(data)
-
-    final_banks.sort(
-        key=lambda x: x["bank"].lower()
-    )
-
-    now = datetime.now(
-        timezone.utc
-    ).astimezone()
-
-    output = {
-        "source": "Национальный Банк Таджикистана",
-        "source_url": BASE_URL,
-        "updated": now.strftime(
-            "%Y-%m-%d %H:%M:%S"
-        ),
-        "currency_count": len(CURRENCIES),
-        "bank_count": len(final_banks),
-        "banks": final_banks
+        "banks": banks
     }
 
-    os.makedirs(
-        os.path.dirname(OUTPUT_FILE),
+    OUTPUT.parent.mkdir(
+        parents=True,
         exist_ok=True
     )
 
     with open(
-        OUTPUT_FILE,
+        OUTPUT,
         "w",
         encoding="utf-8"
     ) as file:
 
         json.dump(
-            output,
+            data,
             file,
             ensure_ascii=False,
             indent=2
         )
 
-    print("")
-    print("====================================")
-    print(" ГОТОВО")
-    print("====================================")
-    print(
-        f"Банков/организаций: {len(final_banks)}"
-    )
-    print(
-        f"Файл: {OUTPUT_FILE}"
-    )
-    print("====================================")
+    print("--------------------------------------")
+    print(f"Saved: {OUTPUT}")
+    print(f"Banks: {len(banks)}")
+    print("--------------------------------------")
+
+    # ВАЖНО:
+    # Если НБТ вообще не дал официальный курс
+    # и банковскую таблицу, GitHub Action должен
+    # завершиться ошибкой, а не записывать пустые данные.
+
+    if not official and not banks:
+        raise RuntimeError(
+            "NBT data was not found. "
+            "rates.json was not updated with fake data."
+        )
+
+    print("SUCCESS")
 
 
 if __name__ == "__main__":
