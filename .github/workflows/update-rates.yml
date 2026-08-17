@@ -1,9 +1,8 @@
-name: Update SHTJK Rates
+name: Update SHTJK Currency Rates
 
 on:
   schedule:
-    - cron: "0 6 * * *"
-
+    - cron: "*/1 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -11,24 +10,35 @@ permissions:
 
 jobs:
   update-rates:
+
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Получить код проекта
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Запустить Python
-        run: |
-          python3 scripts/update_rates.py
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      - name: Сохранить новые курсы
+      - name: Install dependencies
         run: |
-          git config --global user.name "SHTJK Bot"
-          git config --global user.email "shtjk-bot@users.noreply.github.com"
+          python -m pip install --upgrade pip
+          python -m pip install requests beautifulsoup4
+
+      - name: Update rates
+        run: |
+          python scripts/update_rates.py
+
+      - name: Save rates.json
+        run: |
+          git config user.name "SHTJK Bot"
+          git config user.email "actions@github.com"
 
           git add api/rates.json
 
-          git diff --cached --quiet || git commit -m "Update bank exchange rates"
+          git diff --cached --quiet || git commit -m "Update currency rates"
 
           git push
