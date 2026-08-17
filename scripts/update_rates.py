@@ -1,100 +1,127 @@
 # -*- coding: utf-8 -*-
 
-"""
-SHTJK — Курс Валют от Банков Таджикистан
-
-Получает данные с официального сайта НБТ:
-https://nbt.tj/ru/kurs/kurs_kommer_bank.php
-
-Сохраняет:
-api/rates.json
-
-ВАЖНО:
-- Никаких придуманных курсов.
-- Если НБТ не даёт данные -> null.
-- Ищем все организации из REQUIRED_ORGANIZATIONS.
-- Сохраняем подробные данные НБТ.
-"""
-
 import json
 import re
-import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 
 
-# ============================================================
-# НАСТРОЙКИ
-# ============================================================
+NBT_BANKS_URL = "https://nbt.tj/ru/kurs/kurs_kommer_bank.php"
+NBT_OFFICIAL_URL = "https://nbt.tj/ru/kurs/kurs.php"
 
-BASE_URL = "https://nbt.tj"
-RATES_URL = "https://nbt.tj/ru/kurs/kurs_kommer_bank.php"
-OFFICIAL_URL = "https://nbt.tj/ru/kurs/kurs.php"
+OUTPUT_FILE = Path("api/rates.json")
 
-OUTPUT = Path("api/rates.json")
+CURRENCIES = ["USD", "EUR", "RUB", "CNY"]
 
 
-# ============================================================
-# ОРГАНИЗАЦИИ, КОТОРЫЕ НУЖНЫ SHTJK
-# ============================================================
-
-REQUIRED_ORGANIZATIONS = [
-    "Алиф Банк",
-    "Амонатбанк",
-    "Банк Арванд",
-    "Банк Эсхата",
-    "ФИНКА",
-    "Инвестиционно-Кредитный Банк Таджикистан",
-    "Актив Банк",
-    "Хумо",
-    "Имон Интернешнл",
-    "Международный банк Таджикистана",
-    "Ориёнбанк",
-    "Саноатсодиротбонк",
-    "Тавхидбанк",
-    "Спитамен Банк",
-    "Фридом Банк Таджикистан",
-    "Васл Банк",
-    "Душанбе Сити",
+BANKS = [
+    {
+        "name": "Алиф Банк",
+        "aliases": ["алиф банк", "алиф"]
+    },
+    {
+        "name": "Амонатбанк",
+        "aliases": ["амонатбанк", "амонат банк"]
+    },
+    {
+        "name": "Банк Арванд",
+        "aliases": ["банк арванд", "арванд"]
+    },
+    {
+        "name": "Банк Эсхата",
+        "aliases": ["банк эсхата", "эсхата"]
+    },
+    {
+        "name": "ФИНКА",
+        "aliases": ["финка"]
+    },
+    {
+        "name": "Инвестиционно-Кредитный Банк Таджикистан",
+        "aliases": [
+            "инвестиционно-кредитный банк таджикистан",
+            "инвестиционно кредитный банк таджикистан",
+            "икбт"
+        ]
+    },
+    {
+        "name": "Актив Банк",
+        "aliases": ["актив банк", "актив"]
+    },
+    {
+        "name": "Хумо",
+        "aliases": ["хумо"]
+    },
+    {
+        "name": "Имон Интернешнл",
+        "aliases": [
+            "имон интернешнл",
+            "имон"
+        ]
+    },
+    {
+        "name": "Международный банк Таджикистана",
+        "aliases": [
+            "международный банк таджикистана",
+            "международный банк"
+        ]
+    },
+    {
+        "name": "Ориёнбанк",
+        "aliases": [
+            "ориёнбанк",
+            "ориенбанк",
+            "ориёнбонк",
+            "ориенбонк"
+        ]
+    },
+    {
+        "name": "Саноатсодиротбонк",
+        "aliases": [
+            "саноатсодиротбонк",
+            "саноат содиротбонк"
+        ]
+    },
+    {
+        "name": "Тавхидбанк",
+        "aliases": [
+            "тавхидбанк",
+            "тавхид банк"
+        ]
+    },
+    {
+        "name": "Спитамен Банк",
+        "aliases": [
+            "спитамен банк",
+            "спитаменбанк"
+        ]
+    },
+    {
+        "name": "Фридом Банк Таджикистан",
+        "aliases": [
+            "фридом банк таджикистан",
+            "фридом банк",
+            "фридом"
+        ]
+    },
+    {
+        "name": "Васл Банк",
+        "aliases": [
+            "васл банк",
+            "васл"
+        ]
+    },
+    {
+        "name": "Душанбе Сити",
+        "aliases": [
+            "душанбе сити",
+            "dushanbe city"
+        ]
+    }
 ]
 
-
-# ============================================================
-# ВАЛЮТЫ
-# ============================================================
-
-CURRENCIES = {
-    "USD": [
-        "USD",
-        "доллар",
-        "доллар сша",
-        "долл"
-    ],
-    "EUR": [
-        "EUR",
-        "евро"
-    ],
-    "RUB": [
-        "RUB",
-        "руб",
-        "рубль",
-        "российский рубль"
-    ],
-    "CNY": [
-        "CNY",
-        "юань",
-        "китайский юань"
-    ],
-}
-
-
-# ============================================================
-# HTTP
-# ============================================================
 
 HEADERS = {
     "User-Agent": (
@@ -102,1076 +129,677 @@ HEADERS = {
         "(Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 "
         "(KHTML, like Gecko) "
-        "Chrome/128.0 Safari/537.36"
+        "Chrome/131.0 Safari/537.36"
     ),
-    "Accept-Language": "ru-RU,ru;q=0.9,en;q=0.8",
+    "Accept-Language": "ru-RU,ru;q=0.9"
 }
 
 
-def get(url, session):
-    """
-    Надёжная загрузка страницы.
-    """
-
-    last_error = None
-
-    for attempt in range(3):
-
-        try:
-
-            response = session.get(
-                url,
-                headers=HEADERS,
-                timeout=30,
-            )
-
-            response.raise_for_status()
-
-            response.encoding = (
-                response.apparent_encoding
-                or response.encoding
-                or "utf-8"
-            )
-
-            return response
-
-        except Exception as exc:
-
-            last_error = exc
-
-            if attempt < 2:
-                time.sleep(3)
-
-    raise last_error
-
-
-# ============================================================
-# ТЕКСТ
-# ============================================================
-
-def clean_text(value):
-    if value is None:
+def clean_text(text):
+    if text is None:
         return ""
 
-    value = str(value)
+    text = str(text)
 
-    value = value.replace("\xa0", " ")
-    value = value.replace("\u200b", "")
+    text = text.replace("\xa0", " ")
+    text = text.replace("\u200b", " ")
 
-    value = re.sub(r"\s+", " ", value)
+    text = re.sub(r"\s+", " ", text)
 
-    return value.strip()
-
-
-def normalize_name(value):
-    """
-    Нормализация названия организации.
-    """
-
-    value = clean_text(value).lower()
-
-    value = value.replace("ё", "е")
-
-    # ОАО / ЗАО / ООО / ГУП / МДО и т.д.
-    value = re.sub(
-        r'\b(оао|зао|ооо|гуп|мдо|мкк|мко|пэбт|сб рт)\b',
-        ' ',
-        value,
-    )
-
-    value = re.sub(
-        r'["«»„“”]',
-        ' ',
-        value,
-    )
-
-    value = re.sub(
-        r'[^a-zа-я0-9]+',
-        ' ',
-        value,
-    )
-
-    return clean_text(value)
+    return text.strip()
 
 
-# ============================================================
-# ЧИСЛА
-# ============================================================
+def normalize(text):
+    text = clean_text(text).lower()
 
-def parse_number(value):
+    text = text.replace("ё", "е")
 
-    value = clean_text(value)
+    text = text.replace("оао", "")
+    text = text.replace("зао", "")
+    text = text.replace("ооо", "")
+    text = text.replace("гуп", "")
+    text = text.replace("мдо", "")
+    text = text.replace("ло лс", "")
+    text = text.replace('"', "")
+    text = text.replace("«", "")
+    text = text.replace("»", "")
 
-    if not value:
+    text = re.sub(r"[^a-zа-я0-9]+", " ", text)
+
+    return clean_text(text)
+
+
+def parse_number(text):
+    text = clean_text(text)
+
+    if not text:
         return None
 
-    value = value.replace(",", ".")
+    text = text.replace(",", ".")
 
-    match = re.search(
-        r"-?\d+(?:\.\d+)?",
-        value
-    )
+    match = re.search(r"-?\d+(?:\.\d+)?", text)
 
     if not match:
         return None
 
     try:
-        number = float(match.group(0))
-    except Exception:
+        value = float(match.group(0))
+    except ValueError:
         return None
 
-    # НБТ использует 0.0000 там, где операции нет.
-    if number == 0:
+    if value == 0:
         return None
 
-    return number
+    return value
 
 
-# ============================================================
-# ТАБЛИЦА НБТ
-# ============================================================
+def request_page(url):
+    response = requests.get(
+        url,
+        headers=HEADERS,
+        timeout=40
+    )
 
-def find_rate_table(soup):
+    response.raise_for_status()
 
-    tables = soup.find_all("table")
+    response.encoding = (
+        response.apparent_encoding
+        or response.encoding
+        or "utf-8"
+    )
 
-    if not tables:
-        return None
+    return response.text
 
-    best = None
+
+def find_bank_match(actual_name):
+    actual = normalize(actual_name)
+
+    for bank in BANKS:
+
+        for alias in bank["aliases"]:
+
+            alias_normalized = normalize(alias)
+
+            if alias_normalized in actual:
+                return bank["name"]
+
+    return None
+
+
+def get_tables(soup):
+    return soup.find_all("table")
+
+
+def find_rates_table(soup):
+
+    tables = get_tables(soup)
+
+    best_table = None
     best_score = -1
 
     for table in tables:
 
-        text = clean_text(
+        text = normalize(
             table.get_text(" ", strip=True)
-        ).lower()
+        )
 
         score = 0
 
-        keywords = [
-            "кредитные финансовые организации",
-            "межбанк покупка",
-            "межбанк продажа",
-            "наличные покупка",
-            "наличные продажа",
-            "безналичные покупка",
-            "безналичные продажа",
-        ]
+        if "кредитные финансовые организации" in text:
+            score += 10
 
-        for keyword in keywords:
-            if keyword in text:
-                score += 1
+        if "межбанк покупка" in text:
+            score += 3
+
+        if "межбанк продажа" in text:
+            score += 3
+
+        if "наличные покупка" in text:
+            score += 3
+
+        if "наличные продажа" in text:
+            score += 3
+
+        if "безналичные покупка" in text:
+            score += 2
+
+        if "безналичные продажа" in text:
+            score += 2
 
         if score > best_score:
             best_score = score
-            best = table
+            best_table = table
 
-    return best
+    return best_table
 
 
-# ============================================================
-# ЗАГОЛОВКИ
-# ============================================================
+def get_table_rows(table):
 
-def get_headers(table):
+    rows = []
 
-    rows = table.find_all("tr")
+    for tr in table.find_all("tr"):
 
-    if not rows:
-        return []
+        cells = tr.find_all(["th", "td"])
 
-    for row in rows[:5]:
+        values = []
 
-        cells = row.find_all(
-            ["th", "td"]
-        )
+        for cell in cells:
 
-        headers = [
-            clean_text(
-                cell.get_text(
-                    " ",
-                    strip=True
-                )
-            )
-            for cell in cells
-        ]
-
-        joined = " ".join(headers).lower()
-
-        if (
-            "кредитные" in joined
-            and "покупка" in joined
-            and "продажа" in joined
-        ):
-            return headers
-
-    # fallback
-    cells = rows[0].find_all(
-        ["th", "td"]
-    )
-
-    return [
-        clean_text(
-            cell.get_text(
-                " ",
-                strip=True
-            )
-        )
-        for cell in cells
-    ]
-
-
-# ============================================================
-# КАРТА КОЛОНОК
-# ============================================================
-
-def make_column_map(headers):
-
-    result = {}
-
-    for index, header in enumerate(headers):
-
-        h = normalize_name(header)
-
-        if "кредитные финансовые организации" in h:
-            result["organization"] = index
-
-        elif "межбанк покупка" in h:
-            result["interbank_buy"] = index
-
-        elif "межбанк продажа" in h:
-            result["interbank_sell"] = index
-
-        elif "наличные покупка" in h:
-            result["cash_buy"] = index
-
-        elif "наличные продажа" in h:
-            result["cash_sell"] = index
-
-        elif "безналичные покупка" in h:
-            result["cashless_buy"] = index
-
-        elif "безналичные продажа" in h:
-            result["cashless_sell"] = index
-
-        elif "эл кошелек покупка" in h:
-            result["wallet_buy"] = index
-
-        elif "эл кошелек продажа" in h:
-            result["wallet_sell"] = index
-
-        elif "карты покупка" in h:
-            result["card_buy"] = index
-
-        elif "карты продажа" in h:
-            result["card_sell"] = index
-
-        elif "нпцдп покупка" in h:
-            result["npcdp_buy"] = index
-
-        elif "нпцдп продажа" in h:
-            result["npcdp_sell"] = index
-
-        elif h == "дата":
-            result["date"] = index
-
-    return result
-
-
-# ============================================================
-# СООТВЕТСТВИЕ НАЗВАНИЙ
-# ============================================================
-
-ALIASES = {
-
-    "Алиф Банк": [
-        "алиф банк",
-        "алиф"
-    ],
-
-    "Амонатбанк": [
-        "амонатбанк",
-        "амонат банк"
-    ],
-
-    "Банк Арванд": [
-        "банк арванд",
-        "арванд"
-    ],
-
-    "Банк Эсхата": [
-        "банк эсхата",
-        "эсхата"
-    ],
-
-    "ФИНКА": [
-        "финка"
-    ],
-
-    "Инвестиционно-Кредитный Банк Таджикистан": [
-        "инвестиционно кредитный банк таджикистан",
-        "инвестиционно кредитный банк",
-        "икбт"
-    ],
-
-    "Актив Банк": [
-        "актив банк",
-        "актив"
-    ],
-
-    "Хумо": [
-        "хумо"
-    ],
-
-    "Имон Интернешнл": [
-        "имон интернешнл",
-        "имон"
-    ],
-
-    "Международный банк Таджикистана": [
-        "международный банк таджикистана",
-        "международный банк"
-    ],
-
-    "Ориёнбанк": [
-        "ориенбанк",
-        "ориёнбанк",
-        "ориен банк",
-        "ориён банк"
-    ],
-
-    "Саноатсодиротбонк": [
-        "саноатсодиротбонк",
-        "саноат содиротбонк"
-    ],
-
-    "Тавхидбанк": [
-        "тавхидбанк",
-        "тавхид банк"
-    ],
-
-    "Спитамен Банк": [
-        "спитамен банк",
-        "спитаменбанк"
-    ],
-
-    "Фридом Банк Таджикистан": [
-        "фридом банк таджикистан",
-        "фридом банк",
-        "фридом"
-    ],
-
-    "Васл Банк": [
-        "васл банк",
-        "васл"
-    ],
-
-    "Душанбе Сити": [
-        "душанбе сити",
-        "душанбе сити банк",
-        "dushanbe city bank"
-    ],
-}
-
-
-def matches_organization(actual, wanted):
-
-    actual_norm = normalize_name(actual)
-
-    aliases = ALIASES.get(
-        wanted,
-        [wanted]
-    )
-
-    for alias in aliases:
-
-        alias_norm = normalize_name(alias)
-
-        if not alias_norm:
-            continue
-
-        if alias_norm in actual_norm:
-            return True
-
-    return False
-
-
-# ============================================================
-# ИЗВЛЕЧЕНИЕ СТРАНИЦЫ ОДНОЙ ВАЛЮТЫ
-# ============================================================
-
-def parse_currency_page(
-    html,
-    currency
-):
-
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    table = find_rate_table(soup)
-
-    if table is None:
-        raise RuntimeError(
-            f"Таблица НБТ не найдена для {currency}"
-        )
-
-    headers = get_headers(table)
-
-    column_map = make_column_map(
-        headers
-    )
-
-    if "organization" not in column_map:
-        raise RuntimeError(
-            f"Не найдена колонка организации для {currency}"
-        )
-
-    rows = table.find_all("tr")
-
-    result = {}
-
-    for row in rows:
-
-        cells = row.find_all(
-            ["td", "th"]
-        )
-
-        if not cells:
-            continue
-
-        values = [
-            clean_text(
-                cell.get_text(
-                    " ",
-                    strip=True
-                )
-            )
-            for cell in cells
-        ]
-
-        org_index = column_map["organization"]
-
-        if org_index >= len(values):
-            continue
-
-        organization =
-            values[org_index]
-
-        if not organization:
-            continue
-
-        for wanted in REQUIRED_ORGANIZATIONS:
-
-            if not matches_organization(
-                organization,
-                wanted
-            ):
-                continue
-
-            item = {
-                "source_name": organization,
-                "currency": currency,
-
-                "interbank": {
-                    "buy": get_cell_number(
-                        values,
-                        column_map,
-                        "interbank_buy"
-                    ),
-                    "sell": get_cell_number(
-                        values,
-                        column_map,
-                        "interbank_sell"
-                    ),
-                },
-
-                "cash": {
-                    "buy": get_cell_number(
-                        values,
-                        column_map,
-                        "cash_buy"
-                    ),
-                    "sell": get_cell_number(
-                        values,
-                        column_map,
-                        "cash_sell"
-                    ),
-                },
-
-                "cashless": {
-                    "buy": get_cell_number(
-                        values,
-                        column_map,
-                        "cashless_buy"
-                    ),
-                    "sell": get_cell_number(
-                        values,
-                        column_map,
-                        "cashless_sell"
-                    ),
-                },
-
-                "wallet": {
-                    "buy": get_cell_number(
-                        values,
-                        column_map,
-                        "wallet_buy"
-                    ),
-                    "sell": get_cell_number(
-                        values,
-                        column_map,
-                        "wallet_sell"
-                    ),
-                },
-
-                "cards": {
-                    "buy": get_cell_number(
-                        values,
-                        column_map,
-                        "card_buy"
-                    ),
-                    "sell": get_cell_number(
-                        values,
-                        column_map,
-                        "card_sell"
-                    ),
-                },
-
-                "npcdp": {
-                    "buy": get_cell_number(
-                        values,
-                        column_map,
-                        "npcdp_buy"
-                    ),
-                    "sell": get_cell_number(
-                        values,
-                        column_map,
-                        "npcdp_sell"
-                    ),
-                },
-
-                "date": get_cell_text(
-                    values,
-                    column_map,
-                    "date"
-                ),
-            }
-
-            result[wanted] = item
-
-    return result
-
-
-def get_cell_number(
-    values,
-    column_map,
-    key
-):
-
-    index = column_map.get(key)
-
-    if index is None:
-        return None
-
-    if index >= len(values):
-        return None
-
-    return parse_number(
-        values[index]
-    )
-
-
-def get_cell_text(
-    values,
-    column_map,
-    key
-):
-
-    index = column_map.get(key)
-
-    if index is None:
-        return None
-
-    if index >= len(values):
-        return None
-
-    value = clean_text(
-        values[index]
-    )
-
-    return value or None
-
-
-# ============================================================
-# ПОПЫТКА ПОЛУЧИТЬ ВАЛЮТУ ЧЕРЕЗ ФОРМУ НБТ
-# ============================================================
-
-def discover_currency_urls(
-    soup
-):
-
-    urls = {}
-
-    for form in soup.find_all("form"):
-
-        selects = form.find_all("select")
-
-        for select in selects:
-
-            options =
-                select.find_all("option")
-
-            for option in options:
-
-                text = clean_text(
-                    option.get_text(
+            values.append(
+                clean_text(
+                    cell.get_text(
                         " ",
                         strip=True
                     )
                 )
+            )
 
-                value = (
-                    option.get("value")
-                    or ""
-                )
+        if values:
+            rows.append(values)
 
-                combined = (
-                    text + " " + value
-                ).lower()
-
-                for currency, words in CURRENCIES.items():
-
-                    for word in words:
-
-                        if word.lower() in combined:
-
-                            form_action = (
-                                form.get("action")
-                                or RATES_URL
-                            )
-
-                            full_url = urljoin(
-                                RATES_URL,
-                                form_action
-                            )
-
-                            urls.setdefault(
-                                currency,
-                                {
-                                    "url": full_url,
-                                    "params": {}
-                                }
-                            )
-
-                            name = select.get(
-                                "name"
-                            )
-
-                            if name:
-                                urls[currency][
-                                    "params"
-                                ][name] = value
-
-                            break
-
-    return urls
+    return rows
 
 
-# ============================================================
-# ПОЛУЧЕНИЕ ОФИЦИАЛЬНЫХ КУРСОВ
-# ============================================================
+def find_header_row(rows):
 
-def parse_official_rates(
-    html
-):
+    for index, row in enumerate(rows):
+
+        text = normalize(" ".join(row))
+
+        if (
+            "кредитные финансовые организации"
+            in text
+        ):
+            return index
+
+    return None
+
+
+def parse_bank_table(html):
 
     soup = BeautifulSoup(
         html,
         "html.parser"
     )
 
-    text =
-        clean_text(
-            soup.get_text(
-                " ",
-                strip=True
-            )
+    table = find_rates_table(soup)
+
+    if table is None:
+        raise RuntimeError(
+            "Таблица НБТ не найдена."
         )
+
+    rows = get_table_rows(table)
+
+    if not rows:
+        raise RuntimeError(
+            "В таблице НБТ нет строк."
+        )
+
+    header_index = find_header_row(rows)
+
+    if header_index is None:
+        raise RuntimeError(
+            "Заголовок таблицы НБТ не найден."
+        )
+
+    header = rows[header_index]
+
+    header_map = {}
+
+    for index, value in enumerate(header):
+
+        h = normalize(value)
+
+        if "кредитные финансовые организации" in h:
+            header_map["organization"] = index
+
+        elif "межбанк покупка" in h:
+            header_map["interbank_buy"] = index
+
+        elif "межбанк продажа" in h:
+            header_map["interbank_sell"] = index
+
+        elif "наличные покупка" in h:
+            header_map["cash_buy"] = index
+
+        elif "наличные продажа" in h:
+            header_map["cash_sell"] = index
+
+        elif "безналичные покупка" in h:
+            header_map["cashless_buy"] = index
+
+        elif "безналичные продажа" in h:
+            header_map["cashless_sell"] = index
+
+        elif "эл кошелек покупка" in h:
+            header_map["wallet_buy"] = index
+
+        elif "эл кошелек продажа" in h:
+            header_map["wallet_sell"] = index
+
+        elif "карты покупка" in h:
+            header_map["cards_buy"] = index
+
+        elif "карты продажа" in h:
+            header_map["cards_sell"] = index
+
+        elif "нпцдп покупка" in h:
+            header_map["npcdp_buy"] = index
+
+        elif "нпцдп продажа" in h:
+            header_map["npcdp_sell"] = index
+
+        elif h == "дата":
+            header_map["date"] = index
+
+    if "organization" not in header_map:
+        raise RuntimeError(
+            "Колонка организации не найдена."
+        )
+
+    found = {}
+
+    for row in rows[header_index + 1:]:
+
+        org_index = header_map["organization"]
+
+        if org_index >= len(row):
+            continue
+
+        source_name = row[org_index]
+
+        if not source_name:
+            continue
+
+        bank_name = find_bank_match(
+            source_name
+        )
+
+        if bank_name is None:
+            continue
+
+        found[bank_name] = {
+            "bank": bank_name,
+            "official_name": source_name,
+
+            "interbank": {
+                "buy": get_value(
+                    row,
+                    header_map,
+                    "interbank_buy"
+                ),
+                "sell": get_value(
+                    row,
+                    header_map,
+                    "interbank_sell"
+                )
+            },
+
+            "cash": {
+                "buy": get_value(
+                    row,
+                    header_map,
+                    "cash_buy"
+                ),
+                "sell": get_value(
+                    row,
+                    header_map,
+                    "cash_sell"
+                )
+            },
+
+            "cashless": {
+                "buy": get_value(
+                    row,
+                    header_map,
+                    "cashless_buy"
+                ),
+                "sell": get_value(
+                    row,
+                    header_map,
+                    "cashless_sell"
+                )
+            },
+
+            "wallet": {
+                "buy": get_value(
+                    row,
+                    header_map,
+                    "wallet_buy"
+                ),
+                "sell": get_value(
+                    row,
+                    header_map,
+                    "wallet_sell"
+                )
+            },
+
+            "cards": {
+                "buy": get_value(
+                    row,
+                    header_map,
+                    "cards_buy"
+                ),
+                "sell": get_value(
+                    row,
+                    header_map,
+                    "cards_sell"
+                )
+            },
+
+            "npcdp": {
+                "buy": get_value(
+                    row,
+                    header_map,
+                    "npcdp_buy"
+                ),
+                "sell": get_value(
+                    row,
+                    header_map,
+                    "npcdp_sell"
+                )
+            },
+
+            "date": get_text_value(
+                row,
+                header_map,
+                "date"
+            )
+        }
+
+    return found
+
+
+def get_value(row, mapping, key):
+
+    index = mapping.get(key)
+
+    if index is None:
+        return None
+
+    if index >= len(row):
+        return None
+
+    return parse_number(row[index])
+
+
+def get_text_value(row, mapping, key):
+
+    index = mapping.get(key)
+
+    if index is None:
+        return None
+
+    if index >= len(row):
+        return None
+
+    value = clean_text(row[index])
+
+    return value if value else None
+
+
+def parse_official_rates(html):
+
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
 
     result = {}
 
-    # Ищем обычные пары вида:
-    # USD ... 9.22
-    # EUR ... 10.50
-    #
-    # Это только резервный поиск.
-    # Если структура страницы НБТ изменится,
-    # отсутствующие значения остаются null.
+    tables = soup.find_all("table")
 
-    for currency, words in CURRENCIES.items():
+    for table in tables:
 
-        for word in words:
+        rows = get_table_rows(table)
 
-            pattern = (
-                r"\b"
-                + re.escape(word)
-                + r"\b"
-                r".{0,150}?"
-                r"(\d+\.\d+)"
+        for row in rows:
+
+            text = normalize(
+                " ".join(row)
             )
 
-            match = re.search(
-                pattern,
-                text,
-                flags=re.I
-            )
+            if "доллар сша" in text:
+                value = find_last_number(row)
 
-            if match:
+                if value is not None:
+                    result["USD"] = value
 
-                number =
-                    parse_number(
-                        match.group(1)
-                    )
+            elif "евро" in text:
+                value = find_last_number(row)
 
-                if number is not None:
+                if value is not None:
+                    result["EUR"] = value
 
-                    result[currency] =
-                        number
+            elif "китайский юань" in text:
+                value = find_last_number(row)
 
-                    break
+                if value is not None:
+                    result["CNY"] = value
+
+            elif "российский рубль" in text:
+                value = find_last_number(row)
+
+                if value is not None:
+                    result["RUB"] = value
 
     return result
 
 
-# ============================================================
-# ОБЪЕДИНЕНИЕ
-# ============================================================
+def find_last_number(row):
 
-def build_banks(currency_data):
+    for value in reversed(row):
 
-    banks = {}
+        number = parse_number(value)
 
-    for wanted in REQUIRED_ORGANIZATIONS:
+        if number is not None:
+            return number
 
-        banks[wanted] = {
-            "bank": wanted,
-            "official_name": None,
-
-            "USD": None,
-            "EUR": None,
-            "RUB": None,
-            "CNY": None,
-
-            "available": False,
-        }
+    return None
 
 
-    for currency, data in currency_data.items():
+def make_final_banks(found):
 
-        for bank_name, item in data.items():
+    result = []
 
-            if bank_name not in banks:
-                continue
+    for bank in BANKS:
 
-            banks[bank_name][
-                currency
-            ] = item
+        name = bank["name"]
 
-            banks[bank_name][
-                "official_name"
-            ] = item.get(
-                "source_name"
-            )
+        if name in found:
 
-            banks[bank_name][
-                "available"
-            ] = True
+            item = found[name]
 
+            item["available"] = True
 
-    return list(
-        banks.values()
-    )
+            result.append(item)
 
-
-# ============================================================
-# СТАТИСТИКА
-# ============================================================
-
-def statistics(banks):
-
-    available = 0
-
-    missing = []
-
-    for bank in banks:
-
-        if bank.get("available"):
-            available += 1
         else:
-            missing.append(
-                bank["bank"]
-            )
 
-    return {
-        "requested": len(
-            REQUIRED_ORGANIZATIONS
-        ),
-        "found": available,
-        "missing": missing,
-    }
+            result.append({
+                "bank": name,
+                "official_name": None,
 
+                "interbank": {
+                    "buy": None,
+                    "sell": None
+                },
 
-# ============================================================
-# MAIN
-# ============================================================
+                "cash": {
+                    "buy": None,
+                    "sell": None
+                },
+
+                "cashless": {
+                    "buy": None,
+                    "sell": None
+                },
+
+                "wallet": {
+                    "buy": None,
+                    "sell": None
+                },
+
+                "cards": {
+                    "buy": None,
+                    "sell": None
+                },
+
+                "npcdp": {
+                    "buy": None,
+                    "sell": None
+                },
+
+                "date": None,
+                "available": False
+            })
+
+    return result
+
 
 def main():
 
-    print("=" * 70)
+    print("")
+    print("=" * 60)
     print("SHTJK — UPDATE RATES")
-    print("Источник: Национальный банк Таджикистана")
-    print("=" * 70)
+    print("=" * 60)
+    print("")
 
-    session = requests.Session()
+    print("1. Загружаем НБТ...")
 
-    # --------------------------------------------------------
-    # Главная страница
-    # --------------------------------------------------------
-
-    print("\n[1/3] Загружаем НБТ...")
-
-    response =
-        get(
-            RATES_URL,
-            session
-        )
-
-    print(
-        "OK:",
-        response.url
+    banks_html = request_page(
+        NBT_BANKS_URL
     )
 
-    # --------------------------------------------------------
-    # Определяем валюты
-    # --------------------------------------------------------
+    print("   OK")
 
-    print("\n[2/3] Получаем USD / EUR / RUB / CNY...")
+    print("2. Читаем таблицу организаций...")
 
-    first_soup =
-        BeautifulSoup(
-            response.text,
-            "html.parser"
-        )
+    found = parse_bank_table(
+        banks_html
+    )
 
-    currency_urls =
-        discover_currency_urls(
-            first_soup
-        )
+    print(
+        "   Найдено:",
+        len(found),
+        "из",
+        len(BANKS)
+    )
 
-    currency_data = {}
+    print("")
+    print("Найденные организации:")
 
-    # Всегда сначала пытаемся разобрать
-    # текущую страницу как USD.
-    try:
+    for name in found:
+        print("   ✓", name)
 
-        currency_data["USD"] =
-            parse_currency_page(
-                response.text,
-                "USD"
+    print("")
+
+    missing = []
+
+    for bank in BANKS:
+
+        if bank["name"] not in found:
+            missing.append(
+                bank["name"]
             )
 
-        print(
-            "USD:",
-            len(
-                currency_data["USD"]
-            ),
-            "организаций"
-        )
+    if missing:
 
-    except Exception as exc:
+        print("Не найдены на текущей странице НБТ:")
 
-        print(
-            "USD ERROR:",
-            exc
-        )
+        for name in missing:
+            print("   -", name)
 
-        currency_data["USD"] = {}
-
-
-    # Остальные валюты.
-    for currency in [
-        "EUR",
-        "RUB",
-        "CNY"
-    ]:
-
-        info =
-            currency_urls.get(
-                currency
-            )
-
-        if not info:
-
-            print(
-                currency,
-                ": URL/параметры НБТ не обнаружены"
-            )
-
-            currency_data[
-                currency
-            ] = {}
-
-            continue
-
-        try:
-
-            r =
-                session.get(
-                    info["url"],
-                    params=info["params"],
-                    headers=HEADERS,
-                    timeout=30
-                )
-
-            r.raise_for_status()
-
-            r.encoding =
-                r.apparent_encoding \
-                or r.encoding \
-                or "utf-8"
-
-            currency_data[
-                currency
-            ] =
-                parse_currency_page(
-                    r.text,
-                    currency
-                )
-
-            print(
-                currency,
-                ":",
-                len(
-                    currency_data[
-                        currency
-                    ]
-                ),
-                "организаций"
-            )
-
-        except Exception as exc:
-
-            print(
-                currency,
-                "ERROR:",
-                exc
-            )
-
-            currency_data[
-                currency
-            ] = {}
-
-
-    # --------------------------------------------------------
-    # Официальные курсы
-    # --------------------------------------------------------
-
-    official = {}
+    print("")
+    print("3. Получаем официальные курсы НБТ...")
 
     try:
 
-        official_response =
-            get(
-                OFFICIAL_URL,
-                session
-            )
+        official_html = request_page(
+            NBT_OFFICIAL_URL
+        )
 
-        official =
-            parse_official_rates(
-                official_response.text
-            )
+        official = parse_official_rates(
+            official_html
+        )
 
-    except Exception as exc:
+    except Exception as error:
 
         print(
-            "Official rates error:",
-            exc
+            "   Ошибка официального курса:",
+            error
         )
 
+        official = {}
 
-    # --------------------------------------------------------
-    # Формируем JSON
-    # --------------------------------------------------------
+    print(
+        "   USD:",
+        official.get("USD")
+    )
 
-    print("\n[3/3] Создаём rates.json...")
+    print(
+        "   EUR:",
+        official.get("EUR")
+    )
 
-    banks =
-        build_banks(
-            currency_data
-        )
+    print(
+        "   RUB:",
+        official.get("RUB")
+    )
 
-    stats =
-        statistics(
-            banks
-        )
+    print(
+        "   CNY:",
+        official.get("CNY")
+    )
 
+    final_banks = make_final_banks(
+        found
+    )
+
+    available_count = sum(
+        1
+        for bank in final_banks
+        if bank["available"]
+    )
 
     output = {
-
         "app": {
             "name":
                 "Курс Валют от Банков Таджикистан by SHTJK",
-            "version":
-                "3.0"
+            "version": "1.0"
         },
 
         "source": "НБТ",
 
         "source_url":
-            RATES_URL,
+            NBT_BANKS_URL,
 
         "updated":
             datetime.now(
                 timezone.utc
             ).isoformat(),
 
-        "currency_pages": {
-            currency:
-                len(
-                    currency_data.get(
-                        currency,
-                        {}
-                    )
-                )
-            for currency in CURRENCIES
-        },
-
-        "statistics": stats,
+        "currencies": CURRENCIES,
 
         "official": official,
 
-        "currencies": [
-            "USD",
-            "EUR",
-            "RUB",
-            "CNY"
-        ],
+        "statistics": {
+            "requested": len(BANKS),
+            "found": available_count,
+            "missing": len(BANKS) - available_count,
+            "missing_banks": missing
+        },
 
-        "banks": banks,
-
+        "banks": final_banks
     }
 
-
-    OUTPUT.parent.mkdir(
+    OUTPUT_FILE.parent.mkdir(
         parents=True,
         exist_ok=True
     )
 
-
-    with OUTPUT.open(
+    with OUTPUT_FILE.open(
         "w",
         encoding="utf-8"
     ) as file:
@@ -1183,48 +811,22 @@ def main():
             indent=2
         )
 
-
-    # --------------------------------------------------------
-    # Результат
-    # --------------------------------------------------------
-
-    print("\n" + "=" * 70)
+    print("")
+    print("=" * 60)
     print("ГОТОВО")
-    print("=" * 70)
-
+    print("=" * 60)
+    print("")
     print(
-        "Запрошено:",
-        stats["requested"]
+        "Файл создан:",
+        OUTPUT_FILE
     )
-
     print(
-        "Найдено:",
-        stats["found"]
+        "Банков найдено:",
+        available_count,
+        "/",
+        len(BANKS)
     )
-
-    print(
-        "Не найдено:",
-        len(
-            stats["missing"]
-        )
-    )
-
-
-    if stats["missing"]:
-
-        print("\nНе найдены НБТ:")
-
-        for name in stats["missing"]:
-            print(
-                " -",
-                name
-            )
-
-
-    print(
-        "\nФайл:",
-        OUTPUT
-    )
+    print("")
 
 
 if __name__ == "__main__":
