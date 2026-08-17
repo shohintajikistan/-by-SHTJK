@@ -1,506 +1,219 @@
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime, timezone
 import json
 import re
-import urllib.request
-from datetime import datetime, timezone
-from html import unescape
-from html.parser import HTMLParser
+import os
 
+BASE_URL = "https://nbt.tj/ru/kurs/kurs_kommer_bank.php"
 
-# =========================================================
-# SHTJK — REAL NBT BANK RATES
-# USD / EUR / RUB / CNY
-# =========================================================
+CURRENCIES = {
+    "USD": "Доллар США",
+    "EUR": "Евро",
+    "RUB": "Российский рубль",
+    "CNY": "Китайский юань"
+}
 
-NBT_URL = "https://www.nbt.tj/ru/kurs/kurs_kommer_bank.php"
 OUTPUT_FILE = "api/rates.json"
 
 
-# ---------------------------------------------------------
-# HTML TABLE PARSER
-# ---------------------------------------------------------
-
-class TableParser(HTMLParser):
-
-    def __init__(self):
-        super().__init__()
-
-        self.in_table = False
-        self.in_row = False
-        self.in_cell = False
-
-        self.rows = []
-        self.current_row = []
-        self.current_cell = ""
-
-    def handle_starttag(self, tag, attrs):
-
-        tag = tag.lower()
-
-        if tag == "table":
-            self.in_table = True
-
-        elif tag == "tr" and self.in_table:
-            self.in_row = True
-            self.current_row = []
-
-        elif tag in ("td", "th") and self.in_row:
-            self.in_cell = True
-            self.current_cell = ""
-
-    def handle_endtag(self, tag):
-
-        tag = tag.lower()
-
-        if tag in ("td", "th") and self.in_cell:
-
-            value = unescape(self.current_cell)
-
-            value = re.sub(r"\s+", " ", value)
-
-            self.current_row.append(value.strip())
-
-            self.current_cell = ""
-            self.in_cell = False
-
-        elif tag == "tr" and self.in_row:
-
-            if self.current_row:
-                self.rows.append(self.current_row)
-
-            self.current_row = []
-            self.in_row = False
-
-        elif tag == "table":
-            self.in_table = False
-
-    def handle_data(self, data):
-
-        if self.in_cell:
-            self.current_cell += data
+def clean_text(text):
+    return re.sub(r"\s+", " ", text).strip()
 
 
-# ---------------------------------------------------------
-# DOWNLOAD NBT
-# ---------------------------------------------------------
+def number(value):
+    if value is None:
+        return None
 
-def download_nbt():
-
-    request = urllib.request.Request(
-        NBT_URL,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 "
-                "(Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 "
-                "Chrome/120 Safari/537.36"
-            ),
-            "Accept": "text/html,application/xhtml+xml"
-        }
-    )
-
-    with urllib.request.urlopen(request, timeout=60) as response:
-
-        return response.read().decode(
-            "utf-8",
-            errors="ignore"
-        )
-
-
-# ---------------------------------------------------------
-# NUMBER
-# ---------------------------------------------------------
-
-def to_number(value):
-
-    value = value.strip()
-
-    value = value.replace(",", ".")
+    value = value.replace(",", ".").strip()
 
     try:
         return float(value)
-
-    except ValueError:
+    except:
         return None
 
 
-# ---------------------------------------------------------
-# BANK NAME CLEANING
-# ---------------------------------------------------------
+def get_nbt_page(currency):
+    print(f"Получаем {currency}...")
 
-def clean_bank_name(name):
+    params = {
+        "valuta": currency
+    }
 
-    name = unescape(name)
-
-    name = re.sub(
-        r"\s+",
-        " ",
-        name
-    ).strip()
-
-    return name
-
-
-# ---------------------------------------------------------
-# CHECK BANK
-# ---------------------------------------------------------
-
-def is_financial_organization(name):
-
-    name_lower = name.lower()
-
-    forbidden = [
-        "кредитные финансовые организации",
-        "межбанк",
-        "наличные",
-        "безналичные",
-        "эл.кошелек",
-        "карты",
-        "нпцдп"
-    ]
-
-    for word in forbidden:
-
-        if word in name_lower:
-            return False
-
-    return (
-        len(name) >= 5
-        and (
-            "банк" in name_lower
-            or "банка" in name_lower
-            or "bank" in name_lower
-            or "мдо" in name_lower
-            or "молия" in name_lower
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 Chrome/120 Safari/537.36"
         )
+    }
+
+    response = requests.get(
+        BASE_URL,
+        params=params,
+        headers=headers,
+        timeout=30
     )
 
+    response.raise_for_status()
 
-# ---------------------------------------------------------
-# PARSE TABLE
-# ---------------------------------------------------------
+    response.encoding = response.apparent_encoding
 
-def parse_table(html):
+    return response.text
 
-    parser = TableParser()
 
-    parser.feed(html)
+def parse_currency(html, currency):
+    soup = BeautifulSoup(html, "html.parser")
 
-    rows = parser.rows
+    tables = soup.find_all("table")
 
-    if not rows:
-
+    if not tables:
         raise RuntimeError(
-            "НБТ: таблица банков не найдена."
+            f"НБТ не вернул таблицу для {currency}"
         )
 
-    # -----------------------------------------------------
-    # Ищем строку заголовков
-    # -----------------------------------------------------
+    result = {}
 
-    header_index = None
+    for table in tables:
 
-    for i, row in enumerate(rows):
+        rows = table.find_all("tr")
 
-        joined = " ".join(row).lower()
-
-        if (
-            "кредитные финансовые организации" in joined
-            and "наличные покупка" in joined
-            and "наличные продажа" in joined
-        ):
-
-            header_index = i
-
-            break
-
-    if header_index is None:
-
-        raise RuntimeError(
-            "НБТ: заголовок таблицы не найден."
-        )
-
-    header = rows[header_index]
-
-    # -----------------------------------------------------
-    # Определяем позиции колонок
-    # -----------------------------------------------------
-
-    name_index = None
-    cash_buy_index = None
-    cash_sell_index = None
-    date_index = None
-
-    for i, column in enumerate(header):
-
-        c = column.lower().strip()
-
-        if (
-            "кредитные финансовые организации"
-            in c
-        ):
-
-            name_index = i
-
-        elif c == "наличные покупка":
-
-            cash_buy_index = i
-
-        elif c == "наличные продажа":
-
-            cash_sell_index = i
-
-        elif c == "дата":
-
-            date_index = i
-
-    if (
-        name_index is None
-        or cash_buy_index is None
-        or cash_sell_index is None
-    ):
-
-        raise RuntimeError(
-            "НБТ: нужные колонки не найдены."
-        )
-
-    # -----------------------------------------------------
-    # Банки
-    # -----------------------------------------------------
-
-    banks = []
-
-    latest_date = None
-
-    for row in rows[header_index + 1:]:
-
-        if len(row) <= max(
-            name_index,
-            cash_buy_index,
-            cash_sell_index
-        ):
-
+        if len(rows) < 2:
             continue
 
-        name = clean_bank_name(
-            row[name_index]
-        )
+        for row in rows[1:]:
 
-        if not is_financial_organization(name):
+            cells = row.find_all(["td", "th"])
 
-            continue
+            if len(cells) < 4:
+                continue
 
-        buy = to_number(
-            row[cash_buy_index]
-        )
+            values = [
+                clean_text(cell.get_text(" ", strip=True))
+                for cell in cells
+            ]
 
-        sell = to_number(
-            row[cash_sell_index]
-        )
+            bank_name = values[0]
 
-        if buy is None or sell is None:
+            if not bank_name:
+                continue
 
-            continue
+            # НБТ:
+            # 0 = организация
+            # 1 = межбанк покупка
+            # 2 = межбанк продажа
+            # 3 = наличные покупка
+            # 4 = наличные продажа
+            # 5 = безналичные покупка
+            # 6 = безналичные продажа
 
-        # 0.0000 означает, что курс отсутствует
+            buy = None
+            sell = None
 
-        if buy == 0 and sell == 0:
+            if len(values) >= 5:
+                buy = number(values[3])
+                sell = number(values[4])
 
-            continue
+            if buy is None or sell is None:
+                continue
 
-        bank = {
-            "bank": name,
-            "buy": buy,
-            "sell": sell
-        }
+            # Не принимаем нулевые значения
+            if buy == 0 and sell == 0:
+                continue
 
-        if date_index is not None and len(row) > date_index:
+            result[bank_name] = {
+                "buy": buy,
+                "sell": sell
+            }
 
-            date_value = row[date_index].strip()
+    return result
 
-            if date_value:
-
-                bank["updated"] = date_value
-
-                latest_date = date_value
-
-        banks.append(bank)
-
-    return banks, latest_date
-
-
-# ---------------------------------------------------------
-# GET CURRENT NBT CURRENCY
-# ---------------------------------------------------------
-
-def get_current_currency():
-
-    html = download_nbt()
-
-    banks, date_value = parse_table(html)
-
-    return banks, date_value
-
-
-# ---------------------------------------------------------
-# IMPORTANT
-#
-# NBT page normally shows ONE selected currency.
-#
-# This function tries several known parameter names.
-# If NBT changes its form, the script will not overwrite
-# the existing JSON with empty data.
-# ---------------------------------------------------------
-
-def get_currency(currency):
-
-    possible_urls = [
-
-        NBT_URL + "?currency=" + currency,
-
-        NBT_URL + "?valuta=" + currency,
-
-        NBT_URL + "?cur=" + currency,
-
-        NBT_URL + "?code=" + currency,
-
-        NBT_URL + "?currency_code=" + currency,
-
-    ]
-
-    for url in possible_urls:
-
-        try:
-
-            request = urllib.request.Request(
-                url,
-                headers={
-                    "User-Agent": "Mozilla/5.0 SHTJK"
-                }
-            )
-
-            with urllib.request.urlopen(
-                request,
-                timeout=60
-            ) as response:
-
-                html = response.read().decode(
-                    "utf-8",
-                    errors="ignore"
-                )
-
-            banks, date_value = parse_table(
-                html
-            )
-
-            if banks:
-
-                return banks, date_value
-
-        except Exception:
-
-            continue
-
-    return [], None
-
-
-# ---------------------------------------------------------
-# MAIN
-# ---------------------------------------------------------
 
 def main():
 
     print("====================================")
-    print("SHTJK REAL NBT RATES")
+    print(" SHTJK - НБТ CURRENCY UPDATER")
     print("====================================")
 
-    currencies = [
-        "USD",
-        "EUR",
-        "RUB",
-        "CNY"
-    ]
+    all_data = {}
 
-    result = {
+    for currency in CURRENCIES:
 
-        "source": "НБТ",
+        try:
+            html = get_nbt_page(currency)
 
-        "source_url": NBT_URL,
-
-        "updated": datetime.now(
-            timezone.utc
-        ).isoformat(),
-
-        "base": "TJS",
-
-        "type": "cash",
-
-        "currencies": {}
-
-    }
-
-    total = 0
-
-    # -----------------------------------------------------
-    # Получаем валюты
-    # -----------------------------------------------------
-
-    for currency in currencies:
-
-        print(
-            "Получаем",
-            currency,
-            "..."
-        )
-
-        banks, date_value = get_currency(
-            currency
-        )
-
-        # -------------------------------------------------
-        # Защита от пустого результата
-        # -------------------------------------------------
-
-        if not banks:
-
-            print(
-                "WARNING:",
-                currency,
-                "не получен"
+            parsed = parse_currency(
+                html,
+                currency
             )
 
-            continue
+            all_data[currency] = parsed
 
-        result["currencies"][currency] = {
+            print(
+                f"{currency}: найдено "
+                f"{len(parsed)} организаций"
+            )
 
-            "updated": date_value,
+        except Exception as e:
 
-            "banks": banks
+            print(
+                f"ОШИБКА {currency}: {e}"
+            )
 
-        }
+            all_data[currency] = {}
 
-        total += len(banks)
+    banks = {}
 
-        print(
-            currency,
-            "OK:",
-            len(banks),
-            "организаций"
-        )
+    # Собираем все организации
+    for currency in all_data:
 
-    # -----------------------------------------------------
-    # Если ничего не получили — НЕ портим JSON
-    # -----------------------------------------------------
+        for bank_name in all_data[currency]:
 
-    if total == 0:
+            if bank_name not in banks:
+                banks[bank_name] = {
+                    "bank": bank_name
+                }
 
-        raise RuntimeError(
-            "НБТ не вернул ни одного курса. "
-            "rates.json НЕ изменён."
-        )
+            banks[bank_name][currency] = \
+                all_data[currency][bank_name]
 
-    # -----------------------------------------------------
-    # SAVE
-    # -----------------------------------------------------
+    final_banks = []
+
+    for bank_name, data in banks.items():
+
+        # Добавляем только организации,
+        # где есть хотя бы одна валюта
+        currencies_count = 0
+
+        for currency in CURRENCIES:
+            if currency in data:
+                currencies_count += 1
+
+        if currencies_count > 0:
+            final_banks.append(data)
+
+    final_banks.sort(
+        key=lambda x: x["bank"].lower()
+    )
+
+    now = datetime.now(
+        timezone.utc
+    ).astimezone()
+
+    output = {
+        "source": "Национальный Банк Таджикистана",
+        "source_url": BASE_URL,
+        "updated": now.strftime(
+            "%Y-%m-%d %H:%M:%S"
+        ),
+        "currency_count": len(CURRENCIES),
+        "bank_count": len(final_banks),
+        "banks": final_banks
+    }
+
+    os.makedirs(
+        os.path.dirname(OUTPUT_FILE),
+        exist_ok=True
+    )
 
     with open(
         OUTPUT_FILE,
@@ -509,24 +222,24 @@ def main():
     ) as file:
 
         json.dump(
-            result,
+            output,
             file,
             ensure_ascii=False,
             indent=2
         )
 
-    print()
+    print("")
     print("====================================")
-    print("SHTJK SUCCESS")
-    print("Всего записей:", total)
-    print("Файл:", OUTPUT_FILE)
+    print(" ГОТОВО")
+    print("====================================")
+    print(
+        f"Банков/организаций: {len(final_banks)}"
+    )
+    print(
+        f"Файл: {OUTPUT_FILE}"
+    )
     print("====================================")
 
-
-# ---------------------------------------------------------
-# START
-# ---------------------------------------------------------
 
 if __name__ == "__main__":
-
     main()
