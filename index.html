@@ -1,1 +1,2829 @@
-e
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+
+<title>Курс Валют от Банков Таджикистан by SHTJK</title>
+
+<meta name="theme-color" content="#16a34a">
+
+<style>
+:root{
+  --primary:#16a34a;
+  --secondary:#22c55e;
+  --dark-green:#15803d;
+  --bg:#f4f7f5;
+  --card:#ffffff;
+  --text:#172019;
+  --muted:#78827c;
+  --border:#e3e9e5;
+  --shadow:0 4px 18px rgba(23,32,25,.06);
+  --shadow-lg:0 12px 32px rgba(23,32,25,.12);
+  --up:#16a34a;
+  --down:#dc2626;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --radius-sm:12px;
+  --maxw:700px;
+  color-scheme:light;
+}
+
+[data-theme="dark"]{
+  --bg:#0e1310;
+  --card:#161d18;
+  --text:#eef3ef;
+  --muted:#8a9690;
+  --border:#243029;
+  --shadow:0 4px 18px rgba(0,0,0,.35);
+  --shadow-lg:0 16px 40px rgba(0,0,0,.5);
+  color-scheme:dark;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+  "Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,p{
+  margin:0;
+}
+
+button{
+  font-family:inherit;
+}
+
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 16px 100px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* HEADER */
+
+.app-header{
+  background:linear-gradient(
+    135deg,
+    #15803d 0%,
+    #16a34a 55%,
+    #22c55e 100%
+  );
+  border-radius:0 0 26px 26px;
+  box-shadow:var(--shadow-lg);
+  padding:18px 16px 22px;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.header-inner{
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-box{
+  width:48px;
+  height:48px;
+  background:#fff;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:11px;
+  letter-spacing:.5px;
+  color:var(--primary);
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
+  flex-shrink:0;
+}
+
+.brand-text .title{
+  color:#fff;
+  font-weight:700;
+  font-size:16px;
+}
+
+.brand-text .subtitle{
+  color:rgba(255,255,255,.85);
+  font-size:11.5px;
+  margin-top:2px;
+}
+
+.menu-btn{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  border:none;
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+/* HOME */
+
+.welcome{
+  padding:20px 0 6px;
+}
+
+.welcome h1{
+  font-size:22px;
+  font-weight:800;
+}
+
+.welcome p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:4px;
+}
+
+.search-bar{
+  margin-top:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:13px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:var(--shadow);
+}
+
+.search-bar input{
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14.5px;
+  color:var(--text);
+  width:100%;
+}
+
+.search-bar input::placeholder{
+  color:var(--muted);
+}
+
+.quick-actions{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.qa-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:14px 6px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+
+.qa-card:active{
+  transform:scale(.94);
+}
+
+.qa-card .qa-icon{
+  font-size:22px;
+}
+
+.qa-card .qa-label{
+  font-size:11px;
+  font-weight:600;
+  color:var(--text);
+}
+
+.ad-block{
+  margin-top:18px;
+  border-radius:var(--radius-md);
+  border:1.5px dashed var(--border);
+  background:var(--card);
+  padding:18px;
+  text-align:center;
+}
+
+.ad-tag{
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:var(--muted);
+  background:var(--bg);
+  padding:3px 8px;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+
+.ad-brand{
+  font-weight:800;
+  font-size:15px;
+  color:var(--primary);
+}
+
+.ad-sub{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.section-head{
+  margin-top:24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.section-head h2{
+  font-size:16.5px;
+  font-weight:800;
+}
+
+.today{
+  font-size:12px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:4px 10px;
+  border-radius:20px;
+}
+
+.currency-list{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.currency-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+
+.cc-flag{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  flex-shrink:0;
+}
+
+.cc-info{
+  flex:1;
+  min-width:0;
+}
+
+.cc-name{
+  font-weight:700;
+  font-size:14.5px;
+}
+
+.cc-sub{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.cc-right{
+  text-align:right;
+}
+
+.cc-rate{
+  font-weight:800;
+  font-size:14px;
+}
+
+.cc-change{
+  font-size:11.5px;
+  margin-top:3px;
+  font-weight:600;
+}
+
+.cc-change.up{
+  color:var(--up);
+}
+
+.cc-change.down{
+  color:var(--down);
+}
+
+.info-card{
+  margin-top:20px;
+  background:linear-gradient(135deg,#15803d,#22c55e);
+  border-radius:var(--radius-lg);
+  padding:20px;
+  color:#fff;
+  box-shadow:var(--shadow-lg);
+}
+
+.info-card h3{
+  font-size:15.5px;
+}
+
+.info-card p{
+  font-size:13px;
+  margin-top:8px;
+  opacity:.92;
+  line-height:1.5;
+}
+
+/* DRAWER */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0;
+  pointer-events:none;
+  transition:.28s;
+  z-index:90;
+}
+
+.overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.drawer{
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  width:82%;
+  max-width:320px;
+  background:var(--card);
+  z-index:95;
+  transform:translateX(-105%);
+  transition:.32s;
+  display:flex;
+  flex-direction:column;
+  box-shadow:var(--shadow-lg);
+}
+
+.drawer.show{
+  transform:translateX(0);
+}
+
+.drawer-header{
+  background:linear-gradient(
+    135deg,
+    #15803d,
+    #16a34a,
+    #22c55e
+  );
+  padding:22px 18px 20px;
+  color:#fff;
+  position:relative;
+}
+
+.drawer-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,.2);
+  color:#fff;
+  font-size:18px;
+}
+
+.d-logo{
+  width:44px;
+  height:44px;
+  background:#fff;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:10px;
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+.d-title{
+  font-weight:800;
+  font-size:15px;
+}
+
+.d-sub{
+  font-size:12px;
+  opacity:.85;
+  margin-top:2px;
+}
+
+.d-tag{
+  font-size:11px;
+  opacity:.75;
+  margin-top:8px;
+}
+
+.drawer-body{
+  padding:14px 10px;
+  overflow-y:auto;
+  flex:1;
+}
+
+.drawer-section-title{
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+  letter-spacing:.6px;
+  padding:14px 12px 6px;
+}
+
+.drawer-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 12px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.di-icon{
+  font-size:19px;
+  width:26px;
+  text-align:center;
+}
+
+.di-title{
+  font-size:13.5px;
+  font-weight:700;
+}
+
+.di-sub{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+.drawer-footer{
+  padding:14px 18px 18px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* PAGES */
+
+.page{
+  position:fixed;
+  inset:0;
+  background:var(--bg);
+  z-index:80;
+  transform:translateY(100%);
+  transition:.34s;
+  overflow-y:auto;
+}
+
+.page.show{
+  transform:translateY(0);
+}
+
+.page-header{
+  background:linear-gradient(
+    135deg,
+    #15803d,
+    #16a34a,
+    #22c55e
+  );
+  padding:16px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:5;
+  border-radius:0 0 20px 20px;
+  box-shadow:var(--shadow);
+}
+
+.back-btn{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,.2);
+  color:#fff;
+  font-size:19px;
+}
+
+.page-header h2{
+  color:#fff;
+  font-size:16px;
+}
+
+.page-body{
+  padding:16px;
+  max-width:var(--maxw);
+  margin:0 auto;
+  width:100%;
+}
+
+/* BANKS */
+
+.bank-search{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+
+.bank-search input{
+  border:none;
+  outline:none;
+  background:transparent;
+  font-size:14px;
+  color:var(--text);
+  width:100%;
+}
+
+.bank-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.bank-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:13px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:var(--shadow);
+}
+
+.bank-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+
+.bank-name{
+  font-weight:700;
+  font-size:14px;
+}
+
+.bank-sub{
+  font-size:11.5px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.bank-chevron{
+  color:var(--muted);
+  font-size:18px;
+}
+
+.no-results{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:30px 0;
+}
+
+/* SETTINGS */
+
+.settings-group{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+
+.settings-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-bottom:1px solid var(--border);
+}
+
+.settings-row:last-child{
+  border-bottom:none;
+}
+
+.si-icon{
+  font-size:19px;
+  width:24px;
+  text-align:center;
+}
+
+.si-title{
+  font-size:14px;
+  font-weight:700;
+}
+
+.si-sub{
+  font-size:11.5px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+.si-right{
+  margin-left:auto;
+  font-size:12.5px;
+  color:var(--muted);
+}
+
+.toggle{
+  width:46px;
+  height:27px;
+  border-radius:20px;
+  background:var(--border);
+  position:relative;
+  cursor:pointer;
+}
+
+.toggle.on{
+  background:var(--primary);
+}
+
+.knob{
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 4px rgba(0,0,0,.25);
+  transition:.2s;
+}
+
+.toggle.on .knob{
+  transform:translateX(19px);
+}
+
+/* SUPPORT */
+
+.support-title{
+  font-size:19px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.support-text{
+  font-size:13.5px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+.support-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:var(--shadow);
+  margin-bottom:10px;
+}
+
+.s-icon{
+  font-size:20px;
+}
+
+.s-title{
+  font-weight:700;
+  font-size:13.5px;
+}
+
+/* AGREEMENT */
+
+.agreement-block{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px;
+  box-shadow:var(--shadow);
+  margin-bottom:12px;
+}
+
+.agreement-block h4{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+.agreement-block p{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ABOUT */
+
+.about-center{
+  text-align:center;
+  padding:30px 0;
+}
+
+.about-logo{
+  width:76px;
+  height:76px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#15803d,#22c55e);
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 14px;
+  box-shadow:var(--shadow-lg);
+}
+
+.a-title{
+  font-weight:800;
+  font-size:18px;
+}
+
+.a-sub{
+  font-size:12.5px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.a-version{
+  display:inline-block;
+  margin-top:12px;
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--primary);
+  background:rgba(22,163,74,.1);
+  padding:5px 12px;
+  border-radius:20px;
+}
+
+.a-desc{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:18px;
+  line-height:1.6;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--text);
+  color:var(--bg);
+  padding:12px 20px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:var(--shadow-lg);
+  z-index:150;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  max-width:85%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.loading{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.error{
+  text-align:center;
+  padding:25px;
+  color:var(--down);
+  font-size:13px;
+}
+
+@media(max-width:340px){
+  .brand-text .title{
+    font-size:14.5px;
+  }
+
+  .qa-card .qa-label{
+    font-size:10px;
+  }
+}
+</style>
+</head>
+
+<body data-theme="light">
+
+<header class="app-header">
+
+  <div class="header-inner">
+
+    <div class="brand">
+
+      <div class="logo-box">
+        SHTJK
+      </div>
+
+      <div class="brand-text">
+
+        <div class="title">
+          Курс Валют
+        </div>
+
+        <div class="subtitle">
+          От Банков Таджикистан
+        </div>
+
+      </div>
+
+    </div>
+
+    <button
+      class="menu-btn"
+      id="openDrawerBtn">
+      ☰
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="wrap">
+
+  <section class="welcome">
+
+    <h1>
+      Добро пожаловать 👋
+    </h1>
+
+    <p>
+      Курсы валют банков Таджикистана
+    </p>
+
+  </section>
+
+
+  <div class="search-bar">
+
+    <span>🔎</span>
+
+    <input
+      type="text"
+      id="mainSearch"
+      placeholder="Поиск валюты или банка...">
+
+  </div>
+
+
+  <div class="quick-actions">
+
+    <div class="qa-card" id="qaBanks">
+
+      <span class="qa-icon">🏦</span>
+
+      <span class="qa-label">
+        19 банков
+      </span>
+
+    </div>
+
+
+    <div class="qa-card" id="qaConverter">
+
+      <span class="qa-icon">🧮</span>
+
+      <span class="qa-label">
+        Конвертер
+      </span>
+
+    </div>
+
+
+    <div class="qa-card" id="qaChart">
+
+      <span class="qa-icon">📈</span>
+
+      <span class="qa-label">
+        График
+      </span>
+
+    </div>
+
+
+    <div class="qa-card" id="qaFavorites">
+
+      <span class="qa-icon">⭐</span>
+
+      <span class="qa-label">
+        Избранное
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="ad-block">
+
+    <span class="ad-tag">
+      РЕКЛАМА
+    </span>
+
+    <div class="ad-brand">
+      SHOHIN
+    </div>
+
+    <div class="ad-sub">
+      Место для онлайн-рекламы
+    </div>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <h2>
+      💱 Курсы валют
+    </h2>
+
+    <span class="today" id="today">
+      Загрузка...
+    </span>
+
+  </div>
+
+
+  <div
+    class="currency-list"
+    id="currencyList">
+
+    <div class="loading">
+      ⏳ Загружаем реальные курсы НБТ...
+    </div>
+
+  </div>
+
+
+  <div class="info-card">
+
+    <h3>
+      🏦 Сравнивайте курсы банков
+    </h3>
+
+    <p>
+      Найдите банк с наиболее выгодным курсом покупки или продажи валюты.
+    </p>
+
+  </div>
+
+
+  <div
+    class="ad-block"
+    style="margin-top:20px;">
+
+    <span class="ad-tag">
+      РЕКЛАМА
+    </span>
+
+    <div class="ad-brand">
+      SHOHIN
+    </div>
+
+    <div class="ad-sub">
+      Место для онлайн-рекламы
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- DRAWER -->
+
+<div
+  class="overlay"
+  id="overlay">
+</div>
+
+
+<nav
+  class="drawer"
+  id="drawer">
+
+  <div class="drawer-header">
+
+    <button
+      class="drawer-close"
+      id="closeDrawerBtn">
+      ×
+    </button>
+
+    <div class="d-logo">
+      SHTJK
+    </div>
+
+    <div class="d-title">
+      SHTJK
+    </div>
+
+    <div class="d-sub">
+      Курс Валют от Банков Таджикистан
+    </div>
+
+    <div class="d-tag">
+      Ваш финансовый помощник
+    </div>
+
+  </div>
+
+
+  <div class="drawer-body">
+
+    <div class="drawer-section-title">
+      ОСНОВНОЕ
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="currencies">
+
+      <span class="di-icon">💱</span>
+
+      <div>
+
+        <div class="di-title">
+          Курсы валют
+        </div>
+
+        <div class="di-sub">
+          Актуальные курсы
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="banks">
+
+      <span class="di-icon">🏦</span>
+
+      <div>
+
+        <div class="di-title">
+          Банки Таджикистана
+        </div>
+
+        <div class="di-sub">
+          Все банки
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="converter">
+
+      <span class="di-icon">🧮</span>
+
+      <div>
+
+        <div class="di-title">
+          Конвертер
+        </div>
+
+        <div class="di-sub">
+          Быстрый расчёт валют
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="chart">
+
+      <span class="di-icon">📈</span>
+
+      <div>
+
+        <div class="di-title">
+          График курса
+        </div>
+
+        <div class="di-sub">
+          История изменения
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="favorites">
+
+      <span class="di-icon">⭐</span>
+
+      <div>
+
+        <div class="di-title">
+          Избранное
+        </div>
+
+        <div class="di-sub">
+          Ваши любимые банки
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="drawer-section-title">
+      ПРИЛОЖЕНИЕ
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="settings">
+
+      <span class="di-icon">⚙️</span>
+
+      <div>
+
+        <div class="di-title">
+          Настройки
+        </div>
+
+        <div class="di-sub">
+          Настройте приложение
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="support">
+
+      <span class="di-icon">🛟</span>
+
+      <div>
+
+        <div class="di-title">
+          Поддержка
+        </div>
+
+        <div class="di-sub">
+          Помощь и обратная связь
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="agreement">
+
+      <span class="di-icon">📄</span>
+
+      <div>
+
+        <div class="di-title">
+          Пользовательское соглашение
+        </div>
+
+        <div class="di-sub">
+          Условия использования
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="drawer-item"
+      data-action="about">
+
+      <span class="di-icon">ℹ️</span>
+
+      <div>
+
+        <div class="di-title">
+          О приложении
+        </div>
+
+        <div class="di-sub">
+          Версия и информация
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="drawer-footer">
+
+    © 2026 SHTJK<br>
+    Курс Валют от Банков Таджикистан
+
+  </div>
+
+</nav>
+
+
+<!-- BANKS -->
+
+<section
+  class="page"
+  id="page-banks">
+
+  <div class="page-header">
+
+    <button
+      class="back-btn"
+      data-close-page>
+      ←
+    </button>
+
+    <h2>
+      🏦 Банки Таджикистана
+    </h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="bank-search">
+
+      <span>🔎</span>
+
+      <input
+        type="text"
+        id="bankSearch"
+        placeholder="Найти банк...">
+
+    </div>
+
+
+    <div
+      class="bank-list"
+      id="bankList">
+
+    </div>
+
+
+    <div
+      class="no-results hidden"
+      id="bankNoResults">
+
+      Банки не найдены
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section
+  class="page"
+  id="page-settings">
+
+  <div class="page-header">
+
+    <button
+      class="back-btn"
+      data-close-page>
+      ←
+    </button>
+
+    <h2>
+      ⚙️ Настройки
+    </h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="settings-group">
+
+      <div class="settings-row">
+
+        <span class="si-icon">
+          🌙
+        </span>
+
+        <div>
+
+          <div class="si-title">
+            Тёмная тема
+          </div>
+
+          <div class="si-sub">
+            Изменить внешний вид приложения
+          </div>
+
+        </div>
+
+        <div
+          class="toggle"
+          id="darkToggle">
+
+          <div class="knob"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="settings-row">
+
+        <span class="si-icon">
+          🔔
+        </span>
+
+        <div>
+
+          <div class="si-title">
+            Уведомления
+          </div>
+
+          <div class="si-sub">
+            Изменения курсов валют
+          </div>
+
+        </div>
+
+        <div
+          class="toggle on"
+          id="notifToggle">
+
+          <div class="knob"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="settings-row">
+
+        <span class="si-icon">
+          📳
+        </span>
+
+        <div>
+
+          <div class="si-title">
+            Вибрация
+          </div>
+
+          <div class="si-sub">
+            Вибрация при нажатии
+          </div>
+
+        </div>
+
+        <div
+          class="toggle on"
+          id="vibrateToggle">
+
+          <div class="knob"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="settings-group">
+
+      <div class="settings-row">
+
+        <span class="si-icon">
+          🌐
+        </span>
+
+        <div>
+
+          <div class="si-title">
+            Язык
+          </div>
+
+          <div class="si-sub">
+            Интерфейс приложения
+          </div>
+
+        </div>
+
+        <div class="si-right">
+          Русский ›
+        </div>
+
+      </div>
+
+
+      <div class="settings-row">
+
+        <span class="si-icon">
+          💱
+        </span>
+
+        <div>
+
+          <div class="si-title">
+            Основная валюта
+          </div>
+
+          <div class="si-sub">
+            Для расчётов и отображения
+          </div>
+
+        </div>
+
+        <div class="si-right">
+          TJS ›
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section
+  class="page"
+  id="page-support">
+
+  <div class="page-header">
+
+    <button
+      class="back-btn"
+      data-close-page>
+      ←
+    </button>
+
+    <h2>
+      🛟 Поддержка
+    </h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="support-title">
+      Чем можем помочь?
+    </div>
+
+    <p class="support-text">
+
+      Если вы нашли ошибку в курсах валют или хотите предложить новую функцию для SHTJK — напишите нам.
+
+    </p>
+
+
+    <div
+      class="support-item"
+      data-support="feedback">
+
+      <span class="s-icon">
+        💬
+      </span>
+
+      <span class="s-title">
+        Обратная связь
+      </span>
+
+    </div>
+
+
+    <div
+      class="support-item"
+      data-support="bug">
+
+      <span class="s-icon">
+        🐛
+      </span>
+
+      <span class="s-title">
+        Сообщить об ошибке
+      </span>
+
+    </div>
+
+
+    <div
+      class="support-item"
+      data-support="feature">
+
+      <span class="s-icon">
+        💡
+      </span>
+
+      <span class="s-title">
+        Предложить функцию
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- AGREEMENT -->
+
+<section
+  class="page"
+  id="page-agreement">
+
+  <div class="page-header">
+
+    <button
+      class="back-btn"
+      data-close-page>
+      ←
+    </button>
+
+    <h2>
+      📄 Соглашение
+    </h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="agreement-block">
+
+      <h4>
+        1. Назначение приложения
+      </h4>
+
+      <p>
+        SHTJK предоставляет информационный сервис для просмотра курсов обмена валют банков Таджикистана.
+      </p>
+
+    </div>
+
+
+    <div class="agreement-block">
+
+      <h4>
+        2. Информация о курсах
+      </h4>
+
+      <p>
+        Курсы валют могут изменяться. Информация предоставляется исключительно в ознакомительных целях.
+      </p>
+
+    </div>
+
+
+    <div class="agreement-block">
+
+      <h4>
+        3. Ответственность
+      </h4>
+
+      <p>
+        Пользователям следует уточнять актуальный курс непосредственно в соответствующем банке перед совершением финансовых операций.
+      </p>
+
+    </div>
+
+
+    <div class="agreement-block">
+
+      <h4>
+        4. Изменение условий
+      </h4>
+
+      <p>
+        Соглашение может обновляться по мере развития приложения.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+  class="page"
+  id="page-about">
+
+  <div class="page-header">
+
+    <button
+      class="back-btn"
+      data-close-page>
+      ←
+    </button>
+
+    <h2>
+      ℹ️ О приложении
+    </h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="about-center">
+
+      <div class="about-logo">
+        SHTJK
+      </div>
+
+      <div class="a-title">
+        SHTJK
+      </div>
+
+      <div class="a-sub">
+        Курс Валют от Банков Таджикистан
+      </div>
+
+      <div class="a-version">
+        Версия 1.0
+      </div>
+
+      <p class="a-desc">
+        Информационное приложение для быстрого просмотра курсов валют и банков Таджикистана.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script>
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const state = {
+  drawerOpen:false,
+  activePage:null
+};
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(showToast.timer);
+
+  showToast.timer =
+    setTimeout(()=>{
+      toast.classList.remove("show");
+    },2200);
+}
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+const THEME_KEY =
+  "shtjk_theme";
+
+
+function applyTheme(theme){
+
+  document.body.setAttribute(
+    "data-theme",
+    theme
+  );
+
+  document
+    .getElementById("darkToggle")
+    .classList
+    .toggle(
+      "on",
+      theme === "dark"
+    );
+}
+
+
+function loadTheme(){
+
+  const theme =
+    localStorage.getItem(THEME_KEY)
+    || "light";
+
+  applyTheme(theme);
+}
+
+
+function toggleTheme(){
+
+  const current =
+    document.body.getAttribute(
+      "data-theme"
+    );
+
+  const next =
+    current === "dark"
+      ? "light"
+      : "dark";
+
+  localStorage.setItem(
+    THEME_KEY,
+    next
+  );
+
+  applyTheme(next);
+}
+
+
+document
+  .getElementById("darkToggle")
+  .addEventListener(
+    "click",
+    toggleTheme
+  );
+
+
+["notifToggle","vibrateToggle"]
+.forEach(id=>{
+
+  document
+    .getElementById(id)
+    .addEventListener(
+      "click",
+      ()=>{
+        document
+          .getElementById(id)
+          .classList
+          .toggle("on");
+      }
+    );
+
+});
+
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
+const drawer =
+  document.getElementById("drawer");
+
+const overlay =
+  document.getElementById("overlay");
+
+
+function openDrawer(){
+
+  drawer.classList.add("show");
+
+  overlay.classList.add("show");
+
+  state.drawerOpen = true;
+}
+
+
+function closeDrawer(){
+
+  drawer.classList.remove("show");
+
+  overlay.classList.remove("show");
+
+  state.drawerOpen = false;
+}
+
+
+document
+  .getElementById("openDrawerBtn")
+  .addEventListener(
+    "click",
+    openDrawer
+  );
+
+
+document
+  .getElementById("closeDrawerBtn")
+  .addEventListener(
+    "click",
+    closeDrawer
+  );
+
+
+overlay.addEventListener(
+  "click",
+  ()=>{
+
+    if(state.drawerOpen)
+      closeDrawer();
+
+    if(state.activePage)
+      closePage();
+
+  }
+);
+
+
+/* =========================================================
+   PAGES
+========================================================= */
+
+function openPage(id){
+
+  const page =
+    document.getElementById(
+      "page-" + id
+    );
+
+  if(!page)
+    return;
+
+  overlay.classList.add("show");
+
+  page.classList.add("show");
+
+  state.activePage = id;
+}
+
+
+function closePage(){
+
+  if(!state.activePage)
+    return;
+
+  document
+    .getElementById(
+      "page-" + state.activePage
+    )
+    .classList
+    .remove("show");
+
+  overlay.classList.remove("show");
+
+  state.activePage = null;
+}
+
+
+document
+  .querySelectorAll("[data-close-page]")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      closePage
+    );
+
+  });
+
+
+/* =========================================================
+   BANKS
+========================================================= */
+
+let BANKS = [];
+
+
+function renderBanks(list){
+
+  const container =
+    document.getElementById(
+      "bankList"
+    );
+
+  const noResults =
+    document.getElementById(
+      "bankNoResults"
+    );
+
+  container.innerHTML = "";
+
+  if(!list.length){
+
+    noResults.classList.remove(
+      "hidden"
+    );
+
+    return;
+  }
+
+  noResults.classList.add(
+    "hidden"
+  );
+
+
+  list.forEach(bank=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "bank-card";
+
+
+    card.innerHTML = `
+
+      <div class="bank-icon">
+        🏦
+      </div>
+
+      <div style="flex:1;min-width:0;">
+
+        <div class="bank-name">
+          ${bank.bank}
+        </div>
+
+        <div class="bank-sub">
+          USD / EUR / RUB / CNY
+        </div>
+
+      </div>
+
+      <div class="bank-chevron">
+        ›
+      </div>
+
+    `;
+
+
+    card.addEventListener(
+      "click",
+      ()=>{
+        showBankRates(
+          bank.bank
+        );
+      }
+    );
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   REAL RATES
+========================================================= */
+
+let RATES = {};
+
+const CURRENCY_INFO = {
+
+  USD:{
+    flag:"🇺🇸",
+    name:"Доллар США"
+  },
+
+  EUR:{
+    flag:"🇪🇺",
+    name:"Евро"
+  },
+
+  RUB:{
+    flag:"🇷🇺",
+    name:"Российский рубль"
+  },
+
+  CNY:{
+    flag:"🇨🇳",
+    name:"Китайский юань"
+  }
+
+};
+
+
+/* =========================================================
+   LOAD API
+========================================================= */
+
+async function loadRates(){
+
+  const container =
+    document.getElementById(
+      "currencyList"
+    );
+
+  try{
+
+    container.innerHTML = `
+      <div class="loading">
+        ⏳ Загружаем реальные курсы НБТ...
+      </div>
+    `;
+
+
+    const response =
+      await fetch(
+        "api/rates.json?time=" +
+        Date.now()
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " + response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    RATES =
+      data.currencies || {};
+
+
+    const allBanks = {};
+
+
+    Object.keys(RATES)
+    .forEach(currency=>{
+
+      const currencyData =
+        RATES[currency];
+
+
+      const banks =
+        Array.isArray(currencyData)
+          ? currencyData
+          : currencyData.banks || [];
+
+
+      banks.forEach(bank=>{
+
+        if(!allBanks[bank.bank]){
+
+          allBanks[bank.bank] = {};
+
+        }
+
+
+        allBanks[bank.bank][currency] = {
+
+          buy:bank.buy,
+
+          sell:bank.sell
+
+        };
+
+      });
+
+    });
+
+
+    BANKS =
+      Object.keys(allBanks)
+      .map(name=>({
+
+        bank:name,
+
+        rates:allBanks[name]
+
+      }));
+
+
+    renderCurrencies();
+
+
+    renderBanks(BANKS);
+
+
+    updateDate(data);
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    container.innerHTML = `
+
+      <div class="error">
+
+        ❌ Не удалось загрузить курсы НБТ.<br><br>
+
+        Проверьте интернет-соединение.
+
+      </div>
+
+    `;
+
+    showToast(
+      "❌ Ошибка загрузки курсов"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER MAIN CURRENCIES
+========================================================= */
+
+function renderCurrencies(){
+
+  const container =
+    document.getElementById(
+      "currencyList"
+    );
+
+  container.innerHTML = "";
+
+
+  Object.keys(CURRENCY_INFO)
+  .forEach(code=>{
+
+    const info =
+      CURRENCY_INFO[code];
+
+
+    const currencyData =
+      RATES[code];
+
+
+    if(!currencyData)
+      return;
+
+
+    const banks =
+      Array.isArray(currencyData)
+        ? currencyData
+        : currencyData.banks || [];
+
+
+    if(!banks.length)
+      return;
+
+
+    let buyValues = [];
+
+    let sellValues = [];
+
+
+    banks.forEach(bank=>{
+
+      const buy =
+        Number(bank.buy);
+
+      const sell =
+        Number(bank.sell);
+
+
+      if(
+        Number.isFinite(buy) &&
+        buy > 0
+      ){
+
+        buyValues.push(buy);
+
+      }
+
+
+      if(
+        Number.isFinite(sell) &&
+        sell > 0
+      ){
+
+        sellValues.push(sell);
+
+      }
+
+    });
+
+
+    if(!buyValues.length)
+      return;
+
+
+    const bestBuy =
+      Math.max(...buyValues);
+
+
+    const bestSell =
+      Math.min(...sellValues);
+
+
+    const card =
+      document.createElement("div");
+
+
+    card.className =
+      "currency-card";
+
+
+    card.innerHTML = `
+
+      <div class="cc-flag">
+        ${info.flag}
+      </div>
+
+      <div class="cc-info">
+
+        <div class="cc-name">
+          ${code} · ${info.name}
+        </div>
+
+        <div class="cc-sub">
+          Покупка / Продажа
+        </div>
+
+      </div>
+
+      <div class="cc-right">
+
+        <div class="cc-rate">
+          ${bestBuy.toFixed(4)}
+          / 
+          ${bestSell.toFixed(4)}
+          сомони
+        </div>
+
+        <div class="cc-change up">
+          ▲ Лучший курс банков
+        </div>
+
+      </div>
+
+    `;
+
+
+    card.addEventListener(
+      "click",
+      ()=>{
+
+        showCurrencyDetails(
+          code,
+          banks
+        );
+
+      }
+    );
+
+
+    container.appendChild(card);
+
+  });
+
+
+  if(!container.children.length){
+
+    container.innerHTML = `
+      <div class="loading">
+        Данные пока недоступны.
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   CURRENCY DETAILS
+========================================================= */
+
+function showCurrencyDetails(
+  currency,
+  banks
+){
+
+  const info =
+    CURRENCY_INFO[currency];
+
+
+  const sorted =
+    [...banks]
+    .sort(
+      (a,b)=>
+        Number(b.buy) -
+        Number(a.buy)
+    );
+
+
+  let text =
+    `${info.flag} ${currency}\n\n`;
+
+
+  sorted
+  .slice(0,5)
+  .forEach(bank=>{
+
+    text +=
+      `${bank.bank}: ` +
+      `${Number(bank.buy).toFixed(4)} / ` +
+      `${Number(bank.sell).toFixed(4)}\n`;
+
+  });
+
+
+  showToast(
+    text.replace(/\n/g," ")
+  );
+
+}
+
+
+/* =========================================================
+   BANK DETAILS
+========================================================= */
+
+function showBankRates(
+  bankName
+){
+
+  const bank =
+    BANKS.find(
+      b=>b.bank === bankName
+    );
+
+
+  if(!bank)
+    return;
+
+
+  let message =
+    "🏦 " + bankName + "\n";
+
+
+  Object.keys(CURRENCY_INFO)
+  .forEach(currency=>{
+
+    const rate =
+      bank.rates[currency];
+
+
+    if(!rate)
+      return;
+
+
+    message +=
+      `${currency}: ` +
+      `${Number(rate.buy).toFixed(4)} / ` +
+      `${Number(rate.sell).toFixed(4)}  `;
+
+  });
+
+
+  showToast(message);
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function updateDate(data){
+
+  const element =
+    document.getElementById(
+      "today"
+    );
+
+
+  if(!data.updated){
+
+    element.textContent =
+      "Сегодня";
+
+    return;
+
+  }
+
+
+  const date =
+    new Date(data.updated);
+
+
+  if(isNaN(date.getTime())){
+
+    element.textContent =
+      "Сегодня";
+
+    return;
+
+  }
+
+
+  element.textContent =
+    date.toLocaleDateString(
+      "ru-RU",
+      {
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+      }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+  .getElementById("mainSearch")
+  .addEventListener(
+    "input",
+    e=>{
+
+      const query =
+        e.target.value
+        .trim()
+        .toLowerCase();
+
+
+      if(!query){
+
+        renderCurrencies();
+
+        return;
+
+      }
+
+
+      const cards =
+        document.querySelectorAll(
+          ".currency-card"
+        );
+
+
+      cards.forEach(card=>{
+
+        const text =
+          card.textContent
+          .toLowerCase();
+
+
+        card.style.display =
+          text.includes(query)
+            ? "flex"
+            : "none";
+
+      });
+
+    }
+  );
+
+
+document
+  .getElementById("bankSearch")
+  .addEventListener(
+    "input",
+    e=>{
+
+      const query =
+        e.target.value
+        .trim()
+        .toLowerCase();
+
+
+      const filtered =
+        BANKS.filter(
+          bank=>
+            bank.bank
+            .toLowerCase()
+            .includes(query)
+        );
+
+
+      renderBanks(filtered);
+
+    }
+  );
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+function handleAction(action){
+
+  switch(action){
+
+    case "banks":
+
+      openPage("banks");
+
+      break;
+
+
+    case "currencies":
+
+      document
+        .querySelector(
+          ".currency-list"
+        )
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+      break;
+
+
+    case "converter":
+
+      showToast(
+        "🧮 Конвертер скоро появится"
+      );
+
+      break;
+
+
+    case "chart":
+
+      showToast(
+        "📈 Графики скоро появятся"
+      );
+
+      break;
+
+
+    case "favorites":
+
+      showToast(
+        "⭐ Избранное скоро появится"
+      );
+
+      break;
+
+
+    case "settings":
+
+      openPage("settings");
+
+      break;
+
+
+    case "support":
+
+      openPage("support");
+
+      break;
+
+
+    case "agreement":
+
+      openPage("agreement");
+
+      break;
+
+
+    case "about":
+
+      openPage("about");
+
+      break;
+
+  }
+
+}
+
+
+document
+  .querySelectorAll(".drawer-item")
+  .forEach(item=>{
+
+    item.addEventListener(
+      "click",
+      ()=>{
+
+        const action =
+          item.getAttribute(
+            "data-action"
+          );
+
+        closeDrawer();
+
+        handleAction(action);
+
+      }
+    );
+
+  });
+
+
+document
+  .getElementById("qaBanks")
+  .addEventListener(
+    "click",
+    ()=>{
+      openPage("banks");
+    }
+  );
+
+
+document
+  .getElementById("qaConverter")
+  .addEventListener(
+    "click",
+    ()=>{
+      showToast(
+        "🧮 Конвертер скоро появится"
+      );
+    }
+  );
+
+
+document
+  .getElementById("qaChart")
+  .addEventListener(
+    "click",
+    ()=>{
+      showToast(
+        "📈 Графики скоро появятся"
+      );
+    }
+  );
+
+
+document
+  .getElementById("qaFavorites")
+  .addEventListener(
+    "click",
+    ()=>{
+      showToast(
+        "⭐ Избранное скоро появится"
+      );
+    }
+  );
+
+
+/* =========================================================
+   SUPPORT
+========================================================= */
+
+document
+  .querySelectorAll(".support-item")
+  .forEach(item=>{
+
+    item.addEventListener(
+      "click",
+      ()=>{
+
+        const type =
+          item.dataset.support;
+
+
+        const messages = {
+
+          feedback:
+            "💬 Обратная связь скоро будет подключена",
+
+          bug:
+            "🐛 Форма сообщения об ошибке скоро будет подключена",
+
+          feature:
+            "💡 Предложение функций скоро будет подключено"
+
+        };
+
+
+        showToast(
+          messages[type]
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadTheme();
+
+loadRates();
+
+</script>
+
+</body>
+</html>
