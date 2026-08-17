@@ -1,12 +1,34 @@
-name: SHTJK Currency Rates
+name: Update SHTJK Rates
 
 on:
+  schedule:
+    - cron: "0 6 * * *"
+
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  test:
+  update-rates:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test SHTJK
-        run: echo "SHTJK API работает!"
+
+      - name: Получить код проекта
+        uses: actions/checkout@v4
+
+      - name: Запустить Python
+        run: |
+          python3 scripts/update_rates.py
+
+      - name: Сохранить новые курсы
+        run: |
+          git config --global user.name "SHTJK Bot"
+          git config --global user.email "shtjk-bot@users.noreply.github.com"
+
+          git add api/rates.json
+
+          git diff --cached --quiet || git commit -m "Update bank exchange rates"
+
+          git push
