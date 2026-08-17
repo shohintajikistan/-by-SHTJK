@@ -2,17 +2,26 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               viewport-fit=cover">
 
 <meta name="theme-color" content="#ff7a00">
-<meta name="description" content="Курс валют банков Таджикистана — SHOHIN">
-<meta name="application-name" content="SHOHIN Currency">
+
+<meta name="description"
+      content="Курс валют банков Таджикистана — SHOHIN Currency">
+
+<meta name="application-name"
+      content="SHOHIN Currency">
 
 <link rel="manifest" href="./manifest.json">
 
-<title>SHOHIN Currency — Курс валют</title>
+<title>SHOHIN Currency</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -28,8 +37,13 @@
     --muted:#758096;
     --green:#12a86b;
     --red:#e53935;
-    --border:#e9edf4;
+    --blue:#3578e5;
+    --border:#e8edf4;
     --shadow:0 8px 30px rgba(20,30,50,.07);
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -40,14 +54,17 @@ body{
         Roboto,
         Arial,
         sans-serif;
+
     background:var(--bg);
     color:var(--text);
+
     min-height:100vh;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 button,
-input,
-select{
+input{
     font:inherit;
 }
 
@@ -56,405 +73,805 @@ button{
     cursor:pointer;
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
-    background:linear-gradient(135deg,#ff6a00,#ff9d2e);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6800,
+            #ff7a00 55%,
+            #ff9d2e
+        );
+
     color:white;
+
     padding:
         calc(18px + env(safe-area-inset-top))
         18px
-        25px;
-    border-radius:0 0 28px 28px;
-    box-shadow:0 8px 25px rgba(255,122,0,.25);
+        28px;
+
+    border-radius:
+        0 0 30px 30px;
+
+    box-shadow:
+        0 10px 30px rgba(255,122,0,.25);
 }
 
 .header-top{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:12px;
 }
 
 .logo{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
 }
 
 .logo-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:rgba(255,255,255,.2);
+
+    width:46px;
+    height:46px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.20);
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    font-size:24px;
+
+    font-size:25px;
+
     backdrop-filter:blur(10px);
 }
 
 .logo-text{
-    font-weight:800;
-    font-size:19px;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
 }
 
 .logo-sub{
-    font-size:12px;
-    opacity:.85;
+
     margin-top:2px;
+
+    font-size:11px;
+
+    opacity:.85;
 }
 
 .refresh-btn{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    background:rgba(255,255,255,.18);
+
+    width:45px;
+    height:45px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.18);
+
     color:white;
-    font-size:21px;
-    transition:.2s;
+
+    font-size:24px;
+
+    transition:.25s;
 }
 
 .refresh-btn:active{
-    transform:scale(.9);
+
+    transform:scale(.90);
 }
 
+
+/* =====================================================
+   HEADER TITLE
+===================================================== */
+
 .header-title{
+
     margin-top:25px;
 }
 
 .header-title h1{
-    font-size:27px;
-    line-height:1.15;
-    font-weight:800;
+
+    font-size:28px;
+
+    line-height:1.1;
+
+    font-weight:900;
 }
 
 .header-title p{
+
     margin-top:8px;
+
     font-size:14px;
-    opacity:.88;
+
+    opacity:.9;
 }
 
-/* STATUS */
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status{
+
     margin:16px;
+
     background:white;
-    border-radius:16px;
+
+    border-radius:17px;
+
     padding:13px 15px;
+
     box-shadow:var(--shadow);
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
     font-size:13px;
 }
 
 .status-dot{
-    width:9px;
-    height:9px;
+
+    width:10px;
+    height:10px;
+
     border-radius:50%;
+
     background:var(--green);
+
     flex:none;
 }
 
 .status.loading .status-dot{
+
     background:#f5a623;
+
     animation:pulse 1s infinite;
 }
 
 .status.error .status-dot{
+
     background:var(--red);
 }
 
-@keyframes pulse{
-    50%{opacity:.3}
+.status.offline .status-dot{
+
+    background:#f5a623;
 }
 
-/* CONTENT */
+@keyframes pulse{
+
+    50%{
+        opacity:.3;
+    }
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .container{
-    max-width:1000px;
+
+    max-width:1050px;
+
     margin:auto;
-    padding:0 16px 40px;
+
+    padding:
+        0
+        16px
+        45px;
 }
 
-/* OFFICIAL */
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
 
 .section-title{
+
+    margin:
+        23px
+        0
+        13px;
+
     font-size:19px;
-    font-weight:800;
-    margin:22px 0 13px;
+
+    font-weight:900;
 }
 
+
+/* =====================================================
+   OFFICIAL GRID
+===================================================== */
+
 .official-grid{
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:12px;
 }
 
 .currency-card{
+
     background:var(--card);
+
     border:1px solid var(--border);
-    border-radius:20px;
+
+    border-radius:21px;
+
     padding:16px;
+
     box-shadow:var(--shadow);
+
     position:relative;
+
     overflow:hidden;
 }
 
 .currency-card::after{
+
     content:"";
+
     position:absolute;
-    width:70px;
-    height:70px;
+
+    width:75px;
+    height:75px;
+
     border-radius:50%;
-    background:rgba(255,122,0,.06);
+
+    background:
+        rgba(255,122,0,.06);
+
     right:-25px;
     top:-25px;
 }
 
 .currency-top{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 }
 
 .currency-name{
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
 }
 
 .flag{
+
     font-size:25px;
 }
 
 .code{
+
     font-size:16px;
-    font-weight:800;
+
+    font-weight:900;
 }
 
 .currency-label{
+
     font-size:11px;
+
     color:var(--muted);
+
     margin-top:3px;
 }
 
 .currency-value{
+
     margin-top:13px;
+
     font-size:24px;
+
     font-weight:900;
-    color:var(--text);
 }
 
 .currency-unit{
-    font-size:11px;
-    color:var(--muted);
+
     margin-top:3px;
+
+    font-size:11px;
+
+    color:var(--muted);
 }
 
-/* CONTROLS */
 
-.controls{
-    margin-top:22px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box{
+
+    position:relative;
+
+    margin-bottom:14px;
 }
 
 .search{
-    flex:1;
-    min-width:200px;
-    height:48px;
-    border:1px solid var(--border);
+
+    width:100%;
+
+    height:50px;
+
+    border:
+        1px solid
+        var(--border);
+
     background:white;
-    border-radius:15px;
-    padding:0 16px;
+
+    border-radius:16px;
+
+    padding:
+        0
+        16px;
+
     outline:none;
+
     box-shadow:var(--shadow);
+
+    font-size:14px;
 }
 
 .search:focus{
-    border-color:var(--orange);
+
+    border-color:
+        var(--orange);
+
+    box-shadow:
+        0 8px 25px
+        rgba(255,122,0,.12);
 }
 
-.currency-select{
-    height:48px;
-    border:1px solid var(--border);
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-bottom:14px;
+}
+
+.stat{
+
     background:white;
-    border-radius:15px;
-    padding:0 14px;
-    outline:none;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:16px;
+
+    padding:13px;
+
     box-shadow:var(--shadow);
-    font-weight:700;
 }
 
-/* BANK CARD */
+.stat-value{
+
+    font-size:20px;
+
+    font-weight:900;
+
+    color:var(--orange);
+}
+
+.stat-label{
+
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:var(--muted);
+}
+
+
+/* =====================================================
+   BANK LIST
+===================================================== */
 
 .bank-list{
+
     display:flex;
+
     flex-direction:column;
+
     gap:12px;
 }
 
 .bank-card{
+
     background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:21px;
+
     padding:17px;
+
     box-shadow:var(--shadow);
 }
 
 .bank-head{
+
     display:flex;
-    justify-content:space-between;
+
     align-items:flex-start;
-    gap:10px;
+
+    justify-content:space-between;
+
+    gap:12px;
 }
 
 .bank-name{
+
     font-size:16px;
-    font-weight:800;
+
+    font-weight:900;
+
     line-height:1.25;
 }
 
 .bank-official{
-    font-size:11px;
-    color:var(--muted);
+
     margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.3;
 }
 
 .badge{
+
+    flex:none;
+
     background:#e8faf3;
+
     color:var(--green);
+
     border-radius:20px;
-    padding:6px 9px;
+
+    padding:
+        6px
+        9px;
+
     font-size:10px;
-    font-weight:800;
+
+    font-weight:900;
+
     white-space:nowrap;
 }
 
 .badge.no-data{
+
     background:#fff0ef;
+
     color:var(--red);
 }
 
+
+/* =====================================================
+   RATE BOX
+===================================================== */
+
 .rate-box{
+
     margin-top:15px;
+
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:10px;
 }
 
 .rate{
+
     background:#f7f9fc;
-    border-radius:14px;
+
+    border-radius:15px;
+
     padding:13px;
 }
 
 .rate-label{
+
     font-size:11px;
+
     color:var(--muted);
+
     margin-bottom:5px;
 }
 
 .rate-value{
-    font-size:21px;
+
+    font-size:22px;
+
     font-weight:900;
 }
 
 .rate-value.buy{
+
     color:var(--green);
 }
 
 .rate-value.sell{
+
     color:var(--orange);
 }
 
-.bank-date{
-    margin-top:12px;
+.rate-unit{
+
+    margin-top:3px;
+
+    font-size:10px;
+
     color:var(--muted);
+}
+
+
+/* =====================================================
+   EXTRA BANK DATA
+===================================================== */
+
+.extra-data{
+
+    margin-top:12px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:8px;
+}
+
+.extra-item{
+
+    background:#fafbfc;
+
+    border-radius:12px;
+
+    padding:10px;
+}
+
+.extra-label{
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    margin-bottom:4px;
+}
+
+.extra-value{
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.bank-date{
+
+    margin-top:12px;
+
+    color:var(--muted);
+
     font-size:11px;
 }
 
 .no-bank-data{
+
     margin-top:14px;
+
     background:#fff7f5;
+
     color:#9a4b43;
+
     padding:12px;
-    border-radius:12px;
+
+    border-radius:13px;
+
     font-size:12px;
+
+    line-height:1.4;
 }
 
-/* EMPTY */
+
+/* =====================================================
+   EMPTY
+===================================================== */
 
 .empty{
+
     text-align:center;
+
     background:white;
+
     padding:35px 20px;
+
     border-radius:20px;
+
     color:var(--muted);
+
     box-shadow:var(--shadow);
 }
 
-/* FOOTER */
 
-.footer{
-    text-align:center;
-    padding:25px 15px 40px;
-    color:var(--muted);
-    font-size:11px;
-}
-
-.footer strong{
-    color:var(--orange);
-}
-
-/* LOADER */
+/* =====================================================
+   LOADER
+===================================================== */
 
 .loader{
+
     width:22px;
     height:22px;
-    border:3px solid #eee;
-    border-top-color:var(--orange);
+
+    border:
+        3px solid
+        #eee;
+
+    border-top-color:
+        var(--orange);
+
     border-radius:50%;
-    animation:spin .7s linear infinite;
+
+    animation:
+        spin .7s linear infinite;
+
+    flex:none;
 }
 
 @keyframes spin{
-    to{transform:rotate(360deg)}
+
+    to{
+        transform:rotate(360deg);
+    }
 }
 
-/* MOBILE */
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    padding:
+        25px
+        15px
+        calc(40px + env(safe-area-inset-bottom));
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+.footer strong{
+
+    color:var(--orange);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:500px){
+
     .official-grid{
-        grid-template-columns:1fr 1fr;
+
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .currency-value{
+
         font-size:21px;
     }
 
-    .currency-select{
-        width:100%;
+    .stats{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .stat{
+
+        padding:11px 8px;
+    }
+
+    .stat-value{
+
+        font-size:17px;
     }
 }
 
+
+/* =====================================================
+   TABLET / PC
+===================================================== */
+
 @media(min-width:700px){
+
     .official-grid{
-        grid-template-columns:repeat(4,1fr);
+
+        grid-template-columns:
+            repeat(4,1fr);
     }
 
     .bank-list{
+
         display:grid;
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
@@ -462,106 +879,227 @@ button{
 
         <div class="logo">
 
-            <div class="logo-icon">💱</div>
+            <div class="logo-icon">
+                💱
+            </div>
 
             <div>
-                <div class="logo-text">SHOHIN</div>
-                <div class="logo-sub">Currency • Tajikistan</div>
+
+                <div class="logo-text">
+                    SHOHIN
+                </div>
+
+                <div class="logo-sub">
+                    Currency • Tajikistan
+                </div>
+
             </div>
 
         </div>
 
-        <button class="refresh-btn"
-                id="refreshBtn"
-                aria-label="Обновить">
+
+        <button
+            class="refresh-btn"
+            id="refreshBtn"
+            aria-label="Обновить">
+
             ↻
+
         </button>
 
     </div>
 
+
     <div class="header-title">
-        <h1>Курс валют</h1>
-        <p>Курсы банков Таджикистана</p>
+
+        <h1>
+            Курс валют
+        </h1>
+
+        <p>
+            Курсы банков Таджикистана
+        </p>
+
     </div>
 
 </header>
 
 
-<div id="status" class="status loading">
 
-    <div class="loader" id="statusLoader"></div>
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div
+    id="status"
+    class="status loading">
+
+    <div
+        class="loader"
+        id="statusLoader">
+    </div>
 
     <div id="statusText">
+
         Загружаем актуальные курсы...
+
     </div>
 
 </div>
 
 
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main class="container">
 
-    <!-- OFFICIAL -->
+
+    <!-- =================================================
+         OFFICIAL NBT
+    ================================================== -->
 
     <div class="section-title">
+
         🇹🇯 Официальный курс НБТ
-    </div>
-
-    <div id="officialGrid" class="official-grid">
-
-        <div class="currency-card">
-            <div class="loader"></div>
-        </div>
-
-        <div class="currency-card">
-            <div class="loader"></div>
-        </div>
-
-        <div class="currency-card">
-            <div class="loader"></div>
-        </div>
-
-        <div class="currency-card">
-            <div class="loader"></div>
-        </div>
 
     </div>
 
 
-    <!-- BANKS -->
+    <div
+        id="officialGrid"
+        class="official-grid">
+
+        <div class="currency-card">
+
+            <div class="loader"></div>
+
+        </div>
+
+        <div class="currency-card">
+
+            <div class="loader"></div>
+
+        </div>
+
+        <div class="currency-card">
+
+            <div class="loader"></div>
+
+        </div>
+
+        <div class="currency-card">
+
+            <div class="loader"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         BANKS
+    ================================================== -->
 
     <div class="section-title">
+
         🏦 Курсы банков
+
     </div>
 
-    <div class="controls">
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div
+                id="banksFound"
+                class="stat-value">
+
+                —
+
+            </div>
+
+            <div class="stat-label">
+
+                банков найдено
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                id="banksRequested"
+                class="stat-value">
+
+                —
+
+            </div>
+
+            <div class="stat-label">
+
+                банков проверено
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                id="banksMissing"
+                class="stat-value">
+
+                —
+
+            </div>
+
+            <div class="stat-label">
+
+                без данных
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="search-box">
 
         <input
             id="searchInput"
             class="search"
             type="search"
             placeholder="🔎 Поиск банка..."
-            autocomplete="off"
-        >
-
-        <select id="currencySelect" class="currency-select">
-
-            <option value="USD">🇺🇸 USD — Доллар</option>
-            <option value="EUR">🇪🇺 EUR — Евро</option>
-            <option value="RUB">🇷🇺 RUB — Рубль</option>
-            <option value="CNY">🇨🇳 CNY — Юань</option>
-
-        </select>
+            autocomplete="off">
 
     </div>
 
 
-    <div id="bankList" class="bank-list">
+    <div
+        id="bankList"
+        class="bank-list">
 
         <div class="empty">
-            <div class="loader" style="margin:auto"></div>
+
+            <div
+                class="loader"
+                style="margin:auto">
+            </div>
+
             <p style="margin-top:12px">
+
                 Загружаем банки...
+
             </p>
+
         </div>
 
     </div>
@@ -569,33 +1107,93 @@ button{
 </main>
 
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer class="footer">
 
     <div>
-        Источник: <strong>Национальный банк Таджикистана</strong>
+
+        Источник:
+
+        <strong>
+            Национальный банк Таджикистана
+        </strong>
+
     </div>
 
-    <div id="updatedText" style="margin-top:5px">
+
+    <div
+        id="updatedText"
+        style="margin-top:5px">
+
         Данные загружаются...
+
     </div>
+
+
+    <div
+        id="sourceText"
+        style="margin-top:5px">
+
+        НБТ
+
+    </div>
+
 
     <div style="margin-top:10px">
+
         SHOHIN Currency © 2026
+
     </div>
 
 </footer>
 
 
+
 <script>
 
 /* =========================================================
-   SHOHIN CURRENCY
-   РАБОТАЕТ С ТВОИМ rates.json
+   SHOHIN CURRENCY V2
+   ПОЛНОСТЬЮ ПОД ТВОЙ rates.json
 ========================================================= */
+
+
+/*
+===========================================================
+ВАЖНО
+
+Если rates.json находится рядом с index.html:
+
+    const DATA_URL = "./rates.json";
+
+Если сайт уже опубликован через HTTPS,
+лучше указать полный адрес:
+
+    const DATA_URL =
+      "https://example.com/rates.json";
+
+Для WebToNative второй вариант надёжнее.
+===========================================================
+*/
+
 
 const DATA_URL = "./rates.json";
 
-let ratesData = null;
+
+/* =========================================================
+   CACHE
+========================================================= */
+
+const CACHE_KEY =
+    "shohin_currency_rates_v2";
+
+
+/* =========================================================
+   CURRENCIES
+========================================================= */
 
 const CURRENCIES = {
 
@@ -622,34 +1220,64 @@ const CURRENCIES = {
 };
 
 
-/* DOM */
+/* =========================================================
+   DOM
+========================================================= */
 
 const officialGrid =
-    document.getElementById("officialGrid");
+    document.getElementById(
+        "officialGrid"
+    );
 
 const bankList =
-    document.getElementById("bankList");
+    document.getElementById(
+        "bankList"
+    );
 
 const searchInput =
-    document.getElementById("searchInput");
-
-const currencySelect =
-    document.getElementById("currencySelect");
+    document.getElementById(
+        "searchInput"
+    );
 
 const status =
-    document.getElementById("status");
+    document.getElementById(
+        "status"
+    );
 
 const statusText =
-    document.getElementById("statusText");
-
-const statusLoader =
-    document.getElementById("statusLoader");
+    document.getElementById(
+        "statusText"
+    );
 
 const refreshBtn =
-    document.getElementById("refreshBtn");
+    document.getElementById(
+        "refreshBtn"
+    );
 
 const updatedText =
-    document.getElementById("updatedText");
+    document.getElementById(
+        "updatedText"
+    );
+
+const sourceText =
+    document.getElementById(
+        "sourceText"
+    );
+
+const banksFound =
+    document.getElementById(
+        "banksFound"
+    );
+
+const banksRequested =
+    document.getElementById(
+        "banksRequested"
+    );
+
+const banksMissing =
+    document.getElementById(
+        "banksMissing"
+    );
 
 
 /* =========================================================
@@ -658,13 +1286,17 @@ const updatedText =
 
 function formatRate(value){
 
-    if(value === null ||
-       value === undefined ||
-       value === "" ||
-       Number.isNaN(Number(value))){
+    if(
+        value === null ||
+        value === undefined ||
+        value === "" ||
+        Number.isNaN(Number(value))
+    ){
 
         return "—";
+
     }
+
 
     return Number(value).toLocaleString(
         "ru-RU",
@@ -673,278 +1305,7 @@ function formatRate(value){
             maximumFractionDigits:4
         }
     );
-}
 
-
-/* =========================================================
-   OFFICIAL
-========================================================= */
-
-function renderOfficial(){
-
-    if(!ratesData ||
-       !ratesData.official){
-
-        officialGrid.innerHTML = `
-            <div class="empty" style="grid-column:1/-1">
-                Официальные курсы не найдены
-            </div>
-        `;
-
-        return;
-    }
-
-
-    officialGrid.innerHTML =
-        Object.keys(CURRENCIES)
-        .map(code => {
-
-            const currency =
-                CURRENCIES[code];
-
-            const value =
-                ratesData.official[code];
-
-            return `
-
-                <div class="currency-card">
-
-                    <div class="currency-top">
-
-                        <div class="currency-name">
-
-                            <span class="flag">
-                                ${currency.flag}
-                            </span>
-
-                            <div>
-
-                                <div class="code">
-                                    ${code}
-                                </div>
-
-                                <div class="currency-label">
-                                    ${currency.name}
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="currency-value">
-                        ${formatRate(value)}
-                    </div>
-
-                    <div class="currency-unit">
-                        сомони за 1 ${code}
-                    </div>
-
-                </div>
-
-            `;
-
-        })
-        .join("");
-}
-
-
-/* =========================================================
-   BANKS
-========================================================= */
-
-function renderBanks(){
-
-    if(!ratesData ||
-       !Array.isArray(ratesData.banks)){
-
-        bankList.innerHTML = `
-            <div class="empty">
-                Данные банков не найдены
-            </div>
-        `;
-
-        return;
-    }
-
-
-    const currency =
-        currencySelect.value;
-
-    const search =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-
-    const banks =
-        ratesData.banks.filter(bank => {
-
-            const name =
-                String(bank.bank || "")
-                    .toLowerCase();
-
-            return name.includes(search);
-
-        });
-
-
-    if(banks.length === 0){
-
-        bankList.innerHTML = `
-            <div class="empty">
-                🔎 Банк не найден
-            </div>
-        `;
-
-        return;
-    }
-
-
-    bankList.innerHTML =
-        banks.map(bank => {
-
-            const available =
-                bank.available === true;
-
-
-            /*
-             * ВАЖНО:
-             * Берём именно cash.buy / cash.sell
-             * из твоего JSON
-             */
-
-            const cash =
-                bank.cash || {};
-
-
-            const buy =
-                cash.buy;
-
-
-            const sell =
-                cash.sell;
-
-
-            return `
-
-                <article class="bank-card">
-
-                    <div class="bank-head">
-
-                        <div>
-
-                            <div class="bank-name">
-                                ${escapeHtml(bank.bank)}
-                            </div>
-
-                            ${
-                                bank.official_name
-                                ?
-                                `
-                                <div class="bank-official">
-                                    ${escapeHtml(bank.official_name)}
-                                </div>
-                                `
-                                :
-                                ""
-                            }
-
-                        </div>
-
-                        ${
-                            available
-                            ?
-                            `
-                            <div class="badge">
-                                Данные есть
-                            </div>
-                            `
-                            :
-                            `
-                            <div class="badge no-data">
-                                Нет данных
-                            </div>
-                            `
-                        }
-
-                    </div>
-
-
-                    ${
-                        available
-                        ?
-                        `
-
-                        <div class="rate-box">
-
-                            <div class="rate">
-
-                                <div class="rate-label">
-                                    🟢 Покупка ${currency}
-                                </div>
-
-                                <div class="rate-value buy">
-                                    ${formatRate(buy)}
-                                </div>
-
-                                <div class="currency-label">
-                                    сомони
-                                </div>
-
-                            </div>
-
-
-                            <div class="rate">
-
-                                <div class="rate-label">
-                                    🟠 Продажа ${currency}
-                                </div>
-
-                                <div class="rate-value sell">
-                                    ${formatRate(sell)}
-                                </div>
-
-                                <div class="currency-label">
-                                    сомони
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        `
-                        :
-                        `
-
-                        <div class="no-bank-data">
-                            Курсы этого банка сейчас
-                            отсутствуют в источнике НБТ.
-                        </div>
-
-                        `
-                    }
-
-
-                    ${
-                        bank.date
-                        ?
-                        `
-                        <div class="bank-date">
-                            🕐 Обновлено: ${escapeHtml(bank.date)}
-                        </div>
-                        `
-                        :
-                        ""
-                    }
-
-                </article>
-
-            `;
-
-        })
-        .join("");
 }
 
 
@@ -955,32 +1316,64 @@ function renderBanks(){
 function escapeHtml(value){
 
     return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 
 /* =========================================================
-   DATE
+   FORMAT DATE
 ========================================================= */
 
 function formatUpdatedDate(value){
 
     if(!value){
-        return "Дата обновления неизвестна";
+
+        return "Дата неизвестна";
+
     }
+
 
     try{
 
         const date =
             new Date(value);
 
-        if(Number.isNaN(date.getTime())){
-            return value;
+
+        if(
+            Number.isNaN(
+                date.getTime()
+            )
+        ){
+
+            return String(value);
+
         }
+
 
         return date.toLocaleString(
             "ru-RU",
@@ -990,11 +1383,764 @@ function formatUpdatedDate(value){
             }
         );
 
-    }catch{
+    }
+    catch{
 
-        return value;
+        return String(value);
 
     }
+
+}
+
+
+/* =========================================================
+   RENDER OFFICIAL
+========================================================= */
+
+function renderOfficial(){
+
+    if(
+        !ratesData ||
+        !ratesData.official
+    ){
+
+        officialGrid.innerHTML = `
+
+            <div
+                class="empty"
+                style="grid-column:1/-1">
+
+                ❌ Официальные курсы
+                не найдены
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    officialGrid.innerHTML =
+
+        Object.keys(CURRENCIES)
+
+        .map(code => {
+
+            const currency =
+                CURRENCIES[code];
+
+
+            const value =
+                ratesData
+                    .official
+                    [code];
+
+
+            return `
+
+                <div class="currency-card">
+
+                    <div class="currency-top">
+
+                        <div class="currency-name">
+
+                            <span class="flag">
+
+                                ${currency.flag}
+
+                            </span>
+
+
+                            <div>
+
+                                <div class="code">
+
+                                    ${code}
+
+                                </div>
+
+
+                                <div
+                                    class="currency-label">
+
+                                    ${currency.name}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="currency-value">
+
+                        ${formatRate(value)}
+
+                    </div>
+
+
+                    <div class="currency-unit">
+
+                        сомони за 1 ${code}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        })
+
+        .join("");
+
+}
+
+
+/* =========================================================
+   RENDER BANKS
+========================================================= */
+
+function renderBanks(){
+
+    if(
+        !ratesData ||
+        !Array.isArray(
+            ratesData.banks
+        )
+    ){
+
+        bankList.innerHTML = `
+
+            <div class="empty">
+
+                ❌ Данные банков
+                не найдены
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const search =
+
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    const banks =
+
+        ratesData.banks.filter(
+            bank => {
+
+                const name =
+
+                    String(
+                        bank.bank || ""
+                    )
+                    .toLowerCase();
+
+
+                const officialName =
+
+                    String(
+                        bank.official_name || ""
+                    )
+                    .toLowerCase();
+
+
+                return (
+
+                    name.includes(search) ||
+
+                    officialName.includes(search)
+
+                );
+
+            }
+        );
+
+
+    if(banks.length === 0){
+
+        bankList.innerHTML = `
+
+            <div class="empty">
+
+                🔎 Банк не найден
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    bankList.innerHTML =
+
+        banks.map(bank => {
+
+
+            const available =
+                bank.available === true;
+
+
+            const cash =
+                bank.cash || {};
+
+
+            const interbank =
+                bank.interbank || {};
+
+
+            const wallet =
+                bank.wallet || {};
+
+
+            const cards =
+                bank.cards || {};
+
+
+            const npcdb =
+                bank.npcdp || {};
+
+
+            const cashless =
+                bank.cashless || {};
+
+
+            return `
+
+                <article class="bank-card">
+
+
+                    <div class="bank-head">
+
+
+                        <div>
+
+                            <div class="bank-name">
+
+                                ${escapeHtml(
+                                    bank.bank
+                                )}
+
+                            </div>
+
+
+                            ${
+                                bank.official_name
+                                ?
+                                `
+
+                                <div
+                                    class="bank-official">
+
+                                    ${escapeHtml(
+                                        bank.official_name
+                                    )}
+
+                                </div>
+
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+
+                        ${
+                            available
+                            ?
+
+                            `
+
+                            <div class="badge">
+
+                                ✓ Данные есть
+
+                            </div>
+
+                            `
+
+                            :
+
+                            `
+
+                            <div
+                                class="badge no-data">
+
+                                Нет данных
+
+                            </div>
+
+                            `
+                        }
+
+                    </div>
+
+
+
+                    ${
+                        available
+
+                        ?
+
+                        `
+
+                        <!-- CASH -->
+
+                        <div class="rate-box">
+
+
+                            <div class="rate">
+
+                                <div class="rate-label">
+
+                                    🟢 Покупка
+
+                                </div>
+
+
+                                <div
+                                    class="rate-value buy">
+
+                                    ${formatRate(
+                                        cash.buy
+                                    )}
+
+                                </div>
+
+
+                                <div
+                                    class="rate-unit">
+
+                                    сомони
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="rate">
+
+                                <div class="rate-label">
+
+                                    🟠 Продажа
+
+                                </div>
+
+
+                                <div
+                                    class="rate-value sell">
+
+                                    ${formatRate(
+                                        cash.sell
+                                    )}
+
+                                </div>
+
+
+                                <div
+                                    class="rate-unit">
+
+                                    сомони
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- EXTRA -->
+
+                        <div class="extra-data">
+
+
+                            <div class="extra-item">
+
+                                <div class="extra-label">
+
+                                    Межбанк
+
+                                </div>
+
+                                <div
+                                    class="extra-value">
+
+                                    ${formatRate(
+                                        interbank.buy
+                                    )}
+
+                                    /
+
+                                    ${formatRate(
+                                        interbank.sell
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="extra-item">
+
+                                <div class="extra-label">
+
+                                    Кошелёк
+
+                                </div>
+
+                                <div
+                                    class="extra-value">
+
+                                    ${formatRate(
+                                        wallet.buy
+                                    )}
+
+                                    /
+
+                                    ${formatRate(
+                                        wallet.sell
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="extra-item">
+
+                                <div class="extra-label">
+
+                                    Карты
+
+                                </div>
+
+                                <div
+                                    class="extra-value">
+
+                                    ${formatRate(
+                                        cards.buy
+                                    )}
+
+                                    /
+
+                                    ${formatRate(
+                                        cards.sell
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="extra-item">
+
+                                <div class="extra-label">
+
+                                    НПЦДП
+
+                                </div>
+
+                                <div
+                                    class="extra-value">
+
+                                    ${formatRate(
+                                        npcdb.buy
+                                    )}
+
+                                    /
+
+                                    ${formatRate(
+                                        npcdb.sell
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="extra-item">
+
+                                <div class="extra-label">
+
+                                    Безналичный
+
+                                </div>
+
+                                <div
+                                    class="extra-value">
+
+                                    ${formatRate(
+                                        cashless.buy
+                                    )}
+
+                                    /
+
+                                    ${formatRate(
+                                        cashless.sell
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        ${
+                            bank.date
+                            ?
+
+                            `
+
+                            <div class="bank-date">
+
+                                🕐 Обновлено:
+
+                                ${escapeHtml(
+                                    bank.date
+                                )}
+
+                            </div>
+
+                            `
+
+                            :
+
+                            ""
+
+                        }
+
+                        `
+
+                        :
+
+                        `
+
+                        <div class="no-bank-data">
+
+                            ⚠️ Курсы этого банка
+                            отсутствуют в источнике НБТ.
+
+                        </div>
+
+                        `
+
+                    }
+
+                </article>
+
+            `;
+
+        })
+
+        .join("");
+
+}
+
+
+/* =========================================================
+   SAVE CACHE
+========================================================= */
+
+function saveCache(data){
+
+    try{
+
+        localStorage.setItem(
+            CACHE_KEY,
+            JSON.stringify(data)
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Не удалось сохранить кэш:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD CACHE
+========================================================= */
+
+function loadCache(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                CACHE_KEY
+            );
+
+
+        if(!saved){
+
+            return null;
+
+        }
+
+
+        const data =
+            JSON.parse(saved);
+
+
+        if(
+            !data ||
+            typeof data !== "object"
+        ){
+
+            return null;
+
+        }
+
+
+        return data;
+
+    }
+    catch(error){
+
+        console.warn(
+            "Ошибка кэша:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW DATA
+========================================================= */
+
+function showData(
+    data,
+    fromCache = false
+){
+
+    ratesData = data;
+
+
+    renderOfficial();
+
+    renderBanks();
+
+
+    /* STATISTICS */
+
+    const statistics =
+        data.statistics || {};
+
+
+    banksFound.textContent =
+        statistics.found ??
+        data.banks?.filter(
+            bank =>
+                bank.available === true
+        ).length ??
+        "—";
+
+
+    banksRequested.textContent =
+        statistics.requested ??
+        data.banks?.length ??
+        "—";
+
+
+    banksMissing.textContent =
+        statistics.missing ??
+        data.banks?.filter(
+            bank =>
+                bank.available !== true
+        ).length ??
+        "—";
+
+
+    /* UPDATED */
+
+    updatedText.textContent =
+
+        "Обновлено: " +
+
+        formatUpdatedDate(
+            data.updated
+        );
+
+
+    /* SOURCE */
+
+    if(data.source){
+
+        sourceText.textContent =
+            "Источник: " +
+            data.source;
+
+    }
+
+
+    /* STATUS */
+
+    if(fromCache){
+
+        status.className =
+            "status offline";
+
+        status.innerHTML = `
+
+            <div class="status-dot"></div>
+
+            <div>
+
+                Офлайн • показаны
+                последние сохранённые данные
+
+            </div>
+
+        `;
+
+    }
+    else{
+
+        status.className =
+            "status";
+
+        status.innerHTML = `
+
+            <div class="status-dot"></div>
+
+            <div>
+
+                Онлайн • курсы загружены
+
+            </div>
+
+        `;
+
+    }
+
 }
 
 
@@ -1004,26 +2150,41 @@ function formatUpdatedDate(value){
 
 async function loadRates(){
 
-    setLoading(true);
+    setLoading();
+
 
     try{
 
         /*
-         * cache-busting:
-         * браузер/PWA не будет бесконечно
-         * показывать старый rates.json
+         * Добавляем timestamp,
+         * чтобы WebView не использовал
+         * старый rates.json.
          */
 
         const url =
+
             DATA_URL +
-            "?v=" +
+
+            (
+                DATA_URL.includes("?")
+                ? "&"
+                : "?"
+            ) +
+
+            "v=" +
+
             Date.now();
 
 
         const response =
-            await fetch(url,{
-                cache:"no-store"
-            });
+
+            await fetch(
+                url,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
 
 
         if(!response.ok){
@@ -1040,12 +2201,12 @@ async function loadRates(){
             await response.json();
 
 
-        /*
-         * Проверяем структуру
-         */
+        /* Проверка структуры */
 
-        if(!data ||
-           typeof data !== "object"){
+        if(
+            !data ||
+            typeof data !== "object"
+        ){
 
             throw new Error(
                 "Неверный JSON"
@@ -1054,63 +2215,103 @@ async function loadRates(){
         }
 
 
-        ratesData = data;
+        if(
+            !data.official
+        ){
+
+            throw new Error(
+                "В JSON нет official"
+            );
+
+        }
 
 
-        renderOfficial();
-        renderBanks();
+        if(
+            !Array.isArray(
+                data.banks
+            )
+        ){
+
+            throw new Error(
+                "В JSON нет banks[]"
+            );
+
+        }
 
 
-        /*
-         * Статистика
-         */
+        /* Сохраняем */
 
-        const found =
-            data.statistics?.found ?? "—";
-
-        const requested =
-            data.statistics?.requested ?? "—";
+        saveCache(data);
 
 
-        status.className =
-            "status";
+        /* Показываем */
 
-        statusLoader.outerHTML =
-            '<div class="status-dot" id="statusLoader"></div>';
-
-
-        statusText.textContent =
-            `Курсы загружены • ${found} из ${requested} банков`;
+        showData(
+            data,
+            false
+        );
 
 
-        updatedText.textContent =
-            "Обновлено: " +
-            formatUpdatedDate(data.updated);
+        console.log(
+            "SHOHIN Currency:",
+            data
+        );
 
 
-    }catch(error){
+    }
+    catch(error){
 
         console.error(
-            "Ошибка загрузки rates.json:",
+            "Ошибка rates.json:",
             error
         );
 
 
+        /*
+         * Пытаемся показать
+         * последний сохранённый JSON.
+         */
+
+        const cached =
+            loadCache();
+
+
+        if(cached){
+
+            showData(
+                cached,
+                true
+            );
+
+            return;
+
+        }
+
+
+        /* Если кэша нет */
+
         status.className =
             "status error";
 
-
         status.innerHTML = `
+
             <div class="status-dot"></div>
+
             <div>
-                Не удалось загрузить курсы
+
+                Не удалось загрузить
+                курсы
+
             </div>
+
         `;
 
 
         officialGrid.innerHTML = `
-            <div class="empty"
-                 style="grid-column:1/-1">
+
+            <div
+                class="empty"
+                style="grid-column:1/-1">
 
                 ❌ Не удалось загрузить
                 <b>rates.json</b>
@@ -1118,33 +2319,50 @@ async function loadRates(){
                 <div style="
                     margin-top:10px;
                     font-size:12px;
+                    line-height:1.5;
                 ">
-                    Проверь, что rates.json
-                    находится рядом с index.html.
+
+                    ${escapeHtml(
+                        error.message
+                    )}
+
+                    <br><br>
+
+                    Проверь интернет
+                    и расположение
+                    rates.json.
+
                 </div>
 
             </div>
+
         `;
 
 
         bankList.innerHTML = `
+
             <div class="empty">
 
-                ❌ Ошибка загрузки данных
+                ❌ Данные банков
+                недоступны.
 
                 <div style="
                     margin-top:10px;
                     font-size:12px;
                 ">
-                    ${escapeHtml(error.message)}
+
+                    Последние данные
+                    ещё не сохранены.
+
                 </div>
 
             </div>
+
         `;
 
 
         updatedText.textContent =
-            "Ошибка загрузки данных";
+            "Нет данных";
 
     }
 
@@ -1155,39 +2373,44 @@ async function loadRates(){
    LOADING
 ========================================================= */
 
-function setLoading(value){
+function setLoading(){
 
-    if(value){
+    status.className =
+        "status loading";
 
-        status.className =
-            "status loading";
+    status.innerHTML = `
 
-        status.innerHTML = `
-            <div class="loader"></div>
-            <div>
-                Загружаем актуальные курсы...
-            </div>
-        `;
+        <div class="loader"></div>
 
-    }
+        <div>
+
+            Загружаем актуальные
+            курсы...
+
+        </div>
+
+    `;
 
 }
 
 
 /* =========================================================
-   EVENTS
+   SEARCH
 ========================================================= */
 
 searchInput.addEventListener(
     "input",
-    renderBanks
+    () => {
+
+        renderBanks();
+
+    }
 );
 
-currencySelect.addEventListener(
-    "change",
-    renderBanks
-);
 
+/* =========================================================
+   REFRESH
+========================================================= */
 
 refreshBtn.addEventListener(
     "click",
@@ -1196,14 +2419,19 @@ refreshBtn.addEventListener(
         refreshBtn.style.transform =
             "rotate(360deg)";
 
+
         await loadRates();
 
-        setTimeout(() => {
 
-            refreshBtn.style.transform =
-                "";
+        setTimeout(
+            () => {
 
-        },400);
+                refreshBtn.style.transform =
+                    "";
+
+            },
+            400
+        );
 
     }
 );
@@ -1224,22 +2452,26 @@ if(
 
             navigator.serviceWorker
                 .register("./sw.js")
-                .then(reg => {
+                .then(
+                    registration => {
 
-                    console.log(
-                        "SHOHIN SW registered:",
-                        reg.scope
-                    );
+                        console.log(
+                            "SHOHIN Service Worker:",
+                            registration.scope
+                        );
 
-                })
-                .catch(error => {
+                    }
+                )
+                .catch(
+                    error => {
 
-                    console.error(
-                        "SW error:",
-                        error
-                    );
+                        console.warn(
+                            "Service Worker:",
+                            error
+                        );
 
-                });
+                    }
+                );
 
         }
     );
@@ -1250,6 +2482,32 @@ if(
 /* =========================================================
    START
 ========================================================= */
+
+let ratesData = null;
+
+
+/*
+ * Сначала пытаемся показать
+ * старые данные мгновенно.
+ */
+
+const cachedData =
+    loadCache();
+
+
+if(cachedData){
+
+    showData(
+        cachedData,
+        true
+    );
+
+}
+
+
+/*
+ * Затем загружаем свежий JSON.
+ */
 
 loadRates();
 
