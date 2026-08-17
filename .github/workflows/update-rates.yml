@@ -1,26 +1,12 @@
-name: Update SHTJK Currency Rates
+name: SHTJK Currency Rates
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  update-rates:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download repository
-        uses: actions/checkout@v4
-
-      - name: Show status
-        run: |
-          echo "SHTJK Currency API"
-          echo "Preparing automatic rate update..."
-
-      - name: Update rates
-        run: |
-          echo "Next step: connect NBT real bank rates"
+      - name: Test SHTJK
+        run: echo "SHTJK API работает!"
