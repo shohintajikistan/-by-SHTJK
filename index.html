@@ -3,55 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-
 <title>Курс Валют от Банков Таджикистан by SHTJK</title>
-
 <meta name="theme-color" content="#16a34a">
 
 <style>
-
 :root{
   --primary:#16a34a;
   --secondary:#22c55e;
   --dark-green:#15803d;
-
   --bg:#f4f7f5;
-  --card:#ffffff;
-
+  --card:#fff;
   --text:#172019;
   --muted:#78827c;
-
   --border:#e3e9e5;
-
-  --shadow:0 4px 18px rgba(23,32,25,.06);
-  --shadow-lg:0 12px 32px rgba(23,32,25,.12);
-
   --up:#16a34a;
   --down:#dc2626;
-
+  --shadow:0 4px 18px rgba(23,32,25,.06);
+  --shadow-lg:0 12px 32px rgba(23,32,25,.12);
   --radius-lg:22px;
   --radius-md:16px;
   --radius-sm:12px;
-
   --maxw:700px;
-
-  color-scheme:light;
 }
 
 [data-theme="dark"]{
-
   --bg:#0e1310;
   --card:#161d18;
-
   --text:#eef3ef;
   --muted:#8a9690;
-
   --border:#243029;
-
   --shadow:0 4px 18px rgba(0,0,0,.35);
   --shadow-lg:0 16px 40px rgba(0,0,0,.5);
-
-  color-scheme:dark;
 }
 
 *{
@@ -59,295 +41,170 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
   margin:0;
   padding:0;
 }
 
 body{
-
-  font-family:
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  Arial,
-  sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-
-  transition:
-  background .3s ease,
-  color .3s ease;
-
   min-height:100vh;
   overflow-x:hidden;
 }
 
-h1,
-h2,
-h3,
-p{
-  margin:0;
-}
-
-button{
+button,input,select{
   font-family:inherit;
 }
 
-.wrap{
+button{
+  cursor:pointer;
+}
 
-  max-width:var(--maxw);
-
-  margin:0 auto;
-
-  padding:
-  0
-  16px
-  100px;
+h1,h2,h3,h4,p{
+  margin:0;
 }
 
 .hidden{
   display:none!important;
 }
 
+.wrap{
+  max-width:var(--maxw);
+  margin:auto;
+  padding:0 16px 100px;
+}
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 .app-header{
-
-  background:
-  linear-gradient(
-    135deg,
-    #15803d 0%,
-    #16a34a 55%,
-    #22c55e 100%
-  );
-
-  border-radius:
-  0 0 26px 26px;
-
+  background:linear-gradient(135deg,#15803d,#16a34a,#22c55e);
+  border-radius:0 0 26px 26px;
   box-shadow:var(--shadow-lg);
-
-  padding:
-  18px
-  16px
-  22px;
-
+  padding:18px 16px 22px;
   position:sticky;
-
   top:0;
-
   z-index:50;
 }
 
 .header-inner{
-
   max-width:var(--maxw);
-
-  margin:0 auto;
-
+  margin:auto;
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   gap:12px;
 }
 
 .brand{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
 }
 
 .logo-box{
-
   width:48px;
   height:48px;
-
-  background:#fff;
-
+  background:white;
   border-radius:14px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-weight:800;
-
   font-size:11px;
-
-  letter-spacing:.5px;
-
   color:var(--primary);
-
-  box-shadow:
-  0 3px 10px rgba(0,0,0,.15);
-
-  flex-shrink:0;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
 .brand-text .title{
-
-  color:#fff;
-
-  font-weight:700;
-
+  color:white;
+  font-weight:800;
   font-size:16px;
-
-  line-height:1.25;
 }
 
 .brand-text .subtitle{
-
-  color:
-  rgba(255,255,255,.85);
-
+  color:rgba(255,255,255,.85);
   font-size:11.5px;
-
-  line-height:1.25;
+  margin-top:2px;
 }
 
 .menu-btn{
-
   width:42px;
   height:42px;
-
+  border:0;
   border-radius:12px;
-
-  border:none;
-
-  background:
-  rgba(255,255,255,.18);
-
+  background:rgba(255,255,255,.18);
   color:#fff;
-
   font-size:20px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  cursor:pointer;
 }
 
-
-/* =========================================================
-   HOME
-========================================================= */
+/* HOME */
 
 .welcome{
   padding:20px 0 6px;
 }
 
 .welcome h1{
-
   font-size:22px;
-
   font-weight:800;
 }
 
 .welcome p{
-
   color:var(--muted);
-
   font-size:14px;
-
   margin-top:4px;
 }
 
-.search-bar{
-
-  margin-top:16px;
-
+.search-bar,
+.bank-search{
   background:var(--card);
-
   border:1px solid var(--border);
-
   border-radius:var(--radius-md);
-
   padding:13px 16px;
-
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
   box-shadow:var(--shadow);
 }
 
-.search-bar input{
-
-  border:none;
-  outline:none;
-
-  background:transparent;
-
-  font-size:14.5px;
-
-  color:var(--text);
-
-  width:100%;
+.search-bar{
+  margin-top:16px;
 }
 
-.search-bar input::placeholder{
+.search-bar input,
+.bank-search input{
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--text);
+  width:100%;
+  font-size:14px;
+}
+
+.search-bar input::placeholder,
+.bank-search input::placeholder{
   color:var(--muted);
 }
 
-
-/* =========================================================
-   QUICK ACTIONS
-========================================================= */
-
 .quick-actions{
-
   margin-top:18px;
-
   display:grid;
-
-  grid-template-columns:
-  repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:10px;
 }
 
 .qa-card{
-
   background:var(--card);
-
   border:1px solid var(--border);
-
   border-radius:var(--radius-md);
-
-  padding:14px 6px;
-
+  padding:14px 5px;
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
-
   gap:8px;
-
   text-align:center;
-
   box-shadow:var(--shadow);
-
-  cursor:pointer;
 }
 
 .qa-icon{
@@ -355,1313 +212,827 @@ button{
 }
 
 .qa-label{
-
-  font-size:11px;
-
-  font-weight:600;
-
-  color:var(--text);
-
-  line-height:1.2;
+  font-size:10.5px;
+  font-weight:700;
 }
 
-
-/* =========================================================
-   ADS
-========================================================= */
+/* ADS */
 
 .ad-block{
-
   margin-top:18px;
-
   border-radius:var(--radius-md);
-
   border:1.5px dashed var(--border);
-
   background:var(--card);
-
   padding:18px;
-
   text-align:center;
 }
 
 .ad-tag{
-
   display:inline-block;
-
   font-size:10px;
-
   font-weight:700;
-
   letter-spacing:1px;
-
   color:var(--muted);
-
   background:var(--bg);
-
   padding:3px 8px;
-
   border-radius:6px;
-
   margin-bottom:10px;
 }
 
 .ad-brand{
-
   font-weight:800;
-
   font-size:15px;
-
   color:var(--primary);
 }
 
 .ad-sub{
-
   font-size:12px;
-
   color:var(--muted);
-
   margin-top:4px;
 }
 
-
-/* =========================================================
-   SECTION
-========================================================= */
+/* SECTION */
 
 .section-head{
-
   margin-top:24px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 }
 
 .section-head h2{
-
   font-size:16.5px;
-
-  font-weight:800;
 }
 
 .today{
-
-  font-size:12px;
-
+  font-size:11px;
   color:var(--muted);
-
   background:var(--card);
-
   border:1px solid var(--border);
-
   padding:4px 10px;
-
   border-radius:20px;
 }
 
-
-/* =========================================================
-   CURRENCY CARDS
-========================================================= */
+/* CURRENCY */
 
 .currency-list{
-
   margin-top:12px;
-
   display:flex;
-
   flex-direction:column;
-
   gap:10px;
 }
 
 .currency-card{
-
   background:var(--card);
-
   border:1px solid var(--border);
-
   border-radius:var(--radius-md);
-
   padding:14px;
-
   box-shadow:var(--shadow);
-
-  cursor:pointer;
 }
 
 .currency-top{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
 }
 
 .cc-flag{
-
   width:42px;
   height:42px;
-
   border-radius:12px;
-
   background:var(--bg);
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-size:20px;
-
   flex-shrink:0;
 }
 
 .cc-info{
-
   flex:1;
-
-  min-width:0;
 }
 
 .cc-name{
-
-  font-weight:700;
-
-  font-size:14.5px;
+  font-weight:800;
+  font-size:14px;
 }
 
 .cc-sub{
-
-  font-size:12px;
-
+  font-size:11.5px;
   color:var(--muted);
-
   margin-top:2px;
 }
 
-.bank-rate{
-
-  margin-top:13px;
-
+.rate-boxes{
+  margin-top:12px;
   display:grid;
-
-  grid-template-columns:
-  1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:8px;
 }
 
 .rate-box{
-
-  border-radius:11px;
-
   background:var(--bg);
-
+  border-radius:12px;
   padding:10px;
-
-  text-align:center;
 }
 
-.rate-title{
-
-  font-size:10px;
-
+.rate-label{
   color:var(--muted);
-
-  margin-bottom:4px;
-
-  text-transform:uppercase;
+  font-size:10.5px;
 }
 
 .rate-value{
-
-  font-size:15px;
-
   font-weight:800;
+  font-size:14px;
+  margin-top:3px;
 }
-
-.buy{
-  color:var(--up);
-}
-
-.sell{
-  color:#dc2626;
-}
-
-
-/* =========================================================
-   INFO
-========================================================= */
 
 .info-card{
-
   margin-top:20px;
-
-  background:
-  linear-gradient(
-    135deg,
-    #15803d,
-    #22c55e
-  );
-
+  background:linear-gradient(135deg,#15803d,#22c55e);
   border-radius:var(--radius-lg);
-
   padding:20px;
-
-  color:#fff;
-
+  color:white;
   box-shadow:var(--shadow-lg);
 }
 
 .info-card h3{
-
   font-size:15.5px;
-
-  font-weight:800;
 }
 
 .info-card p{
-
   font-size:13px;
-
   margin-top:8px;
-
   opacity:.92;
-
   line-height:1.5;
 }
 
-
-/* =========================================================
-   OVERLAY
-========================================================= */
+/* OVERLAY */
 
 .overlay{
-
   position:fixed;
-
   inset:0;
-
   background:rgba(0,0,0,.45);
-
   opacity:0;
-
   pointer-events:none;
-
-  transition:opacity .28s;
-
+  transition:.28s;
   z-index:90;
 }
 
 .overlay.show{
-
   opacity:1;
-
   pointer-events:auto;
 }
 
-
-/* =========================================================
-   DRAWER
-========================================================= */
+/* DRAWER */
 
 .drawer{
-
   position:fixed;
-
   top:0;
   left:0;
   bottom:0;
-
   width:82%;
-
   max-width:320px;
-
   background:var(--card);
-
   z-index:95;
-
   transform:translateX(-105%);
-
-  transition:
-  transform .32s
-  cubic-bezier(.2,.9,.25,1);
-
+  transition:.32s;
   display:flex;
-
   flex-direction:column;
-
   box-shadow:var(--shadow-lg);
 }
 
 .drawer.show{
-
   transform:translateX(0);
 }
 
 .drawer-header{
-
-  background:
-  linear-gradient(
-    135deg,
-    #15803d,
-    #16a34a,
-    #22c55e
-  );
-
+  background:linear-gradient(135deg,#15803d,#16a34a,#22c55e);
   padding:22px 18px 20px;
-
-  color:#fff;
-
+  color:white;
   position:relative;
 }
 
 .drawer-close{
-
   position:absolute;
-
   top:14px;
   right:14px;
-
   width:34px;
   height:34px;
-
+  border:0;
   border-radius:10px;
-
-  border:none;
-
   background:rgba(255,255,255,.2);
-
-  color:#fff;
-
+  color:white;
   font-size:18px;
 }
 
 .d-logo{
-
   width:44px;
   height:44px;
-
-  background:#fff;
-
+  background:white;
   border-radius:12px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-weight:800;
-
   font-size:10px;
-
   color:var(--primary);
-
   margin-bottom:10px;
 }
 
 .d-title{
-
   font-weight:800;
-
   font-size:15px;
 }
 
 .d-sub{
-
   font-size:12px;
-
   opacity:.85;
-
   margin-top:2px;
 }
 
 .d-tag{
-
   font-size:11px;
-
   opacity:.75;
-
   margin-top:8px;
 }
 
 .drawer-body{
-
   padding:14px 10px;
-
   overflow-y:auto;
-
   flex:1;
 }
 
 .drawer-section-title{
-
   font-size:11px;
-
   font-weight:700;
-
   color:var(--muted);
-
-  letter-spacing:.6px;
-
   padding:14px 12px 6px;
 }
 
 .drawer-item{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
-
   padding:11px 12px;
-
   border-radius:12px;
-
-  cursor:pointer;
 }
 
 .di-icon{
-
   font-size:19px;
-
   width:26px;
-
   text-align:center;
 }
 
 .di-title{
-
   font-size:13.5px;
-
   font-weight:700;
 }
 
 .di-sub{
-
   font-size:11px;
-
   color:var(--muted);
-
   margin-top:1px;
 }
 
 .drawer-footer{
-
   padding:14px 18px 18px;
-
   border-top:1px solid var(--border);
-
   font-size:11px;
-
   color:var(--muted);
-
   text-align:center;
-
-  line-height:1.5;
 }
 
-
-/* =========================================================
-   FULL PAGE
-========================================================= */
+/* PAGES */
 
 .page{
-
   position:fixed;
-
   inset:0;
-
   background:var(--bg);
-
   z-index:80;
-
   transform:translateY(100%);
-
-  transition:
-  transform .34s
-  cubic-bezier(.2,.9,.25,1);
-
+  transition:.34s;
   overflow-y:auto;
 }
 
 .page.show{
-
   transform:translateY(0);
 }
 
 .page-header{
-
-  background:
-  linear-gradient(
-    135deg,
-    #15803d,
-    #16a34a,
-    #22c55e
-  );
-
+  background:linear-gradient(135deg,#15803d,#16a34a,#22c55e);
   padding:16px 14px;
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
-
   position:sticky;
-
   top:0;
-
   z-index:5;
-
-  border-radius:
-  0 0 20px 20px;
-
+  border-radius:0 0 20px 20px;
   box-shadow:var(--shadow);
 }
 
 .back-btn{
-
   width:38px;
   height:38px;
-
+  border:0;
   border-radius:10px;
-
-  border:none;
-
   background:rgba(255,255,255,.2);
-
-  color:#fff;
-
+  color:white;
   font-size:19px;
 }
 
 .page-header h2{
-
-  color:#fff;
-
+  color:white;
   font-size:16px;
-
-  font-weight:800;
 }
 
 .page-body{
-
   padding:16px;
-
   max-width:var(--maxw);
-
-  margin:0 auto;
-
-  width:100%;
+  margin:auto;
 }
 
-
-/* =========================================================
-   BANK SEARCH
-========================================================= */
+/* BANKS */
 
 .bank-search{
-
-  background:var(--card);
-
-  border:1px solid var(--border);
-
-  border-radius:var(--radius-md);
-
-  padding:12px 14px;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
   margin-bottom:14px;
-
-  box-shadow:var(--shadow);
 }
-
-.bank-search input{
-
-  border:none;
-
-  outline:none;
-
-  background:transparent;
-
-  font-size:14px;
-
-  color:var(--text);
-
-  width:100%;
-}
-
-
-/* =========================================================
-   BANK LIST
-========================================================= */
 
 .bank-list{
-
   display:flex;
-
   flex-direction:column;
-
-  gap:10px;
+  gap:9px;
 }
 
 .bank-card{
-
   background:var(--card);
-
   border:1px solid var(--border);
-
   border-radius:var(--radius-md);
-
-  padding:14px;
-
+  padding:13px;
   box-shadow:var(--shadow);
-
-  cursor:pointer;
 }
 
 .bank-main{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
 }
 
 .bank-icon{
-
-  width:42px;
-  height:42px;
-
-  border-radius:12px;
-
+  width:40px;
+  height:40px;
+  border-radius:11px;
   background:var(--bg);
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
-  font-size:20px;
-
-  flex-shrink:0;
+  font-size:18px;
 }
 
 .bank-name{
-
   font-weight:800;
-
   font-size:14px;
 }
 
 .bank-sub{
-
-  font-size:11.5px;
-
+  font-size:11px;
   color:var(--muted);
-
-  margin-top:3px;
-}
-
-.bank-arrow{
-
-  margin-left:auto;
-
-  font-size:20px;
-
-  color:var(--muted);
-}
-
-.bank-preview{
-
-  margin-top:12px;
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(4,1fr);
-
-  gap:5px;
-}
-
-.preview-box{
-
-  background:var(--bg);
-
-  border-radius:9px;
-
-  padding:7px 3px;
-
-  text-align:center;
-}
-
-.preview-code{
-
-  font-size:9px;
-
-  color:var(--muted);
-}
-
-.preview-rate{
-
-  font-size:10px;
-
-  font-weight:800;
-
   margin-top:2px;
 }
 
-
-/* =========================================================
-   BANK DETAIL
-========================================================= */
-
-.bank-detail-title{
-
-  background:
-  linear-gradient(
-    135deg,
-    #15803d,
-    #22c55e
-  );
-
-  color:#fff;
-
-  border-radius:var(--radius-lg);
-
-  padding:20px;
-
-  margin-bottom:14px;
-
-  box-shadow:var(--shadow-lg);
+.bank-rates{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+  margin-top:10px;
 }
 
-.bank-detail-title h3{
-
-  font-size:19px;
-
-  font-weight:800;
+.bank-rate{
+  background:var(--bg);
+  border-radius:10px;
+  padding:8px;
 }
 
-.bank-detail-title p{
-
-  margin-top:5px;
-
+.bank-rate strong{
   font-size:12px;
-
-  opacity:.85;
 }
 
-.detail-card{
+.bank-rate small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:2px;
+}
 
+.bank-rate span{
+  font-weight:800;
+  font-size:12px;
+}
+
+.no-results{
+  text-align:center;
+  color:var(--muted);
+  padding:30px;
+}
+
+/* CALCULATOR */
+
+.calc{
   background:var(--card);
-
   border:1px solid var(--border);
-
-  border-radius:var(--radius-md);
-
-  padding:14px;
-
-  margin-bottom:10px;
-
+  border-radius:var(--radius-lg);
+  padding:18px;
   box-shadow:var(--shadow);
 }
 
-.detail-currency{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  margin-bottom:12px;
-}
-
-.detail-flag{
-
-  font-size:24px;
-}
-
-.detail-code{
-
-  font-weight:800;
-
-  font-size:15px;
-}
-
-.detail-name{
-
-  font-size:11px;
-
-  color:var(--muted);
-
-  margin-top:2px;
-}
-
-.detail-rates{
-
-  display:grid;
-
-  grid-template-columns:
-  1fr 1fr;
-
-  gap:10px;
-}
-
-.detail-rate{
-
-  padding:12px;
-
-  background:var(--bg);
-
-  border-radius:12px;
-
-  text-align:center;
-}
-
-.detail-rate-label{
-
-  font-size:11px;
-
-  color:var(--muted);
-
-  margin-bottom:5px;
-}
-
-.detail-rate-value{
-
+.calc-title{
   font-size:18px;
-
-  font-weight:900;
+  font-weight:800;
+  margin-bottom:15px;
 }
 
-.updated{
+.calc-row{
+  display:grid;
+  grid-template-columns:1fr 120px;
+  gap:9px;
+  margin-bottom:10px;
+}
 
-  text-align:center;
+.calc input,
+.calc select{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  border-radius:12px;
+  padding:13px;
+  outline:none;
+  font-size:14px;
+}
 
-  color:var(--muted);
-
-  font-size:11px;
-
+.swap-btn{
+  width:100%;
+  border:0;
+  background:var(--primary);
+  color:white;
   padding:12px;
+  border-radius:12px;
+  font-weight:800;
+  margin:5px 0 12px;
 }
 
+.calc-result{
+  background:linear-gradient(135deg,#15803d,#22c55e);
+  color:white;
+  padding:18px;
+  border-radius:16px;
+  text-align:center;
+}
 
-/* =========================================================
-   TOAST
-========================================================= */
+.calc-result-label{
+  font-size:12px;
+  opacity:.85;
+}
+
+.calc-result-value{
+  font-size:27px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.calc-info{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:10px;
+  text-align:center;
+}
+
+/* SETTINGS */
+
+.settings-group{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+
+.settings-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-bottom:1px solid var(--border);
+}
+
+.settings-row:last-child{
+  border-bottom:0;
+}
+
+.si-icon{
+  font-size:19px;
+  width:24px;
+}
+
+.si-title{
+  font-size:14px;
+  font-weight:700;
+}
+
+.si-sub{
+  font-size:11.5px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+.toggle{
+  margin-left:auto;
+  width:46px;
+  height:27px;
+  border-radius:20px;
+  background:var(--border);
+  position:relative;
+}
+
+.toggle.on{
+  background:var(--primary);
+}
+
+.knob{
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:21px;
+  height:21px;
+  background:white;
+  border-radius:50%;
+  transition:.2s;
+}
+
+.toggle.on .knob{
+  transform:translateX(19px);
+}
+
+/* ABOUT */
+
+.about-center{
+  text-align:center;
+  padding:30px 0;
+}
+
+.about-logo{
+  width:76px;
+  height:76px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#15803d,#22c55e);
+  color:white;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto auto 14px;
+  box-shadow:var(--shadow-lg);
+}
+
+.a-title{
+  font-size:18px;
+  font-weight:800;
+}
+
+.a-sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.a-version{
+  display:inline-block;
+  margin-top:12px;
+  color:var(--primary);
+  background:rgba(22,163,74,.1);
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.a-desc{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  max-width:300px;
+  margin:18px auto;
+}
+
+/* TEXT PAGES */
+
+.info-block{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:var(--shadow);
+}
+
+.info-block h4{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+.info-block p{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* TOAST */
 
 .toast{
-
   position:fixed;
-
   bottom:24px;
-
   left:50%;
-
-  transform:
-  translateX(-50%)
-  translateY(20px);
-
+  transform:translateX(-50%) translateY(20px);
   background:var(--text);
-
   color:var(--bg);
-
   padding:12px 20px;
-
   border-radius:30px;
-
   font-size:13px;
-
   font-weight:600;
-
   box-shadow:var(--shadow-lg);
-
   z-index:150;
-
   opacity:0;
-
   pointer-events:none;
-
-  transition:
-  opacity .25s,
-  transform .25s;
-
-  max-width:85%;
-
+  transition:.25s;
+  max-width:90%;
   text-align:center;
 }
 
 .toast.show{
-
   opacity:1;
-
-  transform:
-  translateX(-50%)
-  translateY(0);
+  transform:translateX(-50%) translateY(0);
 }
-
-
-/* =========================================================
-   LOADING
-========================================================= */
 
 .loading{
-
-  padding:40px 20px;
-
   text-align:center;
-
   color:var(--muted);
-
-  font-size:13px;
+  padding:30px;
 }
 
-.spinner{
-
-  width:32px;
-  height:32px;
-
-  border:3px solid var(--border);
-
-  border-top-color:var(--primary);
-
-  border-radius:50%;
-
-  animation:
-  spin .8s linear infinite;
-
-  margin:0 auto 12px;
-}
-
-@keyframes spin{
-
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-.error-box{
-
+.error{
   background:#fee2e2;
-
   color:#991b1b;
-
+  padding:14px;
   border-radius:14px;
-
-  padding:15px;
-
   font-size:13px;
-
   line-height:1.5;
 }
 
-[data-theme="dark"] .error-box{
-
-  background:#3b1717;
-
+[data-theme="dark"] .error{
+  background:#351818;
   color:#fecaca;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:380px){
-
+@media(max-width:340px){
   .quick-actions{
-    grid-template-columns:
-    repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .bank-preview{
-    grid-template-columns:
-    repeat(2,1fr);
+  .calc-row{
+    grid-template-columns:1fr;
   }
 }
-
 </style>
 </head>
 
-
 <body data-theme="light">
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <header class="app-header">
-
   <div class="header-inner">
 
     <div class="brand">
-
-      <div class="logo-box">
-        SHTJK
-      </div>
+      <div class="logo-box">SHTJK</div>
 
       <div class="brand-text">
-
-        <div class="title">
-          Курс Валют
-        </div>
-
+        <div class="title">Курс Валют</div>
         <div class="subtitle">
-          от Банков Таджикистан
+          От Банков Таджикистан by SHTJK
         </div>
-
       </div>
-
     </div>
 
-    <button
-      class="menu-btn"
-      id="openDrawerBtn"
-    >
-      ☰
-    </button>
+    <button class="menu-btn" id="openDrawerBtn">☰</button>
 
   </div>
-
 </header>
 
-
-<!-- =========================================================
-     HOME
-========================================================= -->
 
 <main class="wrap">
 
   <section class="welcome">
-
-    <h1>
-      Добро пожаловать 👋
-    </h1>
-
-    <p>
-      Реальные курсы банков Таджикистана
-    </p>
-
+    <h1>Добро пожаловать 👋</h1>
+    <p>Реальные курсы валют банков Таджикистана</p>
   </section>
 
 
   <div class="search-bar">
-
-    <span>
-      🔎
-    </span>
-
+    <span>🔎</span>
     <input
       id="mainSearch"
       type="text"
       placeholder="Поиск валюты или банка..."
     >
-
   </div>
 
 
   <div class="quick-actions">
 
-    <div
-      class="qa-card"
-      id="qaBanks"
-    >
-      <span class="qa-icon">
-        🏦
-      </span>
-
-      <span class="qa-label">
-        Банки
-      </span>
+    <div class="qa-card" id="qaBanks">
+      <span class="qa-icon">🏦</span>
+      <span class="qa-label">Банки</span>
     </div>
 
-
-    <div
-      class="qa-card"
-      id="qaConverter"
-    >
-      <span class="qa-icon">
-        🧮
-      </span>
-
-      <span class="qa-label">
-        Конвертер
-      </span>
+    <div class="qa-card" id="qaConverter">
+      <span class="qa-icon">🧮</span>
+      <span class="qa-label">Калькулятор</span>
     </div>
 
-
-    <div
-      class="qa-card"
-      id="qaChart"
-    >
-      <span class="qa-icon">
-        📈
-      </span>
-
-      <span class="qa-label">
-        График
-      </span>
+    <div class="qa-card" id="qaChart">
+      <span class="qa-icon">📈</span>
+      <span class="qa-label">График</span>
     </div>
 
-
-    <div
-      class="qa-card"
-      id="qaFavorites"
-    >
-      <span class="qa-icon">
-        ⭐
-      </span>
-
-      <span class="qa-label">
-        Избранное
-      </span>
+    <div class="qa-card" id="qaFavorites">
+      <span class="qa-icon">⭐</span>
+      <span class="qa-label">Избранное</span>
     </div>
 
   </div>
 
 
   <div class="ad-block">
-
-    <span class="ad-tag">
-      РЕКЛАМА
-    </span>
-
-    <div class="ad-brand">
-      SHOHIN
-    </div>
-
-    <div class="ad-sub">
-      Место для онлайн-рекламы
-    </div>
-
+    <span class="ad-tag">РЕКЛАМА</span>
+    <div class="ad-brand">SHOHIN</div>
+    <div class="ad-sub">Место для онлайн-рекламы</div>
   </div>
 
 
   <div class="section-head">
-
-    <h2>
-      💱 Курсы валют
-    </h2>
-
-    <span
-      class="today"
-      id="todayLabel"
-    >
-      Загрузка...
-    </span>
-
+    <h2>💱 Курсы валют</h2>
+    <span class="today" id="updatedLabel">Загрузка...</span>
   </div>
 
 
-  <div
-    class="currency-list"
-    id="currencyList"
-  >
+  <div class="currency-list" id="currencyList">
 
     <div class="loading">
-
-      <div class="spinner"></div>
-
-      Загружаем реальные курсы...
-
+      ⏳ Загружаем реальные данные НБТ...
     </div>
 
   </div>
 
 
   <div class="info-card">
-
-    <h3>
-      🏦 Сравнивайте банки
-    </h3>
-
+    <h3>🏦 Сравнивайте курсы банков</h3>
     <p>
-      Откройте любой банк и сравните курсы
-      покупки и продажи USD, EUR, RUB и CNY.
+      Смотрите покупку и продажу USD, EUR, RUB и CNY
+      у банков Таджикистана.
     </p>
-
   </div>
 
 
-  <div
-    class="ad-block"
-    style="margin-top:20px;"
-  >
-
-    <span class="ad-tag">
-      РЕКЛАМА
-    </span>
-
-    <div class="ad-brand">
-      SHOHIN
-    </div>
-
-    <div class="ad-sub">
-      Место для онлайн-рекламы
-    </div>
-
+  <div class="ad-block">
+    <span class="ad-tag">РЕКЛАМА</span>
+    <div class="ad-brand">SHOHIN</div>
+    <div class="ad-sub">Место для онлайн-рекламы</div>
   </div>
 
 </main>
 
 
-<!-- =========================================================
-     OVERLAY
-========================================================= -->
+<!-- OVERLAY -->
 
-<div
-  class="overlay"
-  id="overlay"
-></div>
+<div class="overlay" id="overlay"></div>
 
 
-<!-- =========================================================
-     DRAWER
-========================================================= -->
+<!-- DRAWER -->
 
-<nav
-  class="drawer"
-  id="drawer"
->
+<nav class="drawer" id="drawer">
 
   <div class="drawer-header">
 
-    <button
-      class="drawer-close"
-      id="closeDrawerBtn"
-    >
-      ×
-    </button>
+    <button class="drawer-close" id="closeDrawerBtn">×</button>
 
-    <div class="d-logo">
-      SHTJK
-    </div>
+    <div class="d-logo">SHTJK</div>
 
     <div class="d-title">
-      SHTJK
+      Курс Валют
     </div>
 
     <div class="d-sub">
-      Курс Валют от Банков Таджикистан
+      От Банков Таджикистан by SHTJK
     </div>
 
     <div class="d-tag">
@@ -1678,126 +1049,48 @@ button{
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="currencies"
-    >
-
-      <span class="di-icon">
-        💱
-      </span>
-
+    <div class="drawer-item" data-action="currencies">
+      <span class="di-icon">💱</span>
       <div>
-
-        <div class="di-title">
-          Курсы валют
-        </div>
-
-        <div class="di-sub">
-          Реальные данные
-        </div>
-
+        <div class="di-title">Курсы валют</div>
+        <div class="di-sub">Реальные данные</div>
       </div>
-
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="banks"
-    >
-
-      <span class="di-icon">
-        🏦
-      </span>
-
+    <div class="drawer-item" data-action="banks">
+      <span class="di-icon">🏦</span>
       <div>
-
-        <div class="di-title">
-          Банки Таджикистана
-        </div>
-
-        <div
-          class="di-sub"
-          id="bankCountText"
-        >
-          Загрузка...
-        </div>
-
+        <div class="di-title">Банки Таджикистана</div>
+        <div class="di-sub">Курсы банков</div>
       </div>
-
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="converter"
-    >
-
-      <span class="di-icon">
-        🧮
-      </span>
-
+    <div class="drawer-item" data-action="converter">
+      <span class="di-icon">🧮</span>
       <div>
-
-        <div class="di-title">
-          Конвертер
-        </div>
-
-        <div class="di-sub">
-          Быстрый расчёт
-        </div>
-
+        <div class="di-title">Калькулятор</div>
+        <div class="di-sub">Расчёт валют</div>
       </div>
-
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="chart"
-    >
-
-      <span class="di-icon">
-        📈
-      </span>
-
+    <div class="drawer-item" data-action="chart">
+      <span class="di-icon">📈</span>
       <div>
-
-        <div class="di-title">
-          График курса
-        </div>
-
-        <div class="di-sub">
-          История изменения
-        </div>
-
+        <div class="di-title">График курса</div>
+        <div class="di-sub">История изменения</div>
       </div>
-
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="favorites"
-    >
-
-      <span class="di-icon">
-        ⭐
-      </span>
-
+    <div class="drawer-item" data-action="favorites">
+      <span class="di-icon">⭐</span>
       <div>
-
-        <div class="di-title">
-          Избранное
-        </div>
-
-        <div class="di-sub">
-          Любимые банки
-        </div>
-
+        <div class="di-title">Избранное</div>
+        <div class="di-sub">Ваши банки</div>
       </div>
-
     </div>
 
 
@@ -1806,88 +1099,61 @@ button{
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="settings"
-    >
-
-      <span class="di-icon">
-        ⚙️
-      </span>
-
+    <div class="drawer-item" data-action="settings">
+      <span class="di-icon">⚙️</span>
       <div>
-
-        <div class="di-title">
-          Настройки
-        </div>
-
-        <div class="di-sub">
-          Настройки приложения
-        </div>
-
+        <div class="di-title">Настройки</div>
+        <div class="di-sub">Настройте приложение</div>
       </div>
-
     </div>
 
 
-    <div
-      class="drawer-item"
-      data-action="about"
-    >
-
-      <span class="di-icon">
-        ℹ️
-      </span>
-
+    <div class="drawer-item" data-action="support">
+      <span class="di-icon">🛟</span>
       <div>
-
-        <div class="di-title">
-          О приложении
-        </div>
-
-        <div class="di-sub">
-          SHTJK
-        </div>
-
+        <div class="di-title">Поддержка</div>
+        <div class="di-sub">Помощь и обратная связь</div>
       </div>
+    </div>
 
+
+    <div class="drawer-item" data-action="agreement">
+      <span class="di-icon">📄</span>
+      <div>
+        <div class="di-title">Пользовательское соглашение</div>
+        <div class="di-sub">Условия использования</div>
+      </div>
+    </div>
+
+
+    <div class="drawer-item" data-action="about">
+      <span class="di-icon">ℹ️</span>
+      <div>
+        <div class="di-title">О приложении</div>
+        <div class="di-sub">Версия и информация</div>
+      </div>
     </div>
 
   </div>
 
 
   <div class="drawer-footer">
-
     © 2026 SHTJK<br>
-
     Курс Валют от Банков Таджикистан
-
   </div>
 
 </nav>
 
 
-<!-- =========================================================
-     BANKS PAGE
-========================================================= -->
+<!-- BANKS -->
 
-<section
-  class="page"
-  id="page-banks"
->
+<section class="page" id="page-banks">
 
   <div class="page-header">
 
-    <button
-      class="back-btn"
-      data-close-page
-    >
-      ←
-    </button>
+    <button class="back-btn" data-close-page>←</button>
 
-    <h2>
-      🏦 Банки Таджикистана
-    </h2>
+    <h2>🏦 Банки Таджикистана</h2>
 
   </div>
 
@@ -1895,33 +1161,28 @@ button{
   <div class="page-body">
 
     <div class="bank-search">
-
-      <span>
-        🔎
-      </span>
-
+      <span>🔎</span>
       <input
         id="bankSearch"
-        type="text"
         placeholder="Найти банк..."
       >
+    </div>
+
+
+    <div id="bankList" class="bank-list">
+
+      <div class="loading">
+        ⏳ Загружаем банки...
+      </div>
 
     </div>
 
 
     <div
-      class="bank-list"
-      id="bankList"
+      id="bankNoResults"
+      class="no-results hidden"
     >
-
-      <div class="loading">
-
-        <div class="spinner"></div>
-
-        Загружаем банки...
-
-      </div>
-
+      Банки не найдены
     </div>
 
   </div>
@@ -1929,112 +1190,166 @@ button{
 </section>
 
 
-<!-- =========================================================
-     BANK DETAIL PAGE
-========================================================= -->
+<!-- CALCULATOR -->
 
-<section
-  class="page"
-  id="page-bank-detail"
->
+<section class="page" id="page-converter">
 
   <div class="page-header">
 
-    <button
-      class="back-btn"
-      id="bankDetailBack"
-    >
-      ←
-    </button>
+    <button class="back-btn" data-close-page>←</button>
 
-    <h2>
-      🏦 Банк
-    </h2>
-
-  </div>
-
-
-  <div
-    class="page-body"
-    id="bankDetailBody"
-  >
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     SETTINGS
-========================================================= -->
-
-<section
-  class="page"
-  id="page-settings"
->
-
-  <div class="page-header">
-
-    <button
-      class="back-btn"
-      data-close-page
-    >
-      ←
-    </button>
-
-    <h2>
-      ⚙️ Настройки
-    </h2>
+    <h2>🧮 Калькулятор валют</h2>
 
   </div>
 
 
   <div class="page-body">
 
-    <div class="detail-card">
+    <div class="calc">
 
-      <div
-        style="
-        display:flex;
-        align-items:center;
-        gap:12px;
-        "
-      >
+      <div class="calc-title">
+        Конвертер
+      </div>
 
-        <span style="font-size:22px;">
-          🌙
-        </span>
 
-        <div style="flex:1;">
+      <div class="calc-row">
 
-          <div style="font-weight:800;">
-            Тёмная тема
-          </div>
+        <input
+          id="calcAmount"
+          type="number"
+          value="100"
+          min="0"
+          step="any"
+        >
 
-          <div
-            style="
-            color:var(--muted);
-            font-size:11px;
-            margin-top:3px;
-            "
-          >
-            Изменить внешний вид
-          </div>
+        <select id="calcFrom">
+          <option value="USD">USD 🇺🇸</option>
+          <option value="EUR">EUR 🇪🇺</option>
+          <option value="RUB">RUB 🇷🇺</option>
+          <option value="CNY">CNY 🇨🇳</option>
+          <option value="TJS">TJS 🇹🇯</option>
+        </select>
 
+      </div>
+
+
+      <button class="swap-btn" id="swapCurrencies">
+        🔄 Поменять валюты
+      </button>
+
+
+      <div class="calc-row">
+
+        <div></div>
+
+        <select id="calcTo">
+          <option value="TJS">TJS 🇹🇯</option>
+          <option value="USD">USD 🇺🇸</option>
+          <option value="EUR">EUR 🇪🇺</option>
+          <option value="RUB">RUB 🇷🇺</option>
+          <option value="CNY">CNY 🇨🇳</option>
+        </select>
+
+      </div>
+
+
+      <div class="calc-result">
+
+        <div class="calc-result-label">
+          Результат
         </div>
 
-        <button
-          id="themeBtn"
-          style="
-          border:none;
-          border-radius:10px;
-          padding:8px 12px;
-          background:var(--primary);
-          color:white;
-          "
+        <div
+          class="calc-result-value"
+          id="calcResult"
         >
-          Переключить
-        </button>
+          —
+        </div>
+
+      </div>
+
+
+      <div
+        class="calc-info"
+        id="calcInfo"
+      >
+        Курс берётся из rates.json
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CHART -->
+
+<section class="page" id="page-chart">
+
+  <div class="page-header">
+
+    <button class="back-btn" data-close-page>←</button>
+
+    <h2>📈 График курса</h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="info-block">
+
+      <h4>📈 История курса</h4>
+
+      <p>
+        История изменения курса будет доступна
+        после накопления данных ежедневных обновлений.
+      </p>
+
+    </div>
+
+    <div class="info-block">
+
+      <h4>💡 Как это работает</h4>
+
+      <p>
+        GitHub Actions обновляет rates.json,
+        а SHTJK сохраняет данные для истории.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section class="page" id="page-favorites">
+
+  <div class="page-header">
+
+    <button class="back-btn" data-close-page>←</button>
+
+    <h2>⭐ Избранное</h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div id="favoritesList">
+
+      <div class="info-block">
+
+        <h4>⭐ Избранные банки</h4>
+
+        <p>
+          Нажмите ⭐ рядом с банком,
+          чтобы добавить его сюда.
+        </p>
 
       </div>
 
@@ -2045,80 +1360,120 @@ button{
 </section>
 
 
-<!-- =========================================================
-     ABOUT
-========================================================= -->
+<!-- SETTINGS -->
 
-<section
-  class="page"
-  id="page-about"
->
+<section class="page" id="page-settings">
 
   <div class="page-header">
 
-    <button
-      class="back-btn"
-      data-close-page
-    >
-      ←
-    </button>
+    <button class="back-btn" data-close-page>←</button>
 
-    <h2>
-      ℹ️ О приложении
-    </h2>
+    <h2>⚙️ Настройки</h2>
 
   </div>
 
 
   <div class="page-body">
 
-    <div class="bank-detail-title">
+    <div class="settings-group">
 
-      <h3>
-        SHTJK
-      </h3>
+      <div class="settings-row">
+
+        <span class="si-icon">🌙</span>
+
+        <div>
+          <div class="si-title">Тёмная тема</div>
+          <div class="si-sub">Изменить внешний вид</div>
+        </div>
+
+        <div
+          class="toggle"
+          id="darkToggle"
+        >
+          <div class="knob"></div>
+        </div>
+
+      </div>
+
+
+      <div class="settings-row">
+
+        <span class="si-icon">🔔</span>
+
+        <div>
+          <div class="si-title">Уведомления</div>
+          <div class="si-sub">Изменения курсов</div>
+        </div>
+
+        <div
+          class="toggle on"
+          id="notifToggle"
+        >
+          <div class="knob"></div>
+        </div>
+
+      </div>
+
+
+      <div class="settings-row">
+
+        <span class="si-icon">📳</span>
+
+        <div>
+          <div class="si-title">Вибрация</div>
+          <div class="si-sub">При нажатии</div>
+        </div>
+
+        <div
+          class="toggle on"
+          id="vibrateToggle"
+        >
+          <div class="knob"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SUPPORT -->
+
+<section class="page" id="page-support">
+
+  <div class="page-header">
+
+    <button class="back-btn" data-close-page>←</button>
+
+    <h2>🛟 Поддержка</h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="info-block">
+
+      <h4>💬 Обратная связь</h4>
 
       <p>
-        Курс Валют от Банков Таджикистан
+        Если вы нашли ошибку в курсе или хотите
+        предложить новую функцию, свяжитесь с SHTJK.
       </p>
 
     </div>
 
 
-    <div class="detail-card">
+    <div class="info-block">
 
-      <b>
-        Версия
-      </b>
+      <h4>🐛 Ошибка</h4>
 
-      <p
-        style="
-        margin-top:6px;
-        color:var(--muted);
-        "
-      >
-        2.0
-      </p>
-
-    </div>
-
-
-    <div class="detail-card">
-
-      <b>
-        Источник данных
-      </b>
-
-      <p
-        style="
-        margin-top:6px;
-        color:var(--muted);
-        line-height:1.5;
-        "
-      >
-        Национальный Банк Таджикистана.
-        Данные обновляются автоматически через
-        SHTJK API.
+      <p>
+        Перед сообщением ошибки проверьте,
+        что GitHub Actions успешно обновил rates.json.
       </p>
 
     </div>
@@ -2128,115 +1483,151 @@ button{
 </section>
 
 
-<div
-  class="toast"
-  id="toast"
-></div>
+<!-- AGREEMENT -->
+
+<section class="page" id="page-agreement">
+
+  <div class="page-header">
+
+    <button class="back-btn" data-close-page>←</button>
+
+    <h2>📄 Соглашение</h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="info-block">
+
+      <h4>1. Назначение</h4>
+
+      <p>
+        SHTJK предоставляет информационный сервис
+        для просмотра курсов валют банков Таджикистана.
+      </p>
+
+    </div>
+
+
+    <div class="info-block">
+
+      <h4>2. Курсы валют</h4>
+
+      <p>
+        Данные автоматически загружаются из
+        источника НБТ. Курсы могут изменяться.
+      </p>
+
+    </div>
+
+
+    <div class="info-block">
+
+      <h4>3. Ответственность</h4>
+
+      <p>
+        Перед финансовой операцией рекомендуется
+        уточнять актуальный курс непосредственно
+        в банке.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="page" id="page-about">
+
+  <div class="page-header">
+
+    <button class="back-btn" data-close-page>←</button>
+
+    <h2>ℹ️ О приложении</h2>
+
+  </div>
+
+
+  <div class="page-body">
+
+    <div class="about-center">
+
+      <div class="about-logo">
+        SHTJK
+      </div>
+
+      <div class="a-title">
+        Курс Валют
+      </div>
+
+      <div class="a-sub">
+        От Банков Таджикистан by SHTJK
+      </div>
+
+      <div class="a-version">
+        Версия 2.0
+      </div>
+
+      <p class="a-desc">
+        Приложение для просмотра и сравнения
+        курсов валют банков Таджикистана.
+        Данные загружаются автоматически.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="toast" id="toast"></div>
 
 
 <script>
 
 /* =========================================================
-   SHTJK CONFIG
+   SHTJK
+   REAL RATES
 ========================================================= */
 
 const API_URL = "./api/rates.json";
 
-
-/* =========================================================
-   STATE
-========================================================= */
-
-const state = {
-
-  drawerOpen:false,
-
-  activePage:null,
-
-  banks:[],
-
-  currencies:[],
-
-  selectedBank:null
-
+let ratesData = {
+  source:"НБТ",
+  updated:null,
+  official:{},
+  banks:[]
 };
+
+let favorites =
+  JSON.parse(localStorage.getItem("shtjk_favorites") || "[]");
 
 
 /* =========================================================
    TOAST
 ========================================================= */
 
-function showToast(message){
+function toast(message){
 
-  const toast =
+  const el =
     document.getElementById("toast");
 
-  toast.textContent = message;
+  el.textContent = message;
 
-  toast.classList.add("show");
+  el.classList.add("show");
 
-  clearTimeout(
-    showToast.timer
-  );
+  clearTimeout(window.toastTimer);
 
-  showToast.timer =
+  window.toastTimer =
     setTimeout(()=>{
-
-      toast.classList.remove("show");
-
-    },2500);
-
+      el.classList.remove("show");
+    },2200);
 }
-
-
-/* =========================================================
-   THEME
-========================================================= */
-
-function loadTheme(){
-
-  const theme =
-    localStorage.getItem(
-      "shtjk_theme"
-    ) || "light";
-
-  document.body.setAttribute(
-    "data-theme",
-    theme
-  );
-
-}
-
-function toggleTheme(){
-
-  const current =
-    document.body.getAttribute(
-      "data-theme"
-    );
-
-  const next =
-    current === "dark"
-      ? "light"
-      : "dark";
-
-  document.body.setAttribute(
-    "data-theme",
-    next
-  );
-
-  localStorage.setItem(
-    "shtjk_theme",
-    next
-  );
-
-}
-
-document
-  .getElementById("themeBtn")
-  .addEventListener(
-    "click",
-    toggleTheme
-  );
 
 
 /* =========================================================
@@ -2249,47 +1640,33 @@ const drawer =
 const overlay =
   document.getElementById("overlay");
 
+let activePage = null;
 
 function openDrawer(){
 
   drawer.classList.add("show");
-
   overlay.classList.add("show");
 
-  state.drawerOpen=true;
-
 }
-
 
 function closeDrawer(){
 
   drawer.classList.remove("show");
 
-  if(!state.activePage){
-
+  if(!activePage){
     overlay.classList.remove("show");
-
   }
-
-  state.drawerOpen=false;
 
 }
 
-
 document
   .getElementById("openDrawerBtn")
-  .addEventListener(
-    "click",
-    openDrawer
-  );
+  .onclick = openDrawer;
 
 
 document
   .getElementById("closeDrawerBtn")
-  .addEventListener(
-    "click",
-    closeDrawer
-  );
+  .onclick = closeDrawer;
 
 
 /* =========================================================
@@ -2299,38 +1676,43 @@ document
 function openPage(id){
 
   const page =
-    document.getElementById(
-      "page-"+id
-    );
+    document.getElementById("page-"+id);
 
   if(!page) return;
 
   page.classList.add("show");
 
+  activePage = id;
+
   overlay.classList.add("show");
 
-  state.activePage=id;
+  if(id === "banks"){
+    renderBanks();
+  }
+
+  if(id === "converter"){
+    calculate();
+  }
+
+  if(id === "favorites"){
+    renderFavorites();
+  }
 
 }
 
 
 function closePage(){
 
-  if(!state.activePage)
-    return;
+  if(!activePage) return;
 
   const page =
-    document.getElementById(
-      "page-"+state.activePage
-    );
+    document.getElementById("page-"+activePage);
 
   if(page){
-
     page.classList.remove("show");
-
   }
 
-  state.activePage=null;
+  activePage = null;
 
   overlay.classList.remove("show");
 
@@ -2338,612 +1720,665 @@ function closePage(){
 
 
 document
-  .querySelectorAll(
-    "[data-close-page]"
-  )
-  .forEach(button=>{
-
-    button.addEventListener(
-      "click",
-      closePage
-    );
-
+  .querySelectorAll("[data-close-page]")
+  .forEach(btn=>{
+    btn.onclick = closePage;
   });
 
 
-overlay.addEventListener(
-  "click",
-  ()=>{
+overlay.onclick = ()=>{
 
-    if(state.drawerOpen){
-
-      closeDrawer();
-
-    }
-
-    else if(state.activePage){
-
-      closePage();
-
-    }
-
+  if(activePage){
+    closePage();
+  }else{
+    closeDrawer();
   }
-);
+
+};
 
 
 /* =========================================================
-   NAVIGATION
+   DRAWER ACTIONS
 ========================================================= */
 
 document
   .querySelectorAll(".drawer-item")
   .forEach(item=>{
 
-    item.addEventListener(
-      "click",
-      ()=>{
+    item.onclick = ()=>{
 
-        const action =
-          item.dataset.action;
+      const action =
+        item.dataset.action;
 
-        closeDrawer();
+      closeDrawer();
 
-        if(action==="banks")
-          openPage("banks");
+      if(action === "currencies"){
 
-        else if(action==="currencies"){
-
-          document
-            .querySelector(".currency-list")
-            .scrollIntoView({
-              behavior:"smooth"
-            });
-
-        }
-
-        else if(action==="settings")
-          openPage("settings");
-
-        else if(action==="about")
-          openPage("about");
-
-        else if(action==="converter")
-          showToast(
-            "🧮 Конвертер скоро будет добавлен"
-          );
-
-        else if(action==="chart")
-          showToast(
-            "📈 Графики скоро будут добавлены"
-          );
-
-        else if(action==="favorites")
-          showToast(
-            "⭐ Избранное скоро будет добавлено"
-          );
+        window.scrollTo({
+          top:0,
+          behavior:"smooth"
+        });
 
       }
-    );
+
+      else if(
+        ["banks",
+         "converter",
+         "chart",
+         "favorites",
+         "settings",
+         "support",
+         "agreement",
+         "about"
+        ].includes(action)
+      ){
+
+        openPage(action);
+
+      }
+
+    };
 
   });
 
 
-document
-  .getElementById("qaBanks")
-  .addEventListener(
-    "click",
-    ()=>openPage("banks")
-  );
+/* =========================================================
+   QUICK BUTTONS
+========================================================= */
 
+document.getElementById("qaBanks")
+  .onclick = ()=>openPage("banks");
 
-document
-  .getElementById("qaConverter")
-  .addEventListener(
-    "click",
-    ()=>{
-      showToast(
-        "🧮 Конвертер скоро будет добавлен"
-      );
-    }
-  );
+document.getElementById("qaConverter")
+  .onclick = ()=>openPage("converter");
 
+document.getElementById("qaChart")
+  .onclick = ()=>openPage("chart");
 
-document
-  .getElementById("qaChart")
-  .addEventListener(
-    "click",
-    ()=>{
-      showToast(
-        "📈 Графики скоро будут добавлены"
-      );
-    }
-  );
-
-
-document
-  .getElementById("qaFavorites")
-  .addEventListener(
-    "click",
-    ()=>{
-      showToast(
-        "⭐ Избранное скоро будет добавлено"
-      );
-    }
-  );
+document.getElementById("qaFavorites")
+  .onclick = ()=>openPage("favorites");
 
 
 /* =========================================================
-   HELPERS
+   THEME
 ========================================================= */
 
-function money(value){
+const THEME_KEY =
+  "shtjk_theme";
 
-  if(
-    value===null ||
-    value===undefined ||
-    value===""
-  ){
 
-    return "—";
+function applyTheme(theme){
 
-  }
+  document.body.dataset.theme =
+    theme;
 
-  const number =
-    Number(value);
-
-  if(
-    !Number.isFinite(number) ||
-    number===0
-  ){
-
-    return "—";
-
-  }
-
-  return number
-    .toFixed(4)
-    .replace(/0+$/,"")
-    .replace(/\.$/,"");
+  document
+    .getElementById("darkToggle")
+    .classList.toggle(
+      "on",
+      theme === "dark"
+    );
 
 }
 
 
-function findCurrency(bank,code){
+function loadTheme(){
 
-  if(!bank)
-    return null;
+  const theme =
+    localStorage.getItem(THEME_KEY)
+    || "light";
 
-  return bank[code] || null;
+  applyTheme(theme);
 
 }
 
 
-function flag(code){
+document
+  .getElementById("darkToggle")
+  .onclick = ()=>{
 
-  const flags={
+    const current =
+      document.body.dataset.theme;
 
-    USD:"🇺🇸",
-    EUR:"🇪🇺",
-    RUB:"🇷🇺",
-    CNY:"🇨🇳"
+    const next =
+      current === "dark"
+      ? "light"
+      : "dark";
+
+    localStorage.setItem(
+      THEME_KEY,
+      next
+    );
+
+    applyTheme(next);
 
   };
 
-  return flags[code] || "💱";
 
-}
+document
+  .getElementById("notifToggle")
+  .onclick = function(){
 
-
-function currencyName(code){
-
-  const names={
-
-    USD:"Доллар США",
-    EUR:"Евро",
-    RUB:"Российский рубль",
-    CNY:"Китайский юань"
+    this.classList.toggle("on");
 
   };
 
-  return names[code] || code;
 
-}
+document
+  .getElementById("vibrateToggle")
+  .onclick = function(){
+
+    this.classList.toggle("on");
+
+  };
 
 
 /* =========================================================
    NORMALIZE API
 ========================================================= */
 
-function normalizeData(data){
+function normalizeNumber(value){
 
   if(
-    !data ||
-    !Array.isArray(data.banks)
+    value === null ||
+    value === undefined ||
+    value === ""
   ){
-
-    throw new Error(
-      "Неверный формат rates.json"
-    );
-
+    return null;
   }
 
-  state.banks =
-    data.banks;
+  const n =
+    Number(
+      String(value)
+        .replace(",",".")
+        .replace(/[^\d.-]/g,"")
+    );
 
-  return data;
+  return Number.isFinite(n)
+    ? n
+    : null;
+
+}
+
+
+function getRate(bank,currency,type){
+
+  if(!bank) return null;
+
+  if(!bank[currency]) return null;
+
+  return normalizeNumber(
+    bank[currency][type]
+  );
 
 }
 
 
 /* =========================================================
-   LOAD REAL API
+   FORMAT
 ========================================================= */
 
-async function loadRates(){
+function formatRate(value){
 
-  try{
+  if(
+    value === null ||
+    value === undefined ||
+    !Number.isFinite(value)
+  ){
+    return "—";
+  }
 
-    const response =
-      await fetch(
-        API_URL +
-        "?t=" +
-        Date.now(),
-        {
-          cache:"no-store"
-        }
-      );
-
-    if(!response.ok){
-
-      throw new Error(
-        "HTTP "+response.status
-      );
-
+  return value.toLocaleString(
+    "ru-RU",
+    {
+      maximumFractionDigits:6
     }
-
-    const data =
-      await response.json();
-
-    normalizeData(data);
-
-
-    /* DATE */
-
-    const date =
-      data.updated ||
-      data.date ||
-      "Сегодня";
-
-    document
-      .getElementById(
-        "todayLabel"
-      )
-      .textContent=date;
-
-
-    /* BANK COUNT */
-
-    document
-      .getElementById(
-        "bankCountText"
-      )
-      .textContent =
-      state.banks.length+
-      " банков";
-
-
-    /* RENDER */
-
-    renderHomeCurrencies();
-
-    renderBanks(
-      state.banks
-    );
-
-
-  }
-  catch(error){
-
-    console.error(
-      "SHTJK API:",
-      error
-    );
-
-
-    document
-      .getElementById(
-        "currencyList"
-      )
-      .innerHTML=`
-
-        <div class="error-box">
-
-          ❌ Не удалось загрузить реальные данные.
-
-          <br><br>
-
-          Проверь файл:
-
-          <b>api/rates.json</b>
-
-          <br><br>
-
-          Ошибка:
-          ${error.message}
-
-        </div>
-
-      `;
-
-
-    document
-      .getElementById(
-        "bankList"
-      )
-      .innerHTML=`
-
-        <div class="error-box">
-
-          ❌ Данные банков недоступны.
-
-          <br><br>
-
-          Проверь GitHub Actions
-          и файл
-          <b>api/rates.json</b>.
-
-        </div>
-
-      `;
-
-  }
+  );
 
 }
 
 
 /* =========================================================
-   HOME CURRENCIES
+   CURRENCY INFO
 ========================================================= */
 
-function renderHomeCurrencies(){
+const CURRENCIES = {
+
+  USD:{
+    flag:"🇺🇸",
+    name:"Доллар США"
+  },
+
+  EUR:{
+    flag:"🇪🇺",
+    name:"Евро"
+  },
+
+  RUB:{
+    flag:"🇷🇺",
+    name:"Российский рубль"
+  },
+
+  CNY:{
+    flag:"🇨🇳",
+    name:"Китайский юань"
+  }
+
+};
+
+
+/* =========================================================
+   OFFICIAL CURRENCIES
+========================================================= */
+
+function renderCurrencies(){
 
   const container =
     document.getElementById(
       "currencyList"
     );
 
-  container.innerHTML="";
+  container.innerHTML = "";
 
+  const official =
+    ratesData.official || {};
 
-  if(!state.banks.length){
+  Object.keys(CURRENCIES)
+    .forEach(code=>{
 
-    container.innerHTML=`
+      const c =
+        CURRENCIES[code];
 
-      <div class="error-box">
-
-        ⚠️ Банковские данные пока
-        отсутствуют.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  /*
-    Здесь показываем лучшие/первые
-    доступные значения из JSON.
-  */
-
-  const codes=[
-    "USD",
-    "EUR",
-    "RUB",
-    "CNY"
-  ];
-
-
-  const cards=[];
-
-
-  codes.forEach(code=>{
-
-    let found=null;
-
-
-    for(
-      const bank of state.banks
-    ){
-
-      const currency =
-        findCurrency(
-          bank,
-          code
+      const rate =
+        normalizeNumber(
+          official[code]
         );
 
-      if(
-        currency &&
-        (
-          Number(currency.buy)>0 ||
-          Number(currency.sell)>0
-        )
-      ){
+      const card =
+        document.createElement("div");
 
-        found={
-          bank,
-          currency
-        };
+      card.className =
+        "currency-card";
 
-        break;
+      card.innerHTML = `
 
-      }
+        <div class="currency-top">
 
-    }
-
-
-    if(found){
-
-      cards.push({
-        code,
-        ...found
-      });
-
-    }
-
-  });
-
-
-  if(!cards.length){
-
-    container.innerHTML=`
-
-      <div class="error-box">
-
-        ⚠️ В rates.json пока нет
-        USD/EUR/RUB/CNY.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  cards.forEach(item=>{
-
-    const card =
-      document.createElement(
-        "div"
-      );
-
-    card.className=
-      "currency-card";
-
-
-    card.innerHTML=`
-
-      <div class="currency-top">
-
-        <div class="cc-flag">
-          ${flag(item.code)}
-        </div>
-
-        <div class="cc-info">
-
-          <div class="cc-name">
-
-            ${item.code}
-            ·
-            ${currencyName(item.code)}
-
+          <div class="cc-flag">
+            ${c.flag}
           </div>
 
-          <div class="cc-sub">
+          <div class="cc-info">
 
-            ${item.bank.bank ||
-            item.bank.name ||
-            "Банк"}
+            <div class="cc-name">
+              ${code} · ${c.name}
+            </div>
+
+            <div class="cc-sub">
+              Официальный курс НБТ
+            </div>
 
           </div>
 
         </div>
 
-      </div>
+        <div class="rate-boxes">
 
+          <div class="rate-box">
 
-      <div class="bank-rate">
+            <div class="rate-label">
+              Официальный курс
+            </div>
 
-        <div class="rate-box">
-
-          <div class="rate-title">
-            Покупка
-          </div>
-
-          <div class="rate-value buy">
-
-            ${money(
-              item.currency.buy
-            )}
-
-            <small>
-              TJS
-            </small>
+            <div class="rate-value">
+              ${formatRate(rate)} TJS
+            </div>
 
           </div>
 
-        </div>
+          <div class="rate-box">
 
+            <div class="rate-label">
+              Источник
+            </div>
 
-        <div class="rate-box">
-
-          <div class="rate-title">
-            Продажа
-          </div>
-
-          <div class="rate-value sell">
-
-            ${money(
-              item.currency.sell
-            )}
-
-            <small>
-              TJS
-            </small>
+            <div class="rate-value">
+              НБТ
+            </div>
 
           </div>
 
         </div>
 
-      </div>
+      `;
 
-    `;
+      container.appendChild(card);
 
-
-    card.addEventListener(
-      "click",
-      ()=>{
-        showBankDetail(
-          item.bank
-        );
-      }
-    );
-
-
-    container.appendChild(
-      card
-    );
-
-  });
+    });
 
 }
 
 
 /* =========================================================
-   BANK LIST
+   BANKS
 ========================================================= */
 
-function renderBanks(list){
+const BANK_NAMES = [
+
+  "Алиф Банк",
+  "Амонатбанк",
+  "Банк Арванд",
+  "Банк Эсхата",
+  "ФИНКА",
+  "Инвестиционно-Кредитный Банк Таджикистан",
+  "Актив Банк",
+  "Хумо",
+  "Имон Интернешнл",
+  "Международный банк Таджикистана",
+  "Ориёнбанк",
+  "Саноатсодиротбонк",
+  "Тавхидбанк",
+  "Спитамен Банк",
+  "Фридом Банк Таджикистан",
+  "Васл Банк",
+  "Душанбе Сити",
+  "Коммерцбанк Таджикистана",
+  "Банк развития Таджикистана"
+
+];
+
+
+function bankName(bank){
+
+  return String(
+    bank.bank ||
+    bank.name ||
+    ""
+  ).trim();
+
+}
+
+
+function renderBanks(search=""){
 
   const container =
     document.getElementById(
       "bankList"
     );
 
-  container.innerHTML="";
+  const noResults =
+    document.getElementById(
+      "bankNoResults"
+    );
+
+  container.innerHTML = "";
+
+  const allBanks =
+    ratesData.banks || [];
+
+  let banks =
+    allBanks.length
+    ? allBanks
+    : BANK_NAMES.map(name=>({
+        bank:name
+      }));
 
 
-  if(!list.length){
+  search =
+    search.trim().toLowerCase();
 
-    container.innerHTML=`
 
-      <div class="error-box">
+  if(search){
 
-        🔎 Банк не найден.
+    banks =
+      banks.filter(bank=>
+        bankName(bank)
+          .toLowerCase()
+          .includes(search)
+      );
+
+  }
+
+
+  if(!banks.length){
+
+    noResults.classList.remove(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+  noResults.classList.add(
+    "hidden"
+  );
+
+
+  banks.forEach(bank=>{
+
+    const name =
+      bankName(bank);
+
+    if(!name) return;
+
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "bank-card";
+
+
+    const favorite =
+      favorites.includes(name);
+
+
+    card.innerHTML = `
+
+      <div class="bank-main">
+
+        <div class="bank-icon">
+          🏦
+        </div>
+
+        <div style="flex:1">
+
+          <div class="bank-name">
+            ${escapeHTML(name)}
+          </div>
+
+          <div class="bank-sub">
+            USD • EUR • RUB • CNY
+          </div>
+
+        </div>
+
+        <button
+          class="favorite-btn"
+          style="
+            border:0;
+            background:none;
+            font-size:21px;
+          "
+        >
+          ${favorite ? "⭐" : "☆"}
+        </button>
+
+      </div>
+
+
+      <div class="bank-rates">
+
+        ${bankRateHTML(
+          "USD",
+          bank
+        )}
+
+        ${bankRateHTML(
+          "EUR",
+          bank
+        )}
+
+        ${bankRateHTML(
+          "RUB",
+          bank
+        )}
+
+        ${bankRateHTML(
+          "CNY",
+          bank
+        )}
+
+      </div>
+
+    `;
+
+
+    const favButton =
+      card.querySelector(
+        ".favorite-btn"
+      );
+
+
+    favButton.onclick = e=>{
+
+      e.stopPropagation();
+
+      toggleFavorite(name);
+
+      renderBanks(
+        document.getElementById(
+          "bankSearch"
+        ).value
+      );
+
+    };
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+function bankRateHTML(code,bank){
+
+  const buy =
+    getRate(
+      bank,
+      code,
+      "buy"
+    );
+
+  const sell =
+    getRate(
+      bank,
+      code,
+      "sell"
+    );
+
+
+  return `
+
+    <div class="bank-rate">
+
+      <strong>${code}</strong>
+
+      <small>
+        Покупка
+      </small>
+
+      <span>
+        ${formatRate(buy)}
+      </span>
+
+      <small>
+        Продажа
+      </small>
+
+      <span>
+        ${formatRate(sell)}
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(name){
+
+  if(favorites.includes(name)){
+
+    favorites =
+      favorites.filter(
+        x=>x!==name
+      );
+
+    toast(
+      "Удалено из избранного"
+    );
+
+  }else{
+
+    favorites.push(name);
+
+    toast(
+      "⭐ Добавлено в избранное"
+    );
+
+  }
+
+  localStorage.setItem(
+    "shtjk_favorites",
+    JSON.stringify(favorites)
+  );
+
+}
+
+
+function renderFavorites(){
+
+  const container =
+    document.getElementById(
+      "favoritesList"
+    );
+
+  if(!favorites.length){
+
+    container.innerHTML = `
+
+      <div class="info-block">
+
+        <h4>⭐ Пока пусто</h4>
+
+        <p>
+          Откройте раздел банков
+          и нажмите ☆ рядом с банком.
+        </p>
 
       </div>
 
@@ -2954,121 +2389,94 @@ function renderBanks(list){
   }
 
 
-  list.forEach(
-    (bank,index)=>{
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-      card.className=
-        "bank-card";
+  const banks =
+    ratesData.banks || [];
 
 
-      const bankName =
-        bank.bank ||
-        bank.name ||
-        "Банк";
+  container.innerHTML = "";
 
 
-      const currencies =
-        ["USD","EUR","RUB","CNY"];
+  favorites.forEach(name=>{
+
+    const bank =
+      banks.find(
+        b=>bankName(b)===name
+      );
 
 
-      let previews="";
+    const block =
+      document.createElement("div");
+
+    block.className =
+      "info-block";
 
 
-      currencies.forEach(
-        code=>{
+    block.innerHTML = `
 
-          const c =
-            findCurrency(
-              bank,
-              code
-            );
+      <h4>
+        ⭐ ${escapeHTML(name)}
+      </h4>
 
-
-          previews+=`
-
-            <div class="preview-box">
-
-              <div class="preview-code">
-                ${code}
-              </div>
-
-              <div class="preview-rate">
-
-                ${
-                  c
-                  ? money(c.sell)
-                  : "—"
-                }
-
-              </div>
-
-            </div>
-
-          `;
-
+      <p>
+        USD: ${
+          bank
+          ? formatRate(
+              getRate(
+                bank,
+                "USD",
+                "sell"
+              )
+            )
+          : "—"
         }
-      );
+        <br>
 
-
-      card.innerHTML=`
-
-        <div class="bank-main">
-
-          <div class="bank-icon">
-            🏦
-          </div>
-
-          <div style="flex:1;min-width:0;">
-
-            <div class="bank-name">
-              ${bankName}
-            </div>
-
-            <div class="bank-sub">
-
-              USD · EUR · RUB · CNY
-
-            </div>
-
-          </div>
-
-          <div class="bank-arrow">
-            ›
-          </div>
-
-        </div>
-
-
-        <div class="bank-preview">
-
-          ${previews}
-
-        </div>
-
-      `;
-
-
-      card.addEventListener(
-        "click",
-        ()=>{
-          showBankDetail(
-            bank
-          );
+        EUR: ${
+          bank
+          ? formatRate(
+              getRate(
+                bank,
+                "EUR",
+                "sell"
+              )
+            )
+          : "—"
         }
-      );
+        <br>
+
+        RUB: ${
+          bank
+          ? formatRate(
+              getRate(
+                bank,
+                "RUB",
+                "sell"
+              )
+            )
+          : "—"
+        }
+        <br>
+
+        CNY: ${
+          bank
+          ? formatRate(
+              getRate(
+                bank,
+                "CNY",
+                "sell"
+              )
+            )
+          : "—"
+        }
+
+      </p>
+
+    `;
 
 
-      container.appendChild(
-        card
-      );
+    container.appendChild(block);
 
-    }
-  );
+  });
 
 }
 
@@ -3081,508 +2489,379 @@ document
   .getElementById("bankSearch")
   .addEventListener(
     "input",
-    event=>{
-
-      const q =
-        event.target.value
-          .trim()
-          .toLowerCase();
-
-
-      if(!q){
-
-        renderBanks(
-          state.banks
-        );
-
-        return;
-
-      }
-
-
-      const filtered =
-        state.banks.filter(
-          bank=>{
-
-            const name =
-              (
-                bank.bank ||
-                bank.name ||
-                ""
-              )
-              .toLowerCase();
-
-            return name.includes(q);
-
-          }
-        );
-
-
+    e=>{
       renderBanks(
-        filtered
+        e.target.value
       );
-
     }
   );
 
 
 /* =========================================================
-   BANK DETAIL
-========================================================= */
-
-function showBankDetail(bank){
-
-  if(!bank)
-    return;
-
-
-  state.selectedBank=
-    bank;
-
-
-  const name =
-    bank.bank ||
-    bank.name ||
-    "Банк";
-
-
-  const body =
-    document.getElementById(
-      "bankDetailBody"
-    );
-
-
-  let html=`
-
-    <div class="bank-detail-title">
-
-      <h3>
-        🏦 ${name}
-      </h3>
-
-      <p>
-        Реальные курсы валют
-      </p>
-
-    </div>
-
-  `;
-
-
-  const currencies=[
-    "USD",
-    "EUR",
-    "RUB",
-    "CNY"
-  ];
-
-
-  currencies.forEach(
-    code=>{
-
-      const c =
-        findCurrency(
-          bank,
-          code
-        );
-
-
-      html+=`
-
-        <div class="detail-card">
-
-          <div class="detail-currency">
-
-            <div class="detail-flag">
-
-              ${flag(code)}
-
-            </div>
-
-            <div>
-
-              <div class="detail-code">
-
-                ${code}
-
-              </div>
-
-              <div class="detail-name">
-
-                ${currencyName(code)}
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="detail-rates">
-
-            <div class="detail-rate">
-
-              <div class="detail-rate-label">
-
-                Покупка
-
-              </div>
-
-              <div class="detail-rate-value buy">
-
-                ${
-                  c
-                  ? money(c.buy)
-                  : "—"
-                }
-
-                <small>
-                  TJS
-                </small>
-
-              </div>
-
-            </div>
-
-
-            <div class="detail-rate">
-
-              <div class="detail-rate-label">
-
-                Продажа
-
-              </div>
-
-              <div class="detail-rate-value sell">
-
-                ${
-                  c
-                  ? money(c.sell)
-                  : "—"
-                }
-
-                <small>
-                  TJS
-                </small>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  const updated =
-    bank.updated ||
-    bank.date ||
-    "";
-
-
-  if(updated){
-
-    html+=`
-
-      <div class="updated">
-
-        🕐 Обновлено:
-        ${updated}
-
-      </div>
-
-    `;
-
-  }
-
-
-  body.innerHTML=html;
-
-
-  openPage(
-    "bank-detail"
-  );
-
-}
-
-
-/* =========================================================
-   BANK DETAIL BACK
-========================================================= */
-
-document
-  .getElementById(
-    "bankDetailBack"
-  )
-  .addEventListener(
-    "click",
-    ()=>{
-
-      document
-        .getElementById(
-          "page-bank-detail"
-        )
-        .classList.remove(
-          "show"
-        );
-
-
-      state.activePage=
-        "banks";
-
-
-      document
-        .getElementById(
-          "page-banks"
-        )
-        .classList.add(
-          "show"
-        );
-
-    }
-  );
-
-
-/* =========================================================
-   HOME SEARCH
+   MAIN SEARCH
 ========================================================= */
 
 document
   .getElementById("mainSearch")
   .addEventListener(
     "input",
-    event=>{
+    e=>{
 
       const q =
-        event.target.value
+        e.target.value
           .trim()
           .toLowerCase();
 
 
       if(!q){
 
-        renderHomeCurrencies();
+        renderCurrencies();
 
         return;
 
       }
 
 
-      /*
-        Поиск валюты
-      */
-
-      const currencyCodes=[
-        "USD",
-        "EUR",
-        "RUB",
-        "CNY"
-      ];
-
-
-      const matchedCode =
-        currencyCodes.find(
-          code=>
+      const foundCurrency =
+        Object.keys(CURRENCIES)
+          .some(code=>
             code.toLowerCase()
               .includes(q) ||
-            currencyName(code)
+            CURRENCIES[code]
+              .name
               .toLowerCase()
               .includes(q)
-        );
+          );
 
 
-      if(matchedCode){
+      if(foundCurrency){
 
-        renderCurrencySearch(
-          matchedCode
-        );
-
-        return;
+        renderCurrencies();
 
       }
 
 
-      /*
-        Поиск банка
-      */
+      const foundBank =
+        (ratesData.banks || [])
+          .some(bank=>
+            bankName(bank)
+              .toLowerCase()
+              .includes(q)
+          );
 
-      const banks =
-        state.banks.filter(
-          bank=>
-            (
-              bank.bank ||
-              bank.name ||
-              ""
-            )
-            .toLowerCase()
-            .includes(q)
+
+      if(foundBank){
+
+        toast(
+          "🏦 Банк найден. Откройте раздел «Банки»."
         );
-
-
-      if(banks.length){
-
-        openPage(
-          "banks"
-        );
-
-        document
-          .getElementById(
-            "bankSearch"
-          )
-          .value=q;
-
-        renderBanks(
-          banks
-        );
-
-        return;
 
       }
-
-
-      showToast(
-        "🔎 Ничего не найдено"
-      );
 
     }
   );
 
 
 /* =========================================================
-   CURRENCY SEARCH
+   CALCULATOR
 ========================================================= */
 
-function renderCurrencySearch(
-  code
-){
+const calcAmount =
+  document.getElementById(
+    "calcAmount"
+  );
+
+const calcFrom =
+  document.getElementById(
+    "calcFrom"
+  );
+
+const calcTo =
+  document.getElementById(
+    "calcTo"
+  );
+
+
+function officialRate(code){
+
+  if(code==="TJS"){
+    return 1;
+  }
+
+  return normalizeNumber(
+    ratesData.official?.[code]
+  );
+
+}
+
+
+function calculate(){
+
+  const amount =
+    Number(
+      calcAmount.value
+    );
+
+
+  const from =
+    calcFrom.value;
+
+  const to =
+    calcTo.value;
+
+
+  if(
+    !Number.isFinite(amount) ||
+    amount < 0
+  ){
+
+    document.getElementById(
+      "calcResult"
+    ).textContent = "—";
+
+    return;
+
+  }
+
+
+  const fromRate =
+    officialRate(from);
+
+  const toRate =
+    officialRate(to);
+
+
+  if(
+    fromRate === null ||
+    toRate === null
+  ){
+
+    document.getElementById(
+      "calcResult"
+    ).textContent = "Нет данных";
+
+    return;
+
+  }
+
+
+  const result =
+    amount * fromRate / toRate;
+
+
+  document.getElementById(
+    "calcResult"
+  ).textContent =
+    `${formatRate(result)} ${to}`;
+
+
+  document.getElementById(
+    "calcInfo"
+  ).textContent =
+    `Официальный курс НБТ • ${from} → ${to}`;
+
+}
+
+
+calcAmount.oninput =
+  calculate;
+
+calcFrom.onchange =
+  calculate;
+
+calcTo.onchange =
+  calculate;
+
+
+document
+  .getElementById(
+    "swapCurrencies"
+  )
+  .onclick = ()=>{
+
+    const temp =
+      calcFrom.value;
+
+    calcFrom.value =
+      calcTo.value;
+
+    calcTo.value =
+      temp;
+
+    calculate();
+
+  };
+
+
+/* =========================================================
+   LOAD REAL DATA
+========================================================= */
+
+async function loadRates(){
 
   const container =
     document.getElementById(
       "currencyList"
     );
 
-  container.innerHTML="";
+
+  try{
+
+    container.innerHTML = `
+
+      <div class="loading">
+        ⏳ Получаем реальные данные...
+      </div>
+
+    `;
 
 
-  state.banks.forEach(
-    bank=>{
-
-      const c =
-        findCurrency(
-          bank,
-          code
-        );
-
-
-      if(
-        !c ||
-        (
-          Number(c.buy)<=0 &&
-          Number(c.sell)<=0
-        )
-      )
-        return;
-
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-      card.className=
-        "currency-card";
-
-
-      card.innerHTML=`
-
-        <div class="currency-top">
-
-          <div class="cc-flag">
-            ${flag(code)}
-          </div>
-
-          <div class="cc-info">
-
-            <div class="cc-name">
-
-              ${code}
-              ·
-              ${currencyName(code)}
-
-            </div>
-
-            <div class="cc-sub">
-
-              ${
-                bank.bank ||
-                bank.name ||
-                "Банк"
-              }
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="bank-rate">
-
-          <div class="rate-box">
-
-            <div class="rate-title">
-              Покупка
-            </div>
-
-            <div class="rate-value buy">
-
-              ${money(c.buy)}
-
-            </div>
-
-          </div>
-
-
-          <div class="rate-box">
-
-            <div class="rate-title">
-              Продажа
-            </div>
-
-            <div class="rate-value sell">
-
-              ${money(c.sell)}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      card.addEventListener(
-        "click",
-        ()=>{
-          showBankDetail(
-            bank
-          );
+    const response =
+      await fetch(
+        API_URL +
+        "?t=" +
+        Date.now(),
+        {
+          cache:"no-store"
         }
       );
 
 
-      container.appendChild(
-        card
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " +
+        response.status
       );
 
     }
-  );
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      !data ||
+      typeof data !== "object"
+    ){
+
+      throw new Error(
+        "Неверный формат rates.json"
+      );
+
+    }
+
+
+    ratesData = data;
+
+
+    renderCurrencies();
+
+
+    renderBanks();
+
+
+    updateDate();
+
+
+    calculate();
+
+
+  }catch(error){
+
+    console.error(
+      "SHTJK API ERROR:",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <div class="error">
+
+        ❌ Не удалось загрузить реальные данные.
+
+        <br><br>
+
+        Проверь файл:
+
+        <b>api/rates.json</b>
+
+        <br><br>
+
+        Ошибка:
+
+        ${escapeHTML(
+          error.message
+        )}
+
+      </div>
+
+    `;
+
+    document.getElementById(
+      "updatedLabel"
+    ).textContent =
+      "Ошибка";
+
+
+  }
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function updateDate(){
+
+  const label =
+    document.getElementById(
+      "updatedLabel"
+    );
+
+
+  if(!ratesData.updated){
+
+    label.textContent =
+      "НБТ";
+
+    return;
+
+  }
+
+
+  const date =
+    new Date(
+      ratesData.updated
+    );
+
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+
+    label.textContent =
+      "НБТ";
+
+    return;
+
+  }
+
+
+  label.textContent =
+    date.toLocaleDateString(
+      "ru-RU",
+      {
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+      }
+    );
 
 }
 
@@ -3594,6 +2873,17 @@ function renderCurrencySearch(
 loadTheme();
 
 loadRates();
+
+
+/*
+  Проверяем обновление rates.json
+  каждые 60 секунд.
+*/
+
+setInterval(
+  loadRates,
+  60000
+);
 
 </script>
 
