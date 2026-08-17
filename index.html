@@ -4,23 +4,23 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               viewport-fit=cover">
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <meta name="theme-color" content="#ff7a00">
 
 <meta name="description"
-      content="Курс валют банков Таджикистана — SHOHIN Currency">
+      content="SHOHIN Currency — курс валют банков Таджикистана">
 
 <meta name="application-name"
       content="SHOHIN Currency">
 
-<link rel="manifest" href="./manifest.json">
-
-<title>SHOHIN Currency</title>
+<title>SHOHIN Currency — Курс валют</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -29,17 +29,24 @@
 }
 
 :root{
+
     --orange:#ff7a00;
     --orange2:#ff9d2e;
+
     --bg:#f5f7fb;
     --card:#ffffff;
+
     --text:#172033;
     --muted:#758096;
+
     --green:#12a86b;
     --red:#e53935;
-    --blue:#3578e5;
+    --blue:#3478e5;
+
     --border:#e8edf4;
-    --shadow:0 8px 30px rgba(20,30,50,.07);
+
+    --shadow:
+        0 8px 30px rgba(20,30,50,.07);
 }
 
 html{
@@ -47,6 +54,7 @@ html{
 }
 
 body{
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -74,9 +82,9 @@ button{
 }
 
 
-/* =====================================================
+/* =========================================================
    HEADER
-===================================================== */
+========================================================= */
 
 .header{
 
@@ -99,7 +107,8 @@ button{
         0 0 30px 30px;
 
     box-shadow:
-        0 10px 30px rgba(255,122,0,.25);
+        0 10px 30px
+        rgba(255,122,0,.25);
 }
 
 .header-top{
@@ -147,8 +156,6 @@ button{
     font-size:20px;
 
     font-weight:900;
-
-    letter-spacing:.3px;
 }
 
 .logo-sub{
@@ -179,13 +186,13 @@ button{
 
 .refresh-btn:active{
 
-    transform:scale(.90);
+    transform:scale(.9);
 }
 
 
-/* =====================================================
-   HEADER TITLE
-===================================================== */
+/* =========================================================
+   TITLE
+========================================================= */
 
 .header-title{
 
@@ -211,9 +218,9 @@ button{
 }
 
 
-/* =====================================================
+/* =========================================================
    STATUS
-===================================================== */
+========================================================= */
 
 .status{
 
@@ -248,34 +255,10 @@ button{
     flex:none;
 }
 
-.status.loading .status-dot{
 
-    background:#f5a623;
-
-    animation:pulse 1s infinite;
-}
-
-.status.error .status-dot{
-
-    background:var(--red);
-}
-
-.status.offline .status-dot{
-
-    background:#f5a623;
-}
-
-@keyframes pulse{
-
-    50%{
-        opacity:.3;
-    }
-}
-
-
-/* =====================================================
+/* =========================================================
    CONTAINER
-===================================================== */
+========================================================= */
 
 .container{
 
@@ -290,9 +273,9 @@ button{
 }
 
 
-/* =====================================================
+/* =========================================================
    SECTION TITLE
-===================================================== */
+========================================================= */
 
 .section-title{
 
@@ -307,9 +290,9 @@ button{
 }
 
 
-/* =====================================================
-   OFFICIAL GRID
-===================================================== */
+/* =========================================================
+   OFFICIAL
+========================================================= */
 
 .official-grid{
 
@@ -325,7 +308,9 @@ button{
 
     background:var(--card);
 
-    border:1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
     border-radius:21px;
 
@@ -356,15 +341,6 @@ button{
     top:-25px;
 }
 
-.currency-top{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-}
-
 .currency-name{
 
     display:flex;
@@ -388,11 +364,11 @@ button{
 
 .currency-label{
 
-    font-size:11px;
+    margin-top:3px;
 
     color:var(--muted);
 
-    margin-top:3px;
+    font-size:11px;
 }
 
 .currency-value{
@@ -408,19 +384,17 @@ button{
 
     margin-top:3px;
 
-    font-size:11px;
-
     color:var(--muted);
+
+    font-size:11px;
 }
 
 
-/* =====================================================
+/* =========================================================
    SEARCH
-===================================================== */
+========================================================= */
 
 .search-box{
-
-    position:relative;
 
     margin-bottom:14px;
 }
@@ -440,8 +414,7 @@ button{
     border-radius:16px;
 
     padding:
-        0
-        16px;
+        0 16px;
 
     outline:none;
 
@@ -454,16 +427,12 @@ button{
 
     border-color:
         var(--orange);
-
-    box-shadow:
-        0 8px 25px
-        rgba(255,122,0,.12);
 }
 
 
-/* =====================================================
+/* =========================================================
    STATS
-===================================================== */
+========================================================= */
 
 .stats{
 
@@ -511,9 +480,9 @@ button{
 }
 
 
-/* =====================================================
-   BANK LIST
-===================================================== */
+/* =========================================================
+   BANKS
+========================================================= */
 
 .bank-list{
 
@@ -556,7 +525,7 @@ button{
 
     font-weight:900;
 
-    line-height:1.25;
+    line-height:1.3;
 }
 
 .bank-official{
@@ -581,8 +550,7 @@ button{
     border-radius:20px;
 
     padding:
-        6px
-        9px;
+        6px 9px;
 
     font-size:10px;
 
@@ -599,9 +567,9 @@ button{
 }
 
 
-/* =====================================================
-   RATE BOX
-===================================================== */
+/* =========================================================
+   CASH
+========================================================= */
 
 .rate-box{
 
@@ -626,9 +594,9 @@ button{
 
 .rate-label{
 
-    font-size:11px;
-
     color:var(--muted);
+
+    font-size:11px;
 
     margin-bottom:5px;
 }
@@ -654,19 +622,30 @@ button{
 
     margin-top:3px;
 
-    font-size:10px;
-
     color:var(--muted);
+
+    font-size:10px;
 }
 
 
-/* =====================================================
-   EXTRA BANK DATA
-===================================================== */
+/* =========================================================
+   EXTRA DATA
+========================================================= */
+
+.extra-title{
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    color:var(--text);
+}
 
 .extra-data{
-
-    margin-top:12px;
 
     display:grid;
 
@@ -687,9 +666,9 @@ button{
 
 .extra-label{
 
-    font-size:10px;
-
     color:var(--muted);
+
+    font-size:10px;
 
     margin-bottom:4px;
 }
@@ -701,6 +680,11 @@ button{
     font-weight:800;
 }
 
+
+/* =========================================================
+   BANK DATE
+========================================================= */
+
 .bank-date{
 
     margin-top:12px;
@@ -709,6 +693,11 @@ button{
 
     font-size:11px;
 }
+
+
+/* =========================================================
+   NO DATA
+========================================================= */
 
 .no-bank-data{
 
@@ -728,9 +717,9 @@ button{
 }
 
 
-/* =====================================================
+/* =========================================================
    EMPTY
-===================================================== */
+========================================================= */
 
 .empty{
 
@@ -748,41 +737,9 @@ button{
 }
 
 
-/* =====================================================
-   LOADER
-===================================================== */
-
-.loader{
-
-    width:22px;
-    height:22px;
-
-    border:
-        3px solid
-        #eee;
-
-    border-top-color:
-        var(--orange);
-
-    border-radius:50%;
-
-    animation:
-        spin .7s linear infinite;
-
-    flex:none;
-}
-
-@keyframes spin{
-
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 .footer{
 
@@ -806,9 +763,9 @@ button{
 }
 
 
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media(max-width:500px){
 
@@ -838,12 +795,13 @@ button{
 
         font-size:17px;
     }
+
 }
 
 
-/* =====================================================
-   TABLET / PC
-===================================================== */
+/* =========================================================
+   DESKTOP
+========================================================= */
 
 @media(min-width:700px){
 
@@ -860,6 +818,7 @@ button{
         grid-template-columns:
             repeat(2,1fr);
     }
+
 }
 
 </style>
@@ -869,9 +828,9 @@ button{
 <body>
 
 
-<!-- =====================================================
+<!-- =======================================================
      HEADER
-===================================================== -->
+======================================================= -->
 
 <header class="header">
 
@@ -899,8 +858,8 @@ button{
 
 
         <button
-            class="refresh-btn"
             id="refreshBtn"
+            class="refresh-btn"
             aria-label="Обновить">
 
             ↻
@@ -926,39 +885,34 @@ button{
 
 
 
-<!-- =====================================================
+<!-- =======================================================
      STATUS
-===================================================== -->
+======================================================= -->
 
 <div
     id="status"
-    class="status loading">
+    class="status">
 
-    <div
-        class="loader"
-        id="statusLoader">
-    </div>
+    <div class="status-dot"></div>
 
     <div id="statusText">
-
-        Загружаем актуальные курсы...
-
+        Загружаем данные...
     </div>
 
 </div>
 
 
 
-<!-- =====================================================
+<!-- =======================================================
      MAIN
-===================================================== -->
+======================================================= -->
 
 <main class="container">
 
 
-    <!-- =================================================
-         OFFICIAL NBT
-    ================================================== -->
+    <!-- ===================================================
+         OFFICIAL
+    ==================================================== -->
 
     <div class="section-title">
 
@@ -971,37 +925,13 @@ button{
         id="officialGrid"
         class="official-grid">
 
-        <div class="currency-card">
-
-            <div class="loader"></div>
-
-        </div>
-
-        <div class="currency-card">
-
-            <div class="loader"></div>
-
-        </div>
-
-        <div class="currency-card">
-
-            <div class="loader"></div>
-
-        </div>
-
-        <div class="currency-card">
-
-            <div class="loader"></div>
-
-        </div>
-
     </div>
 
 
 
-    <!-- =================================================
+    <!-- ===================================================
          BANKS
-    ================================================== -->
+    ==================================================== -->
 
     <div class="section-title">
 
@@ -1012,19 +942,20 @@ button{
 
     <div class="stats">
 
+
         <div class="stat">
 
             <div
                 id="banksFound"
                 class="stat-value">
 
-                —
+                0
 
             </div>
 
             <div class="stat-label">
 
-                банков найдено
+                банков с данными
 
             </div>
 
@@ -1037,13 +968,13 @@ button{
                 id="banksRequested"
                 class="stat-value">
 
-                —
+                0
 
             </div>
 
             <div class="stat-label">
 
-                банков проверено
+                всего банков
 
             </div>
 
@@ -1056,7 +987,7 @@ button{
                 id="banksMissing"
                 class="stat-value">
 
-                —
+                0
 
             </div>
 
@@ -1068,8 +999,11 @@ button{
 
         </div>
 
+
     </div>
 
+
+    <!-- SEARCH -->
 
     <div class="search-box">
 
@@ -1083,34 +1017,22 @@ button{
     </div>
 
 
+    <!-- BANK LIST -->
+
     <div
         id="bankList"
         class="bank-list">
 
-        <div class="empty">
-
-            <div
-                class="loader"
-                style="margin:auto">
-            </div>
-
-            <p style="margin-top:12px">
-
-                Загружаем банки...
-
-            </p>
-
-        </div>
-
     </div>
+
 
 </main>
 
 
 
-<!-- =====================================================
+<!-- =======================================================
      FOOTER
-===================================================== -->
+======================================================= -->
 
 <footer class="footer">
 
@@ -1129,16 +1051,12 @@ button{
         id="updatedText"
         style="margin-top:5px">
 
-        Данные загружаются...
-
     </div>
 
 
     <div
         id="sourceText"
         style="margin-top:5px">
-
-        НБТ
 
     </div>
 
@@ -1156,66 +1074,801 @@ button{
 <script>
 
 /* =========================================================
-   SHOHIN CURRENCY V2
-   ПОЛНОСТЬЮ ПОД ТВОЙ rates.json
+   SHOHIN CURRENCY
+   JSON ВСТРОЕН В HTML
+   НИКАКОГО fetch()
 ========================================================= */
-
-
-/*
-===========================================================
-ВАЖНО
-
-Если rates.json находится рядом с index.html:
-
-    const DATA_URL = "./rates.json";
-
-Если сайт уже опубликован через HTTPS,
-лучше указать полный адрес:
-
-    const DATA_URL =
-      "https://example.com/rates.json";
-
-Для WebToNative второй вариант надёжнее.
-===========================================================
-*/
-
-
-const DATA_URL = "./rates.json";
 
 
 /* =========================================================
-   CACHE
+   ВСТРОЕННЫЕ ДАННЫЕ
 ========================================================= */
 
-const CACHE_KEY =
-    "shohin_currency_rates_v2";
+const ratesData = {
 
-
-/* =========================================================
-   CURRENCIES
-========================================================= */
-
-const CURRENCIES = {
-
-    USD:{
-        flag:"🇺🇸",
-        name:"Доллар США"
+    "app": {
+        "name": "Курс Валют от Банков Таджикистан by SHTJK",
+        "version": "1.0"
     },
 
-    EUR:{
-        flag:"🇪🇺",
-        name:"Евро"
+    "source": "НБТ",
+
+    "source_url":
+        "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
+
+    "updated":
+        "2026-08-17T11:01:48.561537+00:00",
+
+    "currencies": [
+        "USD",
+        "EUR",
+        "RUB",
+        "CNY"
+    ],
+
+    "official": {
+
+        "USD": 9.2569,
+
+        "EUR": 10.7084,
+
+        "CNY": 1.373,
+
+        "RUB": 0.1094
+
     },
 
-    RUB:{
-        flag:"🇷🇺",
-        name:"Российский рубль"
+    "statistics": {
+
+        "requested": 17,
+
+        "found": 15,
+
+        "missing": 2,
+
+        "missing_banks": [
+
+            "Банк Арванд",
+
+            "Душанбе Сити"
+
+        ]
+
     },
 
-    CNY:{
-        flag:"🇨🇳",
-        name:"Китайский юань"
-    }
+    "banks": [
+
+        {
+            "bank": "Алиф Банк",
+
+            "official_name":
+                "ОАО \"Алиф Банк\"",
+
+            "interbank": {
+                "buy": 9.22,
+                "sell": 9.28
+            },
+
+            "cash": {
+                "buy": 9.22,
+                "sell": 9.28
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.22,
+                "sell": 9.28
+            },
+
+            "cards": {
+                "buy": 9.22,
+                "sell": 9.28
+            },
+
+            "npcdp": {
+                "buy": 9.22,
+                "sell": 9.28
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Амонатбанк",
+
+            "official_name":
+                "ГУП СБ РТ \"Амонатбанк\"",
+
+            "interbank": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cash": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cards": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "npcdp": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Банк Арванд",
+
+            "official_name": null,
+
+            "interbank": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cash": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cards": {
+                "buy": null,
+                "sell": null
+            },
+
+            "npcdp": {
+                "buy": null,
+                "sell": null
+            },
+
+            "date": null,
+
+            "available": false
+        },
+
+
+        {
+            "bank": "Банк Эсхата",
+
+            "official_name":
+                "ОАО \"Банк Эсхата\"",
+
+            "interbank": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cash": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cards": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "npcdp": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "ФИНКА",
+
+            "official_name":
+                "ООО МДО \"ФИНКА\"",
+
+            "interbank": {
+                "buy": 9.19,
+                "sell": 9.28
+            },
+
+            "cash": {
+                "buy": 9.19,
+                "sell": 9.28
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.19,
+                "sell": 9.28
+            },
+
+            "cards": {
+                "buy": 9.19,
+                "sell": 9.28
+            },
+
+            "npcdp": {
+                "buy": 9.19,
+                "sell": 9.28
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank":
+                "Инвестиционно-Кредитный Банк Таджикистан",
+
+            "official_name":
+                "ЗАО \"Инвестиционно-Кредитный Банк Таджикистан\"",
+
+            "interbank": {
+                "buy": 9.16,
+                "sell": 9.26
+            },
+
+            "cash": {
+                "buy": 9.16,
+                "sell": 9.26
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.16,
+                "sell": 9.26
+            },
+
+            "cards": {
+                "buy": 9.16,
+                "sell": 9.26
+            },
+
+            "npcdp": {
+                "buy": 9.16,
+                "sell": 9.26
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Актив Банк",
+
+            "official_name":
+                "ЗАО \"Актив Банк\"",
+
+            "interbank": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cash": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cards": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "npcdp": {
+                "buy": null,
+                "sell": null
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Хумо",
+
+            "official_name":
+                "ЗАО МДО \"Хумо\"",
+
+            "interbank": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "cash": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "cards": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "npcdp": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Имон Интернешнл",
+
+            "official_name":
+                "ЗАО МДО \"Имон Интернешнл\"",
+
+            "interbank": {
+                "buy": 9.19,
+                "sell": 9.27
+            },
+
+            "cash": {
+                "buy": 9.19,
+                "sell": 9.27
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.19,
+                "sell": 9.27
+            },
+
+            "cards": {
+                "buy": 9.19,
+                "sell": 9.27
+            },
+
+            "npcdp": {
+                "buy": 9.19,
+                "sell": 9.27
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank":
+                "Международный банк Таджикистана",
+
+            "official_name":
+                "ЗАО \"Международный банк Таджикистана\"",
+
+            "interbank": {
+                "buy": 9.17,
+                "sell": 9.26
+            },
+
+            "cash": {
+                "buy": 9.17,
+                "sell": 9.26
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.17,
+                "sell": 9.26
+            },
+
+            "cards": {
+                "buy": 9.17,
+                "sell": 9.26
+            },
+
+            "npcdp": {
+                "buy": 9.17,
+                "sell": 9.26
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Ориёнбанк",
+
+            "official_name":
+                "ОАО \"Ориёнбонк\"",
+
+            "interbank": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cash": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cards": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "npcdp": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank":
+                "Саноатсодиротбонк",
+
+            "official_name":
+                "ГУП ПЭБТ \"Саноатсодиротбонк\"",
+
+            "interbank": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cash": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "cards": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "npcdp": {
+                "buy": 9.17,
+                "sell": 9.27
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Тавхидбанк",
+
+            "official_name":
+                "ОАО \"Тавхидбанк\"",
+
+            "interbank": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cash": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "cards": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "npcdp": {
+                "buy": 9.18,
+                "sell": 9.27
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Спитамен Банк",
+
+            "official_name":
+                "ЗАО \"Спитамен Банк\"",
+
+            "interbank": {
+                "buy": 9.15,
+                "sell": 9.35
+            },
+
+            "cash": {
+                "buy": 9.15,
+                "sell": 9.35
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.15,
+                "sell": 9.35
+            },
+
+            "cards": {
+                "buy": 9.15,
+                "sell": 9.35
+            },
+
+            "npcdp": {
+                "buy": 9.15,
+                "sell": 9.35
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank":
+                "Фридом Банк Таджикистан",
+
+            "official_name":
+                "ЗАО \"Фридом Банк Таджикистан\"",
+
+            "interbank": {
+                "buy": 9.16,
+                "sell": 9.28
+            },
+
+            "cash": {
+                "buy": 9.16,
+                "sell": 9.28
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cards": {
+                "buy": 9.16,
+                "sell": 9.28
+            },
+
+            "npcdp": {
+                "buy": null,
+                "sell": null
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Васл Банк",
+
+            "official_name":
+                "ЗАО \"Васл Банк\"",
+
+            "interbank": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cash": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": 9.2,
+                "sell": 9.28
+            },
+
+            "cards": {
+                "buy": 9.15,
+                "sell": 9.28
+            },
+
+            "npcdp": {
+                "buy": 9.15,
+                "sell": 9.28
+            },
+
+            "date":
+                "12.08.2026 15:36",
+
+            "available": true
+        },
+
+
+        {
+            "bank": "Душанбе Сити",
+
+            "official_name": null,
+
+            "interbank": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cash": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cashless": {
+                "buy": null,
+                "sell": null
+            },
+
+            "wallet": {
+                "buy": null,
+                "sell": null
+            },
+
+            "cards": {
+                "buy": null,
+                "sell": null
+            },
+
+            "npcdp": {
+                "buy": null,
+                "sell": null
+            },
+
+            "date": null,
+
+            "available": false
+        }
+
+    ]
 
 };
 
@@ -1239,19 +1892,14 @@ const searchInput =
         "searchInput"
     );
 
-const status =
+const refreshBtn =
     document.getElementById(
-        "status"
+        "refreshBtn"
     );
 
 const statusText =
     document.getElementById(
         "statusText"
-    );
-
-const refreshBtn =
-    document.getElementById(
-        "refreshBtn"
     );
 
 const updatedText =
@@ -1281,6 +1929,35 @@ const banksMissing =
 
 
 /* =========================================================
+   CURRENCY INFO
+========================================================= */
+
+const CURRENCIES = {
+
+    USD:{
+        flag:"🇺🇸",
+        name:"Доллар США"
+    },
+
+    EUR:{
+        flag:"🇪🇺",
+        name:"Евро"
+    },
+
+    RUB:{
+        flag:"🇷🇺",
+        name:"Российский рубль"
+    },
+
+    CNY:{
+        flag:"🇨🇳",
+        name:"Китайский юань"
+    }
+
+};
+
+
+/* =========================================================
    FORMAT NUMBER
 ========================================================= */
 
@@ -1296,7 +1973,6 @@ function formatRate(value){
         return "—";
 
     }
-
 
     return Number(value).toLocaleString(
         "ru-RU",
@@ -1317,39 +1993,20 @@ function escapeHtml(value){
 
     return String(value ?? "")
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
 /* =========================================================
-   FORMAT DATE
+   DATE
 ========================================================= */
 
-function formatUpdatedDate(value){
+function formatDate(value){
 
     if(!value){
 
@@ -1357,12 +2014,10 @@ function formatUpdatedDate(value){
 
     }
 
-
     try{
 
         const date =
             new Date(value);
-
 
         if(
             Number.isNaN(
@@ -1370,10 +2025,9 @@ function formatUpdatedDate(value){
             )
         ){
 
-            return String(value);
+            return value;
 
         }
-
 
         return date.toLocaleString(
             "ru-RU",
@@ -1386,7 +2040,7 @@ function formatUpdatedDate(value){
     }
     catch{
 
-        return String(value);
+        return value;
 
     }
 
@@ -1399,75 +2053,40 @@ function formatUpdatedDate(value){
 
 function renderOfficial(){
 
-    if(
-        !ratesData ||
-        !ratesData.official
-    ){
-
-        officialGrid.innerHTML = `
-
-            <div
-                class="empty"
-                style="grid-column:1/-1">
-
-                ❌ Официальные курсы
-                не найдены
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
     officialGrid.innerHTML =
 
         Object.keys(CURRENCIES)
-
         .map(code => {
 
             const currency =
                 CURRENCIES[code];
 
-
             const value =
-                ratesData
-                    .official
-                    [code];
-
+                ratesData.official[code];
 
             return `
 
                 <div class="currency-card">
 
-                    <div class="currency-top">
+                    <div class="currency-name">
 
-                        <div class="currency-name">
+                        <span class="flag">
 
-                            <span class="flag">
+                            ${currency.flag}
 
-                                ${currency.flag}
+                        </span>
 
-                            </span>
+                        <div>
 
+                            <div class="code">
 
-                            <div>
+                                ${code}
 
-                                <div class="code">
+                            </div>
 
-                                    ${code}
+                            <div class="currency-label">
 
-                                </div>
-
-
-                                <div
-                                    class="currency-label">
-
-                                    ${currency.name}
-
-                                </div>
+                                ${currency.name}
 
                             </div>
 
@@ -1506,63 +2125,29 @@ function renderOfficial(){
 
 function renderBanks(){
 
-    if(
-        !ratesData ||
-        !Array.isArray(
-            ratesData.banks
-        )
-    ){
-
-        bankList.innerHTML = `
-
-            <div class="empty">
-
-                ❌ Данные банков
-                не найдены
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
     const search =
-
         searchInput.value
             .trim()
             .toLowerCase();
 
 
     const banks =
-
         ratesData.banks.filter(
             bank => {
 
                 const name =
-
                     String(
                         bank.bank || ""
-                    )
-                    .toLowerCase();
+                    ).toLowerCase();
 
-
-                const officialName =
-
+                const official =
                     String(
                         bank.official_name || ""
-                    )
-                    .toLowerCase();
-
+                    ).toLowerCase();
 
                 return (
-
                     name.includes(search) ||
-
-                    officialName.includes(search)
-
+                    official.includes(search)
                 );
 
             }
@@ -1590,30 +2175,20 @@ function renderBanks(){
 
         banks.map(bank => {
 
-
-            const available =
-                bank.available === true;
-
-
             const cash =
                 bank.cash || {};
-
 
             const interbank =
                 bank.interbank || {};
 
-
             const wallet =
                 bank.wallet || {};
-
 
             const cards =
                 bank.cards || {};
 
-
-            const npcdb =
+            const npc =
                 bank.npcdp || {};
-
 
             const cashless =
                 bank.cashless || {};
@@ -1625,7 +2200,6 @@ function renderBanks(){
 
 
                     <div class="bank-head">
-
 
                         <div>
 
@@ -1641,6 +2215,7 @@ function renderBanks(){
                             ${
                                 bank.official_name
                                 ?
+
                                 `
 
                                 <div
@@ -1653,15 +2228,19 @@ function renderBanks(){
                                 </div>
 
                                 `
+
                                 :
+
                                 ""
+
                             }
 
                         </div>
 
 
                         ${
-                            available
+                            bank.available === true
+
                             ?
 
                             `
@@ -1693,13 +2272,11 @@ function renderBanks(){
 
 
                     ${
-                        available
+                        bank.available === true
 
                         ?
 
                         `
-
-                        <!-- CASH -->
 
                         <div class="rate-box">
 
@@ -1712,7 +2289,6 @@ function renderBanks(){
 
                                 </div>
 
-
                                 <div
                                     class="rate-value buy">
 
@@ -1721,7 +2297,6 @@ function renderBanks(){
                                     )}
 
                                 </div>
-
 
                                 <div
                                     class="rate-unit">
@@ -1741,7 +2316,6 @@ function renderBanks(){
 
                                 </div>
 
-
                                 <div
                                     class="rate-value sell">
 
@@ -1750,7 +2324,6 @@ function renderBanks(){
                                     )}
 
                                 </div>
-
 
                                 <div
                                     class="rate-unit">
@@ -1764,8 +2337,12 @@ function renderBanks(){
                         </div>
 
 
+                        <div class="extra-title">
 
-                        <!-- EXTRA -->
+                            Дополнительные курсы
+
+                        </div>
+
 
                         <div class="extra-data">
 
@@ -1778,8 +2355,7 @@ function renderBanks(){
 
                                 </div>
 
-                                <div
-                                    class="extra-value">
+                                <div class="extra-value">
 
                                     ${formatRate(
                                         interbank.buy
@@ -1804,8 +2380,7 @@ function renderBanks(){
 
                                 </div>
 
-                                <div
-                                    class="extra-value">
+                                <div class="extra-value">
 
                                     ${formatRate(
                                         wallet.buy
@@ -1830,8 +2405,7 @@ function renderBanks(){
 
                                 </div>
 
-                                <div
-                                    class="extra-value">
+                                <div class="extra-value">
 
                                     ${formatRate(
                                         cards.buy
@@ -1856,17 +2430,16 @@ function renderBanks(){
 
                                 </div>
 
-                                <div
-                                    class="extra-value">
+                                <div class="extra-value">
 
                                     ${formatRate(
-                                        npcdb.buy
+                                        npc.buy
                                     )}
 
                                     /
 
                                     ${formatRate(
-                                        npcdb.sell
+                                        npc.sell
                                     )}
 
                                 </div>
@@ -1882,8 +2455,7 @@ function renderBanks(){
 
                                 </div>
 
-                                <div
-                                    class="extra-value">
+                                <div class="extra-value">
 
                                     ${formatRate(
                                         cashless.buy
@@ -1899,11 +2471,13 @@ function renderBanks(){
 
                             </div>
 
+
                         </div>
 
 
                         ${
                             bank.date
+
                             ?
 
                             `
@@ -1935,7 +2509,8 @@ function renderBanks(){
                         <div class="no-bank-data">
 
                             ⚠️ Курсы этого банка
-                            отсутствуют в источнике НБТ.
+                            сейчас отсутствуют
+                            в данных НБТ.
 
                         </div>
 
@@ -1955,441 +2530,78 @@ function renderBanks(){
 
 
 /* =========================================================
-   SAVE CACHE
+   INITIALIZE
 ========================================================= */
 
-function saveCache(data){
+function initialize(){
 
     try{
 
-        localStorage.setItem(
-            CACHE_KEY,
-            JSON.stringify(data)
-        );
+        /* OFFICIAL */
 
-    }
-    catch(error){
-
-        console.warn(
-            "Не удалось сохранить кэш:",
-            error
-        );
-
-    }
-
-}
+        renderOfficial();
 
 
-/* =========================================================
-   LOAD CACHE
-========================================================= */
+        /* BANKS */
 
-function loadCache(){
+        renderBanks();
 
-    try{
 
-        const saved =
-            localStorage.getItem(
-                CACHE_KEY
+        /* STATISTICS */
+
+        banksFound.textContent =
+            ratesData.statistics.found;
+
+        banksRequested.textContent =
+            ratesData.statistics.requested;
+
+        banksMissing.textContent =
+            ratesData.statistics.missing;
+
+
+        /* DATE */
+
+        updatedText.textContent =
+            "Обновлено: " +
+            formatDate(
+                ratesData.updated
             );
 
 
-        if(!saved){
-
-            return null;
-
-        }
-
-
-        const data =
-            JSON.parse(saved);
-
-
-        if(
-            !data ||
-            typeof data !== "object"
-        ){
-
-            return null;
-
-        }
-
-
-        return data;
-
-    }
-    catch(error){
-
-        console.warn(
-            "Ошибка кэша:",
-            error
-        );
-
-        return null;
-
-    }
-
-}
-
-
-/* =========================================================
-   SHOW DATA
-========================================================= */
-
-function showData(
-    data,
-    fromCache = false
-){
-
-    ratesData = data;
-
-
-    renderOfficial();
-
-    renderBanks();
-
-
-    /* STATISTICS */
-
-    const statistics =
-        data.statistics || {};
-
-
-    banksFound.textContent =
-        statistics.found ??
-        data.banks?.filter(
-            bank =>
-                bank.available === true
-        ).length ??
-        "—";
-
-
-    banksRequested.textContent =
-        statistics.requested ??
-        data.banks?.length ??
-        "—";
-
-
-    banksMissing.textContent =
-        statistics.missing ??
-        data.banks?.filter(
-            bank =>
-                bank.available !== true
-        ).length ??
-        "—";
-
-
-    /* UPDATED */
-
-    updatedText.textContent =
-
-        "Обновлено: " +
-
-        formatUpdatedDate(
-            data.updated
-        );
-
-
-    /* SOURCE */
-
-    if(data.source){
+        /* SOURCE */
 
         sourceText.textContent =
             "Источник: " +
-            data.source;
-
-    }
+            ratesData.source;
 
 
-    /* STATUS */
+        /* STATUS */
 
-    if(fromCache){
-
-        status.className =
-            "status offline";
-
-        status.innerHTML = `
-
-            <div class="status-dot"></div>
-
-            <div>
-
-                Офлайн • показаны
-                последние сохранённые данные
-
-            </div>
-
-        `;
-
-    }
-    else{
-
-        status.className =
-            "status";
-
-        status.innerHTML = `
-
-            <div class="status-dot"></div>
-
-            <div>
-
-                Онлайн • курсы загружены
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD JSON
-========================================================= */
-
-async function loadRates(){
-
-    setLoading();
-
-
-    try{
-
-        /*
-         * Добавляем timestamp,
-         * чтобы WebView не использовал
-         * старый rates.json.
-         */
-
-        const url =
-
-            DATA_URL +
-
-            (
-                DATA_URL.includes("?")
-                ? "&"
-                : "?"
-            ) +
-
-            "v=" +
-
-            Date.now();
-
-
-        const response =
-
-            await fetch(
-                url,
-                {
-                    method:"GET",
-                    cache:"no-store"
-                }
-            );
-
-
-        if(!response.ok){
-
-            throw new Error(
-                "HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        /* Проверка структуры */
-
-        if(
-            !data ||
-            typeof data !== "object"
-        ){
-
-            throw new Error(
-                "Неверный JSON"
-            );
-
-        }
-
-
-        if(
-            !data.official
-        ){
-
-            throw new Error(
-                "В JSON нет official"
-            );
-
-        }
-
-
-        if(
-            !Array.isArray(
-                data.banks
-            )
-        ){
-
-            throw new Error(
-                "В JSON нет banks[]"
-            );
-
-        }
-
-
-        /* Сохраняем */
-
-        saveCache(data);
-
-
-        /* Показываем */
-
-        showData(
-            data,
-            false
-        );
+        statusText.textContent =
+            "Курсы загружены • " +
+            ratesData.statistics.found +
+            " из " +
+            ratesData.statistics.requested +
+            " банков";
 
 
         console.log(
-            "SHOHIN Currency:",
-            data
+            "SHOHIN Currency загружен:",
+            ratesData
         );
-
 
     }
     catch(error){
 
         console.error(
-            "Ошибка rates.json:",
+            "Ошибка:",
             error
         );
 
-
-        /*
-         * Пытаемся показать
-         * последний сохранённый JSON.
-         */
-
-        const cached =
-            loadCache();
-
-
-        if(cached){
-
-            showData(
-                cached,
-                true
-            );
-
-            return;
-
-        }
-
-
-        /* Если кэша нет */
-
-        status.className =
-            "status error";
-
-        status.innerHTML = `
-
-            <div class="status-dot"></div>
-
-            <div>
-
-                Не удалось загрузить
-                курсы
-
-            </div>
-
-        `;
-
-
-        officialGrid.innerHTML = `
-
-            <div
-                class="empty"
-                style="grid-column:1/-1">
-
-                ❌ Не удалось загрузить
-                <b>rates.json</b>
-
-                <div style="
-                    margin-top:10px;
-                    font-size:12px;
-                    line-height:1.5;
-                ">
-
-                    ${escapeHtml(
-                        error.message
-                    )}
-
-                    <br><br>
-
-                    Проверь интернет
-                    и расположение
-                    rates.json.
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        bankList.innerHTML = `
-
-            <div class="empty">
-
-                ❌ Данные банков
-                недоступны.
-
-                <div style="
-                    margin-top:10px;
-                    font-size:12px;
-                ">
-
-                    Последние данные
-                    ещё не сохранены.
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        updatedText.textContent =
-            "Нет данных";
+        statusText.textContent =
+            "Ошибка отображения данных";
 
     }
-
-}
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-function setLoading(){
-
-    status.className =
-        "status loading";
-
-    status.innerHTML = `
-
-        <div class="loader"></div>
-
-        <div>
-
-            Загружаем актуальные
-            курсы...
-
-        </div>
-
-    `;
 
 }
 
@@ -2400,11 +2612,7 @@ function setLoading(){
 
 searchInput.addEventListener(
     "input",
-    () => {
-
-        renderBanks();
-
-    }
+    renderBanks
 );
 
 
@@ -2414,23 +2622,22 @@ searchInput.addEventListener(
 
 refreshBtn.addEventListener(
     "click",
-    async () => {
+    () => {
 
         refreshBtn.style.transform =
             "rotate(360deg)";
 
 
-        await loadRates();
-
-
         setTimeout(
             () => {
+
+                initialize();
 
                 refreshBtn.style.transform =
                     "";
 
             },
-            400
+            300
         );
 
     }
@@ -2438,78 +2645,10 @@ refreshBtn.addEventListener(
 
 
 /* =========================================================
-   SERVICE WORKER
-========================================================= */
-
-if(
-    "serviceWorker" in navigator &&
-    location.protocol !== "file:"
-){
-
-    window.addEventListener(
-        "load",
-        () => {
-
-            navigator.serviceWorker
-                .register("./sw.js")
-                .then(
-                    registration => {
-
-                        console.log(
-                            "SHOHIN Service Worker:",
-                            registration.scope
-                        );
-
-                    }
-                )
-                .catch(
-                    error => {
-
-                        console.warn(
-                            "Service Worker:",
-                            error
-                        );
-
-                    }
-                );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
    START
 ========================================================= */
 
-let ratesData = null;
-
-
-/*
- * Сначала пытаемся показать
- * старые данные мгновенно.
- */
-
-const cachedData =
-    loadCache();
-
-
-if(cachedData){
-
-    showData(
-        cachedData,
-        true
-    );
-
-}
-
-
-/*
- * Затем загружаем свежий JSON.
- */
-
-loadRates();
+initialize();
 
 </script>
 
