@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-08-19T05:03:18.029663+00:00",
+  "updated": "2026-08-19T06:02:29.961341+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -33,11 +33,11 @@
       "official_name": "OАО \"Алиф Банк\"",
       "interbank": {
         "buy": 9.22,
-        "sell": 9.28
+        "sell": 9.27
       },
       "cash": {
         "buy": 9.22,
-        "sell": 9.28
+        "sell": 9.27
       },
       "cashless": {
         "buy": null,
@@ -45,17 +45,17 @@
       },
       "wallet": {
         "buy": 9.22,
-        "sell": 9.28
+        "sell": 9.27
       },
       "cards": {
         "buy": 9.22,
-        "sell": 9.28
+        "sell": 9.27
       },
       "npcdp": {
         "buy": 9.22,
-        "sell": 9.28
+        "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -85,7 +85,7 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -145,7 +145,7 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -175,37 +175,37 @@
         "buy": 9.19,
         "sell": 9.28
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
       "bank": "Инвестиционно-Кредитный Банк Таджикистан",
       "official_name": "ЗАО \"Инвестиционно-Кредитный Банк Таджикистан\"",
       "interbank": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
       "cash": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
       "cards": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
       "npcdp": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -235,7 +235,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -265,7 +265,7 @@
         "buy": 9.17,
         "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -295,37 +295,37 @@
         "buy": 9.19,
         "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
       "bank": "Международный банк Таджикистана",
       "official_name": "ЗАО \"Международный банк Таджикистана\"",
       "interbank": {
-        "buy": 9.17,
-        "sell": 9.26
+        "buy": 9.19,
+        "sell": 9.28
       },
       "cash": {
-        "buy": 9.17,
-        "sell": 9.26
+        "buy": 9.19,
+        "sell": 9.28
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.17,
-        "sell": 9.26
+        "buy": 9.19,
+        "sell": 9.28
       },
       "cards": {
-        "buy": 9.17,
-        "sell": 9.26
+        "buy": 9.19,
+        "sell": 9.28
       },
       "npcdp": {
-        "buy": 9.17,
-        "sell": 9.26
+        "buy": 9.19,
+        "sell": 9.28
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -333,7 +333,7 @@
       "official_name": "ОАО \"Ориёнбонк\"",
       "interbank": {
         "buy": 9.2,
-        "sell": 9.28
+        "sell": 9.26
       },
       "cash": {
         "buy": 9.2,
@@ -355,7 +355,7 @@
         "buy": 9.2,
         "sell": 9.28
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -366,26 +366,26 @@
         "sell": null
       },
       "cash": {
-        "buy": 9.17,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.28
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.17,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.28
       },
       "cards": {
-        "buy": 9.17,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.28
       },
       "npcdp": {
-        "buy": 9.17,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.28
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -415,7 +415,7 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -445,7 +445,7 @@
         "buy": 9.15,
         "sell": 9.35
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -475,7 +475,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
@@ -505,7 +505,7 @@
         "buy": 9.15,
         "sell": 9.28
       },
-      "date": "12.08.2026 15:36",
+      "date": "18.08.2026 11:00",
       "available": true
     },
     {
