@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-08-26T03:34:11.508574+00:00",
+  "updated": "2026-08-26T05:17:34.764347+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -33,11 +33,11 @@
       "official_name": "OАО \"Алиф Банк\"",
       "interbank": {
         "buy": 9.22,
-        "sell": 9.26
+        "sell": 9.27
       },
       "cash": {
         "buy": 9.22,
-        "sell": 9.26
+        "sell": 9.27
       },
       "cashless": {
         "buy": null,
@@ -55,7 +55,7 @@
         "buy": 9.22,
         "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -85,7 +85,7 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -145,37 +145,37 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
       "bank": "ФИНКА",
       "official_name": "ООО МДО \"ФИНКА\"",
       "interbank": {
-        "buy": 9.21,
-        "sell": 9.27
+        "buy": 9.22,
+        "sell": 9.28
       },
       "cash": {
-        "buy": 9.21,
-        "sell": 9.27
+        "buy": 9.22,
+        "sell": 9.28
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.21,
-        "sell": 9.27
+        "buy": 9.22,
+        "sell": 9.28
       },
       "cards": {
-        "buy": 9.21,
-        "sell": 9.27
+        "buy": 9.22,
+        "sell": 9.28
       },
       "npcdp": {
-        "buy": 9.21,
-        "sell": 9.27
+        "buy": 9.22,
+        "sell": 9.28
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -205,7 +205,7 @@
         "buy": 9.18,
         "sell": 9.26
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -235,37 +235,37 @@
         "buy": null,
         "sell": null
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
       "bank": "Хумо",
       "official_name": "ЗАО МДО \"Хумо\"",
       "interbank": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
       "cash": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.16,
+        "buy": 9.17,
         "sell": 9.26
       },
       "cards": {
-        "buy": 9.16,
+        "buy": 9.17,
         "sell": 9.26
       },
       "npcdp": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.17,
+        "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -295,7 +295,7 @@
         "buy": 9.19,
         "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -325,7 +325,7 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -355,7 +355,7 @@
         "buy": 9.2,
         "sell": 9.28
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -385,7 +385,7 @@
         "buy": 9.17,
         "sell": 9.26
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -415,7 +415,7 @@
         "buy": 9.18,
         "sell": 9.27
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -445,7 +445,7 @@
         "buy": 9.15,
         "sell": 9.35
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -453,11 +453,11 @@
       "official_name": "ЗАО \"Фридом Банк Таджикистан\"",
       "interbank": {
         "buy": 9.16,
-        "sell": 9.28
+        "sell": 9.27
       },
       "cash": {
         "buy": 9.16,
-        "sell": 9.28
+        "sell": 9.27
       },
       "cashless": {
         "buy": null,
@@ -469,13 +469,13 @@
       },
       "cards": {
         "buy": 9.16,
-        "sell": 9.28
+        "sell": 9.27
       },
       "npcdp": {
         "buy": null,
         "sell": null
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
@@ -505,7 +505,7 @@
         "buy": 9.15,
         "sell": 9.28
       },
-      "date": "25.08.2026 12:00",
+      "date": "26.08.2026 09:00",
       "available": true
     },
     {
