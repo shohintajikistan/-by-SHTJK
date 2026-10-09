@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-10-09T01:22:04.297358+00:00",
+  "updated": "2026-10-09T07:29:54.316963+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -55,37 +55,37 @@
         "buy": 9.2,
         "sell": 9.26
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
       "bank": "Амонатбанк",
       "official_name": "ГУП СБ РТ \"Амонатбанк\"",
       "interbank": {
-        "buy": 9.15,
-        "sell": 9.24
+        "buy": 9.16,
+        "sell": 9.25
       },
       "cash": {
-        "buy": 9.15,
-        "sell": 9.24
+        "buy": 9.16,
+        "sell": 9.25
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.15,
-        "sell": 9.24
+        "buy": 9.16,
+        "sell": 9.2
       },
       "cards": {
-        "buy": 9.15,
-        "sell": 9.24
+        "buy": 9.16,
+        "sell": 9.25
       },
       "npcdp": {
-        "buy": 9.15,
-        "sell": 9.24
+        "buy": 9.16,
+        "sell": 9.25
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -145,79 +145,79 @@
         "buy": 9.16,
         "sell": 9.26
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
       "bank": "ФИНКА",
       "official_name": "ООО МДО \"ФИНКА\"",
       "interbank": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "cash": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "cards": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "npcdp": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
       "bank": "Инвестиционно-Кредитный Банк Таджикистан",
       "official_name": "ЗАО \"Инвестиционно-Кредитный Банк Таджикистан\"",
       "interbank": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.15,
+        "sell": 9.25
       },
       "cash": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.15,
+        "sell": 9.25
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.15,
+        "sell": 9.25
       },
       "cards": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.15,
+        "sell": 9.25
       },
       "npcdp": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.15,
+        "sell": 9.25
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
       "bank": "Актив Банк",
       "official_name": "ЗАО \"Актив Банк\"",
       "interbank": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "cash": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "cashless": {
         "buy": null,
@@ -228,14 +228,14 @@
         "sell": null
       },
       "cards": {
-        "buy": 9.2,
-        "sell": 9.27
+        "buy": 9.18,
+        "sell": 9.26
       },
       "npcdp": {
         "buy": null,
         "sell": null
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -265,7 +265,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -295,7 +295,7 @@
         "buy": 9.17,
         "sell": 9.26
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -325,7 +325,7 @@
         "buy": 9.16,
         "sell": 9.25
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -333,7 +333,7 @@
       "official_name": "ОАО \"Ориёнбонк\"",
       "interbank": {
         "buy": 9.2,
-        "sell": 9.23
+        "sell": 9.24
       },
       "cash": {
         "buy": 9.2,
@@ -355,7 +355,7 @@
         "buy": 9.2,
         "sell": 9.28
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -385,7 +385,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -415,18 +415,18 @@
         "buy": 9.16,
         "sell": 9.26
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
       "bank": "Спитамен Банк",
       "official_name": "ЗАО \"Спитамен Банк\"",
       "interbank": {
-        "buy": 9.18,
+        "buy": 9.19,
         "sell": 9.26
       },
       "cash": {
-        "buy": 9.16,
+        "buy": 9.19,
         "sell": 9.26
       },
       "cashless": {
@@ -434,18 +434,18 @@
         "sell": null
       },
       "wallet": {
-        "buy": 9.18,
+        "buy": 9.19,
         "sell": 9.26
       },
       "cards": {
-        "buy": 9.16,
+        "buy": 9.19,
         "sell": 9.26
       },
       "npcdp": {
-        "buy": 9.16,
+        "buy": 9.19,
         "sell": 9.26
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -475,7 +475,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
@@ -505,7 +505,7 @@
         "buy": 9.15,
         "sell": 9.28
       },
-      "date": "07.10.2026 17:00",
+      "date": "09.10.2026 11:01",
       "available": true
     },
     {
