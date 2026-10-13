@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-10-13T03:14:08.683184+00:00",
+  "updated": "2026-10-13T10:35:54.783397+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -33,11 +33,11 @@
       "official_name": "OАО \"Алиф Банк\"",
       "interbank": {
         "buy": 9.2,
-        "sell": 9.235
+        "sell": 9.26
       },
       "cash": {
         "buy": 9.2,
-        "sell": 9.235
+        "sell": 9.26
       },
       "cashless": {
         "buy": null,
@@ -55,7 +55,7 @@
         "buy": 9.2,
         "sell": 9.26
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -85,7 +85,7 @@
         "buy": 9.16,
         "sell": 9.2
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -145,37 +145,37 @@
         "buy": 9.16,
         "sell": 9.26
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
       "bank": "ФИНКА",
       "official_name": "ООО МДО \"ФИНКА\"",
       "interbank": {
-        "buy": 9.18,
-        "sell": 9.26
+        "buy": 9.16,
+        "sell": 9.25
       },
       "cash": {
-        "buy": 9.18,
-        "sell": 9.26
+        "buy": 9.16,
+        "sell": 9.25
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.18,
-        "sell": 9.26
+        "buy": 9.16,
+        "sell": 9.25
       },
       "cards": {
-        "buy": 9.18,
-        "sell": 9.26
+        "buy": 9.16,
+        "sell": 9.25
       },
       "npcdp": {
-        "buy": 9.18,
-        "sell": 9.26
+        "buy": 9.16,
+        "sell": 9.25
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -205,7 +205,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -235,7 +235,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -265,7 +265,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -295,7 +295,7 @@
         "buy": 9.17,
         "sell": 9.26
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -325,7 +325,7 @@
         "buy": 9.16,
         "sell": 9.25
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -355,7 +355,7 @@
         "buy": 9.2,
         "sell": 9.28
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -385,7 +385,7 @@
         "buy": 9.16,
         "sell": 9.26
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -415,18 +415,18 @@
         "buy": 9.16,
         "sell": 9.26
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
       "bank": "Спитамен Банк",
       "official_name": "ЗАО \"Спитамен Банк\"",
       "interbank": {
-        "buy": 9.19,
+        "buy": 9.2,
         "sell": 9.26
       },
       "cash": {
-        "buy": 9.19,
+        "buy": 9.17,
         "sell": 9.26
       },
       "cashless": {
@@ -434,18 +434,18 @@
         "sell": null
       },
       "wallet": {
-        "buy": 9.19,
+        "buy": 9.2,
         "sell": 9.26
       },
       "cards": {
-        "buy": 9.19,
+        "buy": 9.2,
         "sell": 9.26
       },
       "npcdp": {
-        "buy": 9.19,
+        "buy": 9.2,
         "sell": 9.26
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
@@ -475,19 +475,19 @@
         "buy": null,
         "sell": null
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
       "bank": "Васл Банк",
       "official_name": "ЗАО \"Васл Банк\"",
       "interbank": {
-        "buy": 9.21,
-        "sell": 9.26
+        "buy": 9.18,
+        "sell": 9.27
       },
       "cash": {
-        "buy": 9.21,
-        "sell": 9.26
+        "buy": 9.18,
+        "sell": 9.27
       },
       "cashless": {
         "buy": null,
@@ -505,7 +505,7 @@
         "buy": 9.15,
         "sell": 9.28
       },
-      "date": "12.10.2026 13:00",
+      "date": "13.10.2026 15:00",
       "available": true
     },
     {
