@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-10-21T01:30:54.726773+00:00",
+  "updated": "2026-10-21T06:25:40.493402+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -55,7 +55,7 @@
         "buy": 9.18,
         "sell": 9.25
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -85,7 +85,7 @@
         "buy": 9.15,
         "sell": 9.24
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -122,30 +122,30 @@
       "bank": "Банк Эсхата",
       "official_name": "ОАО \"Банк Эсхата\"",
       "interbank": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.14,
+        "sell": 9.24
       },
       "cash": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.14,
+        "sell": 9.24
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.14,
+        "sell": 9.24
       },
       "cards": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.14,
+        "sell": 9.24
       },
       "npcdp": {
-        "buy": 9.16,
-        "sell": 9.26
+        "buy": 9.14,
+        "sell": 9.24
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -175,7 +175,7 @@
         "buy": 9.16,
         "sell": 9.26
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -205,7 +205,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -235,7 +235,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -265,7 +265,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -295,7 +295,7 @@
         "buy": 9.17,
         "sell": 9.26
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -325,7 +325,7 @@
         "buy": 9.16,
         "sell": 9.25
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -355,7 +355,7 @@
         "buy": 9.17,
         "sell": 9.27
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -385,7 +385,7 @@
         "buy": 9.17,
         "sell": 9.27
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -393,11 +393,11 @@
       "official_name": "ОАО \"Тавхидбанк\"",
       "interbank": {
         "buy": 9.18,
-        "sell": 9.25
+        "sell": 9.24
       },
       "cash": {
         "buy": 9.18,
-        "sell": 9.25
+        "sell": 9.24
       },
       "cashless": {
         "buy": null,
@@ -405,17 +405,17 @@
       },
       "wallet": {
         "buy": 9.18,
-        "sell": 9.25
+        "sell": 9.24
       },
       "cards": {
         "buy": 9.18,
-        "sell": 9.25
+        "sell": 9.24
       },
       "npcdp": {
         "buy": 9.18,
-        "sell": 9.25
+        "sell": 9.24
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -423,11 +423,11 @@
       "official_name": "ЗАО \"Спитамен Банк\"",
       "interbank": {
         "buy": 9.2,
-        "sell": 9.25
+        "sell": 9.26
       },
       "cash": {
         "buy": 9.2,
-        "sell": 9.25
+        "sell": 9.26
       },
       "cashless": {
         "buy": null,
@@ -435,17 +435,17 @@
       },
       "wallet": {
         "buy": 9.2,
-        "sell": 9.25
+        "sell": 9.26
       },
       "cards": {
         "buy": 9.2,
-        "sell": 9.25
+        "sell": 9.26
       },
       "npcdp": {
         "buy": 9.2,
-        "sell": 9.25
+        "sell": 9.26
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -475,7 +475,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
@@ -505,7 +505,7 @@
         "buy": 9.15,
         "sell": 9.28
       },
-      "date": "20.10.2026 11:00",
+      "date": "21.10.2026 09:53",
       "available": true
     },
     {
