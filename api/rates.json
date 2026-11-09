@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-11-09T09:23:00.296006+00:00",
+  "updated": "2026-11-09T19:55:39.696242+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -13,10 +13,10 @@
     "CNY"
   ],
   "official": {
-    "USD": 9.2087,
-    "EUR": 10.3368,
-    "CNY": 1.3814,
-    "RUB": 0.1126
+    "USD": 9.2067,
+    "EUR": 10.3041,
+    "CNY": 1.3803,
+    "RUB": 0.1118
   },
   "statistics": {
     "requested": 17,
