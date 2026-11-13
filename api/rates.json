@@ -5,7 +5,7 @@
   },
   "source": "НБТ",
   "source_url": "https://nbt.tj/ru/kurs/kurs_kommer_bank.php",
-  "updated": "2026-11-13T07:40:44.295525+00:00",
+  "updated": "2026-11-13T15:41:08.005636+00:00",
   "currencies": [
     "USD",
     "EUR",
@@ -13,10 +13,10 @@
     "CNY"
   ],
   "official": {
-    "USD": 9.2141,
-    "EUR": 10.2212,
-    "CNY": 1.3818,
-    "RUB": 0.111
+    "USD": 9.2111,
+    "EUR": 10.1838,
+    "CNY": 1.3802,
+    "RUB": 0.1119
   },
   "statistics": {
     "requested": 17,
@@ -55,7 +55,7 @@
         "buy": 9.14,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -85,7 +85,7 @@
         "buy": 9.13,
         "sell": 9.22
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -145,37 +145,37 @@
         "buy": 9.14,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
       "bank": "ФИНКА",
       "official_name": "ООО МДО \"ФИНКА\"",
       "interbank": {
-        "buy": 9.14,
-        "sell": 9.24
+        "buy": 9.13,
+        "sell": 9.23
       },
       "cash": {
-        "buy": 9.14,
-        "sell": 9.24
+        "buy": 9.13,
+        "sell": 9.23
       },
       "cashless": {
         "buy": null,
         "sell": null
       },
       "wallet": {
-        "buy": 9.14,
-        "sell": 9.24
+        "buy": 9.13,
+        "sell": 9.23
       },
       "cards": {
-        "buy": 9.14,
-        "sell": 9.24
+        "buy": 9.13,
+        "sell": 9.23
       },
       "npcdp": {
-        "buy": 9.14,
-        "sell": 9.24
+        "buy": 9.13,
+        "sell": 9.23
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -205,7 +205,7 @@
         "buy": 9.14,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -235,7 +235,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -265,7 +265,7 @@
         "buy": 9.13,
         "sell": 9.23
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -295,7 +295,7 @@
         "buy": 9.16,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -325,7 +325,7 @@
         "buy": 9.14,
         "sell": 9.23
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -355,7 +355,7 @@
         "buy": 9.15,
         "sell": 9.25
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -385,7 +385,7 @@
         "buy": 9.14,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -393,11 +393,11 @@
       "official_name": "ОАО \"Тавхидбанк\"",
       "interbank": {
         "buy": 9.14,
-        "sell": 9.23
+        "sell": 9.24
       },
       "cash": {
         "buy": 9.14,
-        "sell": 9.23
+        "sell": 9.24
       },
       "cashless": {
         "buy": null,
@@ -405,17 +405,17 @@
       },
       "wallet": {
         "buy": 9.14,
-        "sell": 9.23
+        "sell": 9.24
       },
       "cards": {
         "buy": 9.14,
-        "sell": 9.23
+        "sell": 9.24
       },
       "npcdp": {
         "buy": 9.14,
-        "sell": 9.23
+        "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -445,7 +445,7 @@
         "buy": 9.14,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -475,7 +475,7 @@
         "buy": null,
         "sell": null
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
@@ -505,7 +505,7 @@
         "buy": 9.17,
         "sell": 9.24
       },
-      "date": "—",
+      "date": "13.11.2026 17:30",
       "available": true
     },
     {
